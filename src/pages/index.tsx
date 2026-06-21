@@ -26,7 +26,7 @@ import { useLanguage } from "@/components/LanguageSwitcher";
 import { useReveal } from "@/hooks/useReveal";
 import { useState } from "react";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xovnbgby";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgqbjqk";
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const { ref, isVisible } = useReveal();
