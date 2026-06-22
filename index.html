@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="./app-icon.svg" />
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7Y5L1LCHC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-S7Y5L1LCHC');
+    </script>
+    
     <!-- Primary SEO -->
     <title>Qiantong Global — Medical Consumables Supply Chain Partner</title>
     <meta name="description" content="Your trusted medical consumables supply chain partner based in Changyuan, China. CE MDR & FDA certified surgical gowns, drapes, procedure packs. Factory-direct pricing with on-site quality control." />
@@ -76,9 +85,6 @@
     </script>
   </head>
   <body>
-    <!-- 注入 BASE_URL 供 ai-app-client 等 npm 包通过 window.__AI_APP_PRODUCT_BASE_URL__ 读取 -->
-    <!-- Vite 会在构建时将 %BASE_URL% 替换为实际的 base 路径 -->
-    <script>window.__AI_APP_PRODUCT_BASE_URL__ = '%BASE_URL%';</script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
