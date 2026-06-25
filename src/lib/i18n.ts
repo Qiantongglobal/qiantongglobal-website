@@ -321,7 +321,7 @@ export const translations: Record<Language, Translations> = {
     sol2_solution_title: "弹性产能规划",
     sol2_solution_desc: "我们与多家工厂保持合作关系，实时管理产能分配。无论您需要紧急订单还是定期发货，我们确保您的产品每次都准时就绪。",
     sol3_problem_title: "运输破损率高",
-    sol3_problem_desc: "\"太多产品到货损坏——包装 inadequate。\"",
+    sol3_problem_desc: "\"太多产品到货损坏——包装不充分。\"",
     sol3_solution_title: "装柜监督",
     sol3_solution_desc: "我们的团队监督整个装柜过程——从托盘排列到防潮层安装。我们确保正确堆叠、安全捆绑和最佳空间利用，最大限度减少运输损坏。",
     cert_label: "资质认证",
