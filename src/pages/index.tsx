@@ -21,6 +21,10 @@ import {
   ArrowRight,
   ExternalLink,
   Loader2,
+  BadgeCheck,
+  Users,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { useReveal } from "@/hooks/useReveal";
@@ -38,6 +42,69 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
     >
       {children}
     </div>
+  );
+}
+
+function ProductCard({ product, t, delay }: { product: { icon: React.ElementType; cat: string; desc: string; items: { title: string; specs: string }[] }; t: (key: string) => string; delay: number }) {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  return (
+    <Reveal delay={delay}>
+      <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+        {/* Header */}
+        <div className="bg-gradient-to-br from-teal-600 to-teal-800 p-5">
+          <div className="flex items-center gap-3">
+            <product.icon size={22} className="text-teal-200 flex-shrink-0" />
+            <div>
+              <h3 className="text-base font-semibold text-white">
+                {t(product.cat)}
+              </h3>
+              <p className="text-xs text-teal-200/70 mt-0.5">
+                {t(product.desc)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Product List */}
+        <div className="flex-1 p-4">
+          <ul className="space-y-2">
+            {product.items.map((item, idx) => (
+              <li key={item.title}>
+                <button
+                  onClick={() => setExpandedIndex(expandedIndex === idx ? null : idx)}
+                  className="w-full flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors text-left group"
+                >
+                  <span className="text-sm font-medium text-foreground group-hover:text-teal-700 transition-colors">
+                    {t(item.title)}
+                  </span>
+                  {expandedIndex === idx ? (
+                    <ChevronUp size={16} className="text-muted-foreground flex-shrink-0" />
+                  ) : (
+                    <ChevronDown size={16} className="text-muted-foreground flex-shrink-0" />
+                  )}
+                </button>
+                {expandedIndex === idx && (
+                  <div className="px-3 pb-2 text-xs text-muted-foreground leading-relaxed border-l-2 border-teal-200 ml-4">
+                    {t(item.specs)}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Footer */}
+        <div className="px-4 pb-4 pt-2 border-t border-gray-50">
+          <a
+            href="#contact"
+            className="text-sm font-medium text-primary hover:text-teal-800 inline-flex items-center gap-1 transition-colors"
+          >
+            {t("request_quote")} <ArrowRight size={14} />
+          </a>
+        </div>
+      </div>
+    </Reveal>
   );
 }
 
@@ -260,19 +327,27 @@ export default function HomePage() {
 
         <div className="relative container-custom py-32 md:py-40">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
-              <Shield size={14} className="text-teal-300" />
-              <span className="text-sm text-teal-100 font-medium">
-                {t("hero_badge")}
-              </span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
               {t("hero_title")}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300">
                 {t("hero_title_highlight")}
               </span>
             </h1>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
+                <CheckCircle size={20} className="text-teal-300" />
+                CE MDR
+              </span>
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
+                <Shield size={20} className="text-teal-300" />
+                FDA
+              </span>
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
+                <Award size={20} className="text-teal-300" />
+                ISO 13485
+              </span>
+            </div>
 
             <p className="text-lg md:text-xl text-teal-100/80 mb-4 max-w-2xl mx-auto leading-relaxed">
               {t("hero_desc_1")}{" "}
@@ -300,7 +375,7 @@ export default function HomePage() {
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 mt-16 pt-10 border-t border-white/10">
+            <div className="grid grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/10 max-w-2xl mx-auto">
               <div>
                 <div className="text-2xl md:text-3xl font-bold text-white">
                   {t("stat_years")}
@@ -319,10 +394,18 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="text-2xl md:text-3xl font-bold text-white">
-                  {t("stat_markets")}
+                  {t("stat_supply")}
                 </div>
                 <div className="text-sm text-teal-200/60 mt-1">
-                  {t("stat_markets_label")}
+                  {t("stat_supply_label")}
+                </div>
+              </div>
+              <div>
+                <div className="text-2xl md:text-3xl font-bold text-white">
+                  {t("stat_quality")}
+                </div>
+                <div className="text-sm text-teal-200/60 mt-1">
+                  {t("stat_quality_label")}
                 </div>
               </div>
             </div>
@@ -374,101 +457,85 @@ export default function HomePage() {
       {/* About Section */}
       <section id="about" className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <Reveal className="reveal-left">
-              <div>
+          <div className="max-w-3xl mx-auto">
+            <Reveal>
+              <div className="text-center mb-8">
                 <span className="text-sm font-semibold text-primary uppercase tracking-wider">
                   {t("about_label")}
                 </span>
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
                   {t("about_title")}
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {t("about_p1")}{" "}
-                  <strong className="text-foreground">{t("about_p1_highlight1")}</strong>{" "}
-                  {t("about_p1_and")}{" "}
-                  <strong className="text-foreground">{t("about_p1_highlight2")}</strong>
-                  {t("about_p1_end")}
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  {t("about_p2")}{" "}
-                  <strong className="text-foreground">{t("about_p2_highlight")}</strong>{" "}
-                  {t("about_p2_end")}
-                </p>
+              </div>
+              <p className="text-muted-foreground leading-relaxed mb-6 text-center">
+                {t("about_p1")}{" "}
+                <strong className="text-foreground">{t("about_p1_highlight1")}</strong>{" "}
+                {t("about_p1_and")}{" "}
+                <strong className="text-foreground">{t("about_p1_highlight2")}</strong>
+                {t("about_p1_end")}
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-8 text-center">
+                {t("about_p2")}{" "}
+                <strong className="text-foreground">{t("about_p2_highlight")}</strong>{" "}
+                {t("about_p2_end")}
+              </p>
 
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-foreground">
-                    {t("focus_title")}
-                  </h3>
-                  <div className="flex flex-wrap gap-3">
-                    {[t("focus_1"), t("focus_2"), t("focus_3"), t("focus_4"), t("focus_5")].map((item) => (
-                      <span key={item} className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-foreground">
-                        <CheckCircle size={14} className="text-teal-500" />
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold text-foreground text-center">
+                  {t("focus_title")}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {[t("focus_1"), t("focus_2"), t("focus_3"), t("focus_4"), t("focus_5")].map((item) => (
+                    <span key={item} className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-foreground">
+                      <CheckCircle size={14} className="text-teal-500" />
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
             </Reveal>
+          </div>
+        </div>
+      </section>
 
-            <Reveal className="reveal-right">
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                <div className="flex items-center gap-3 mb-6">
-                  <Globe size={24} className="text-primary" />
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {t("markets_title")}
+      {/* Certifications Section */}
+      <section id="certifications" className="section-padding bg-white">
+        <div className="container-custom">
+          <Reveal>
+            <div className="text-center mb-12">
+              <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+                {t("cert_label")}
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2">
+                {t("cert_title")}
+              </h2>
+              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+                {t("cert_desc")}
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Award, title: "cert_ce", desc: "cert_ce_desc" },
+              { icon: Shield, title: "cert_fda", desc: "cert_fda_desc" },
+              { icon: FileText, title: "cert_distributor", desc: "cert_distributor_desc" },
+              { icon: Building2, title: "cert_ec", desc: "cert_ec_desc" },
+            ].map((cert, i) => (
+              <Reveal key={cert.title} delay={i * 80}>
+                <div className="card-hover bg-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm h-full">
+                  <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <cert.icon size={32} className="text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {t(cert.title)}
                   </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {t(cert.desc)}
+                  </p>
                 </div>
-
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg">🌏</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">
-                        {t("market_sea")}
-                      </h4>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {t("market_sea_desc")}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg">🇪🇺</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">
-                        {t("market_eu")}
-                      </h4>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {t("market_eu_desc")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <div className="text-2xl font-bold text-primary">{t("stat_expertise")}</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {t("stat_expertise_label")}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-primary">{t("stat_supply")}</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {t("stat_supply_label")}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -591,46 +658,7 @@ export default function HomePage() {
                 { title: "lab_title", specs: "lab_desc" },
               ]},
             ].map((product, i) => (
-              <Reveal key={product.cat} delay={i * 60}>
-                <div className="card-hover bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm h-full">
-                  <div className="bg-gradient-to-br from-teal-600 to-teal-800 p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <product.icon size={24} className="text-teal-200" />
-                      <h3 className="text-lg font-semibold text-white">
-                        {t(product.cat)}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-teal-100/80">
-                      {t(product.desc)}
-                    </p>
-                  </div>
-                  <div className="p-6">
-                    <ul className="space-y-3">
-                      {product.items.map((item) => (
-                        <li key={item.title} className="flex items-start gap-3">
-                          <ChevronRight size={16} className="text-primary flex-shrink-0 mt-0.5" />
-                          <div>
-                            <span className="text-sm font-medium text-foreground">
-                              {t(item.title)}
-                            </span>
-                            <div className="text-xs text-muted-foreground mt-0.5">
-                              {t(item.specs)}
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <a
-                        href="#contact"
-                        className="text-sm font-medium text-primary hover:text-teal-800 inline-flex items-center gap-1 transition-colors"
-                      >
-                        {t("request_quote")} <ArrowRight size={14} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
+              <ProductCard key={product.cat} product={product} t={t} delay={i * 60} />
             ))}
           </div>
 
@@ -701,71 +729,6 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section id="certifications" className="section-padding bg-white">
-        <div className="container-custom">
-          <Reveal>
-            <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-                {t("cert_label")}
-              </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2">
-                {t("cert_title")}
-              </h2>
-              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-                {t("cert_desc")}
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Award, title: "cert_ce", desc: "cert_ce_desc" },
-              { icon: Shield, title: "cert_fda", desc: "cert_fda_desc" },
-              { icon: FileText, title: "cert_distributor", desc: "cert_distributor_desc" },
-              { icon: Building2, title: "cert_ec", desc: "cert_ec_desc" },
-            ].map((cert, i) => (
-              <Reveal key={cert.title} delay={i * 80}>
-                <div className="card-hover bg-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm h-full">
-                  <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                    <cert.icon size={32} className="text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {t(cert.title)}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t(cert.desc)}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Banner */}
-      <section className="py-12 bg-gradient-to-r from-teal-900 to-teal-800">
-        <div className="container-custom">
-          <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { value: t("trust_years"), label: t("trust_years_label") },
-                { value: t("trust_factories"), label: t("trust_factories_label") },
-                { value: t("trust_countries"), label: t("trust_countries_label") },
-                { value: t("trust_quality"), label: t("trust_quality_label") },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-teal-200">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
