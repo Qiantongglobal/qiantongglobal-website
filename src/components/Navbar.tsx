@@ -41,7 +41,7 @@ export default function Navbar() {
       <nav className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           <a href="#home" className="flex items-center gap-2.5">
-            <LogoMark tone={onDark ? "light" : "dark"} className="h-8 md:h-9" />
+            <LogoMark tone={onDark ? "light" : "dark"} className="h-9 md:h-10" />
             <span
               className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight whitespace-nowrap transition-colors ${
                 onDark ? "text-white" : "text-foreground"

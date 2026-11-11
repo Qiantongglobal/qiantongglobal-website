@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
-              <LogoMark tone="light" className="h-9" />
+              <LogoMark tone="light" className="h-10" />
               <span className="text-lg font-semibold text-white tracking-tight whitespace-nowrap">
                 Qiantong Global
               </span>
