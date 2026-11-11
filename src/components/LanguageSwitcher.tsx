@@ -76,7 +76,8 @@ export function LanguageSwitcher({ variant = 'dark' }: LanguageSwitcherProps) {
         }`}
       >
         <Globe size={14} />
-        <span>{languageFlags[lang]} {languageNames[lang]}</span>
+        <span className="hidden sm:inline">{languageFlags[lang]} {languageNames[lang]}</span>
+        <span className="sm:hidden font-semibold tracking-wide">{lang.toUpperCase()}</span>
         <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 

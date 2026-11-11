@@ -19,17 +19,14 @@ export interface Category {
   descKey: string;
   count: number;
   skus: Sku[];
-  /**
-   * 品类配图（预留）。照片就绪后放到 public/products/ 下，
-   * 文件名用品类 id，例如 /products/anesthesia.jpg，再在下面填上路径即可。
-   * 留空则整块不渲染，不影响现有版式。
-   */
+  /** 品类配图（public/products/*.webp，透明底、长边 900px） */
   image?: string;
 }
 
 export const categories: Category[] = [
   {
     id: "anesthesia",
+    image: "/products/01-anesthesia.webp",
     no: "01",
     titleKey: "focus_1",
     descKey: "catd_1",
@@ -54,6 +51,7 @@ export const categories: Category[] = [
   },
   {
     id: "urology",
+    image: "/products/02-urology.webp",
     no: "02",
     titleKey: "focus_2",
     descKey: "catd_2",
@@ -68,6 +66,7 @@ export const categories: Category[] = [
   },
   {
     id: "surgical",
+    image: "/products/03-surgical.webp",
     no: "03",
     titleKey: "focus_3",
     descKey: "catd_3",
@@ -83,6 +82,7 @@ export const categories: Category[] = [
   },
   {
     id: "respiratory",
+    image: "/products/04-respiratory.webp",
     no: "04",
     titleKey: "focus_4",
     descKey: "catd_4",
@@ -97,6 +97,7 @@ export const categories: Category[] = [
   },
   {
     id: "radiotherapy",
+    image: "/products/05-radiotherapy.webp",
     no: "05",
     titleKey: "focus_5",
     descKey: "catd_5",

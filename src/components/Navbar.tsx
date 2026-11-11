@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "./LanguageSwitcher";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LogoMark } from "./LogoMark";
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -23,22 +24,29 @@ export default function Navbar() {
     { label: t("nav_contact"), href: "#contact" },
   ];
 
-  const textColor = scrolled ? "text-foreground/80 hover:text-primary" : "text-white/90 hover:text-white";
-  const bgHover = scrolled ? "hover:bg-primary/5" : "hover:bg-white/10";
+  // 未滚动：首屏是深墨绿，导航透明，徽记反白（金羽毛保留）
+  // 滚动后：顶部让出一条实白条，徽记回到墨绿原色
+  const onDark = !scrolled;
+  const textColor = onDark ? "text-white/[0.85] hover:text-white" : "text-foreground/75 hover:text-primary";
+  const bgHover = onDark ? "hover:bg-white/10" : "hover:bg-foreground/5";
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-md" : "bg-transparent"
+        scrolled
+          ? "bg-white border-b border-border"
+          : "bg-transparent"
       }`}
     >
       <nav className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">Q</span>
-            </div>
-            <span className={`text-xl font-bold tracking-tight ${scrolled ? "text-foreground" : "text-white"}`}>
+          <a href="#home" className="flex items-center gap-2.5">
+            <LogoMark tone={onDark ? "light" : "dark"} className="h-8 md:h-9" />
+            <span
+              className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight whitespace-nowrap transition-colors ${
+                onDark ? "text-white" : "text-foreground"
+              }`}
+            >
               Qiantong Global
             </span>
           </a>
@@ -48,26 +56,30 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${textColor} ${bgHover}`}
+                className={`px-3 py-2 text-sm font-medium rounded-sm transition-colors ${textColor} ${bgHover}`}
               >
                 {link.label}
               </a>
             ))}
             <div className="ml-2">
-              <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
+              <LanguageSwitcher variant={onDark ? "dark" : "light"} />
             </div>
             <a
               href="#contact"
-              className="ml-2 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-colors"
+              className={`ml-2 px-4 py-2 text-sm font-semibold rounded-sm transition-colors ${
+                onDark
+                  ? "bg-white text-[#00463E] hover:bg-[#F1F6F4]"
+                  : "bg-[#00463E] text-white hover:bg-[#00594F]"
+              }`}
             >
               {t("hero_cta_quote")}
             </a>
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <LanguageSwitcher variant={scrolled ? "light" : "dark"} />
+            <LanguageSwitcher variant={onDark ? "dark" : "light"} />
             <button
-              className={`p-2 rounded-md ${scrolled ? "text-foreground" : "text-white"}`}
+              className={`p-2 rounded-sm ${onDark ? "text-white" : "text-foreground"}`}
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -76,7 +88,7 @@ export default function Navbar() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden bg-white rounded-xl shadow-xl border border-gray-100 mt-2 py-2">
+          <div className="md:hidden bg-white rounded-md border border-border mt-2 py-2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -90,7 +102,7 @@ export default function Navbar() {
             <div className="px-4 pt-2">
               <a
                 href="#contact"
-                className="block text-center px-4 py-3 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-colors"
+                className="block text-center px-4 py-3 bg-[#00463E] text-white text-sm font-semibold rounded-sm hover:bg-[#00594F] transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {t("hero_cta_quote")}
