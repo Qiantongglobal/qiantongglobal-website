@@ -79,7 +79,7 @@ export default function Footer() {
             {t("footer_rights")}
           </p>
           <p className="text-xs text-gray-500">
-            CE MDR &middot; FDA &middot; ISO Certified Medical Consumables Supplier
+            CE MDR &middot; ISO 13485 &middot; FDA sourcing on request
           </p>
         </div>
       </div>

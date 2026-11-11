@@ -1,10 +1,8 @@
 import {
   Shield,
-  Search,
   Factory,
   CheckCircle,
   Globe,
-  TrendingUp,
   Package,
   ClipboardCheck,
   AlertTriangle,
@@ -16,18 +14,16 @@ import {
   User,
   MessageSquare,
   Building2,
-  ChevronRight,
-  Star,
   ArrowRight,
   ExternalLink,
   Loader2,
   BadgeCheck,
-  Users,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { useReveal } from "@/hooks/useReveal";
+import { categories, additionalSourcing } from "@/lib/products";
 import { useState } from "react";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgqbjqk";
@@ -42,69 +38,6 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
     >
       {children}
     </div>
-  );
-}
-
-function ProductCard({ product, t, delay }: { product: { icon: React.ElementType; cat: string; desc: string; items: { title: string; specs: string }[] }; t: (key: string) => string; delay: number }) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  return (
-    <Reveal delay={delay}>
-      <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
-        {/* Header */}
-        <div className="bg-gradient-to-br from-teal-600 to-teal-800 p-5">
-          <div className="flex items-center gap-3">
-            <product.icon size={22} className="text-teal-200 flex-shrink-0" />
-            <div>
-              <h3 className="text-base font-semibold text-white">
-                {t(product.cat)}
-              </h3>
-              <p className="text-xs text-teal-200/70 mt-0.5">
-                {t(product.desc)}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Product List */}
-        <div className="flex-1 p-4">
-          <ul className="space-y-2">
-            {product.items.map((item, idx) => (
-              <li key={item.title}>
-                <button
-                  onClick={() => setExpandedIndex(expandedIndex === idx ? null : idx)}
-                  className="w-full flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors text-left group"
-                >
-                  <span className="text-sm font-medium text-foreground group-hover:text-teal-700 transition-colors">
-                    {t(item.title)}
-                  </span>
-                  {expandedIndex === idx ? (
-                    <ChevronUp size={16} className="text-muted-foreground flex-shrink-0" />
-                  ) : (
-                    <ChevronDown size={16} className="text-muted-foreground flex-shrink-0" />
-                  )}
-                </button>
-                {expandedIndex === idx && (
-                  <div className="px-3 pb-2 text-xs text-muted-foreground leading-relaxed border-l-2 border-teal-200 ml-4">
-                    {t(item.specs)}
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Footer */}
-        <div className="px-4 pb-4 pt-2 border-t border-gray-50">
-          <a
-            href="#contact"
-            className="text-sm font-medium text-primary hover:text-teal-800 inline-flex items-center gap-1 transition-colors"
-          >
-            {t("request_quote")} <ArrowRight size={14} />
-          </a>
-        </div>
-      </div>
-    </Reveal>
   );
 }
 
@@ -334,19 +267,24 @@ export default function HomePage() {
               </span>
             </h1>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
-                <CheckCircle size={20} className="text-teal-300" />
-                CE MDR
-              </span>
-              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
-                <Shield size={20} className="text-teal-300" />
-                FDA
-              </span>
-              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
-                <Award size={20} className="text-teal-300" />
-                ISO 13485
-              </span>
+            <div className="mb-8">
+              <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/55 mb-3">
+                {t("hero_badge_label")}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
+                  <CheckCircle size={20} className="text-teal-300" />
+                  CE MDR 2017/745
+                </span>
+                <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
+                  <Award size={20} className="text-teal-300" />
+                  ISO 13485
+                </span>
+                <span className="inline-flex items-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-sm border border-white/30 rounded-xl text-base font-bold text-white shadow-lg">
+                  <BadgeCheck size={20} className="text-teal-300" />
+                  CLASS I–IIb
+                </span>
+              </div>
             </div>
 
             <p className="text-lg md:text-xl text-teal-100/80 mb-4 max-w-2xl mx-auto leading-relaxed">
@@ -432,9 +370,9 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
-              { icon: Factory, title: "feat1_title", desc: "feat1_desc" },
-              { icon: Search, title: "feat2_title", desc: "feat2_desc" },
-              { icon: TrendingUp, title: "feat3_title", desc: "feat3_desc" },
+              { icon: ClipboardCheck, title: "feat1_title", desc: "feat1_desc" },
+              { icon: Factory, title: "feat2_title", desc: "feat2_desc" },
+              { icon: Award, title: "feat3_title", desc: "feat3_desc" },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="card-hover bg-white border border-gray-100 rounded-2xl p-8 shadow-sm h-full">
@@ -515,28 +453,39 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               { icon: Award, title: "cert_ce", desc: "cert_ce_desc" },
-              { icon: Shield, title: "cert_fda", desc: "cert_fda_desc" },
-              { icon: FileText, title: "cert_distributor", desc: "cert_distributor_desc" },
-              { icon: Building2, title: "cert_ec", desc: "cert_ec_desc" },
+              { icon: FileText, title: "cert_fda", desc: "cert_fda_desc" },
+              { icon: Globe, title: "cert_distributor", desc: "cert_distributor_desc" },
+              { icon: Shield, title: "cert_ec", desc: "cert_ec_desc" },
             ].map((cert, i) => (
               <Reveal key={cert.title} delay={i * 80}>
-                <div className="card-hover bg-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm h-full">
-                  <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                    <cert.icon size={32} className="text-primary" />
+                <div className="card-hover bg-white border border-gray-100 rounded-2xl p-7 shadow-sm h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <cert.icon size={24} className="text-primary" />
+                    </div>
+                    <span className="text-xs font-semibold tracking-widest text-teal-600">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                  <h3 className="text-base font-semibold text-foreground mb-2">
                     {t(cert.title)}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {t(cert.desc)}
                   </p>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <p className="text-center text-sm text-muted-foreground mt-10 max-w-2xl mx-auto leading-relaxed">
+              {t("cert_footer")}
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -620,53 +569,90 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              { icon: Shield, cat: "cat_gowns", desc: "cat_gowns_desc", items: [
-                { title: "gown1_title", specs: "gown1_specs" },
-                { title: "gown2_title", specs: "gown2_specs" },
-              ]},
-              { icon: Package, cat: "cat_drapes", desc: "cat_drapes_desc", items: [
-                { title: "drape1_title", specs: "drape1_specs" },
-                { title: "drape2_title", specs: "drape2_specs" },
-                { title: "drape3_title", specs: "drape3_specs" },
-              ]},
-              { icon: ClipboardCheck, cat: "cat_packs", desc: "cat_packs_desc", items: [
-                { title: "pack1_title", specs: "pack1_specs" },
-                { title: "pack2_title", specs: "pack2_specs" },
-                { title: "pack3_title", specs: "pack3_specs" },
-              ]},
-              { icon: Shield, cat: "cat_protective", desc: "cat_protective_desc", items: [
-                { title: "protective_title", specs: "protective_specs" },
-              ]},
-              { icon: Star, cat: "cat_masks", desc: "cat_masks_desc", items: [
-                { title: "mask1_title", specs: "mask1_specs" },
-                { title: "mask2_title", specs: "mask2_specs" },
-              ]},
-              { icon: Shield, cat: "cat_gloves", desc: "cat_gloves_desc", items: [
-                { title: "glove1_title", specs: "glove1_specs" },
-                { title: "glove2_title", specs: "glove2_specs" },
-              ]},
-              { icon: Package, cat: "cat_accessories", desc: "cat_accessories_desc", items: [
-                { title: "acc1_title", specs: "acc1_specs" },
-                { title: "acc2_title", specs: "acc2_specs" },
-              ]},
-              { icon: Package, cat: "cat_anesthesia", desc: "cat_anesthesia_desc", items: [
-                { title: "anesthesia_title", specs: "anesthesia_specs" },
-              ]},
-              { icon: Package, cat: "cat_lab", desc: "cat_lab_desc", items: [
-                { title: "lab_title", specs: "lab_desc" },
-              ]},
-            ].map((product, i) => (
-              <ProductCard key={product.cat} product={product} t={t} delay={i * 60} />
-            ))}
-          </div>
+          <div className="space-y-6">
+            {categories.map((cat, i) => (
+              <Reveal key={cat.id} delay={i * 60}>
+                <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+                  <div className="p-6 md:p-8 border-b border-gray-100">
+                    <div className="flex flex-wrap items-start gap-x-4 gap-y-3">
+                      {cat.image && (
+                        <div className="hidden sm:block w-24 h-20 shrink-0 rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                          <img
+                            src={cat.image}
+                            alt={t(cat.titleKey)}
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                      <span className="text-xs font-semibold tracking-widest text-teal-600 pt-1.5">
+                        {cat.no}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg md:text-xl font-semibold text-foreground">
+                          {t(cat.titleKey)}
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {cat.count} {t("prod_pcs")} · {t("prod_ce")} · OEM / ODM
+                        </p>
+                      </div>
+                      <a
+                        href="#contact"
+                        className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-teal-800 transition-colors"
+                      >
+                        {t("request_quote")} <ArrowRight size={14} />
+                      </a>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed mt-3 max-w-3xl">
+                      {t(cat.descKey)}
+                    </p>
+                  </div>
 
-          <Reveal>
-            <p className="text-center text-sm text-muted-foreground mt-8 max-w-xl mx-auto">
-              {t("custom_note")}
-            </p>
-          </Reveal>
+                  <div className="p-6 md:p-8">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8">
+                      {cat.skus.map((sku) => (
+                        <li
+                          key={sku.code}
+                          className="flex flex-wrap items-baseline gap-x-2 py-1.5 border-b border-dashed border-gray-100"
+                        >
+                          <span className="font-mono text-[11px] text-teal-700 flex-shrink-0">
+                            {sku.code}
+                          </span>
+                          <span className="text-sm text-foreground leading-snug">{sku.name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+
+            <Reveal>
+              <div className="bg-white border-2 border-dashed border-gray-200 rounded-2xl p-6 md:p-8">
+                <h3 className="text-base font-semibold text-foreground mb-1">
+                  {t("prod_add_title")}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">{t("prod_add_desc")}</p>
+                <div className="flex flex-wrap gap-2">
+                  {additionalSourcing.map((item) => (
+                    <span
+                      key={item}
+                      className="text-xs text-gray-600 bg-gray-50 border border-gray-200 rounded-full px-3 py-1"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="text-center mt-4 space-y-2">
+                <p className="text-sm text-muted-foreground max-w-2xl mx-auto">{t("prod_note")}</p>
+                <p className="text-sm text-muted-foreground max-w-2xl mx-auto">{t("custom_note")}</p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
