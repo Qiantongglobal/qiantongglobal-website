@@ -368,7 +368,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 bg-[#EDF4F2] rounded-sm flex items-center justify-center mb-5">
                     <item.icon size={23} className="text-primary" />
                   </div>
-                  <h3 className="h3-card mb-2.5">
+                  <h3 className="h3-card mb-2.5 md:min-h-[2.7em]">
                     {t(item.title)}
                   </h3>
                   <p className="body-copy">
