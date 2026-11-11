@@ -291,19 +291,19 @@ export default function HomePage() {
 
             {/* Certifications sit after the action now, as supporting proof
                 rather than a interruption between the headline and the CTA. */}
-            <div className="mt-9 sm:mt-11 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11.5px] font-medium uppercase tracking-[0.14em] text-white/[0.62]">
-              <span className="inline-flex items-center gap-1.5">
-                <CheckCircle size={13} className="text-white/[0.42]" />
+            <div className="mt-9 sm:mt-11 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-[13px] md:text-[14px] font-medium uppercase tracking-[0.1em] text-white/[0.82]">
+              <span className="inline-flex items-center gap-2">
+                <CheckCircle size={15} className="text-white/[0.62]" />
                 CE MDR<span className="hidden sm:inline"> 2017/745</span>
               </span>
-              <span className="hidden sm:block w-px h-3 bg-white/[0.22]" />
-              <span className="inline-flex items-center gap-1.5">
-                <Award size={13} className="text-white/[0.42]" />
+              <span className="hidden sm:block w-px h-3.5 bg-white/[0.3]" />
+              <span className="inline-flex items-center gap-2">
+                <Award size={15} className="text-white/[0.62]" />
                 ISO 13485
               </span>
-              <span className="hidden sm:block w-px h-3 bg-white/[0.22]" />
-              <span className="inline-flex items-center gap-1.5">
-                <BadgeCheck size={13} className="text-white/[0.42]" />
+              <span className="hidden sm:block w-px h-3.5 bg-white/[0.3]" />
+              <span className="inline-flex items-center gap-2">
+                <BadgeCheck size={15} className="text-white/[0.62]" />
                 CLASS I&ndash;IIb
               </span>
             </div>

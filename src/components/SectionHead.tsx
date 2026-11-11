@@ -16,7 +16,7 @@ export function SectionHead({ label, title, desc, align = "left" }: SectionHeadP
       <div className="text-center max-w-3xl mx-auto mb-12 md:mb-14">
         <span className="eyebrow">{label}</span>
         <h2 className="h2-section mt-3">{title}</h2>
-        {desc && <p className="lead mt-4 max-w-2xl mx-auto">{desc}</p>}
+        {desc && <p className="lead mt-4 max-w-[44rem] mx-auto [text-wrap:pretty]">{desc}</p>}
       </div>
     );
   }
