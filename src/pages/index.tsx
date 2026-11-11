@@ -10,7 +10,7 @@ import {
   Award,
   FileText,
   Mail,
-  Phone,
+  MessageCircle,
   User,
   MessageSquare,
   Building2,
@@ -575,7 +575,7 @@ export default function HomePage() {
                       src={cat.image}
                       alt={t(cat.titleKey)}
                       loading="lazy"
-                      className="w-[88%] h-[88%] object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="w-[92%] h-[92%] object-contain object-center transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                     <span className="absolute left-3 top-2.5 font-mono text-[10px] tracking-[0.14em] text-[#8A9C98]">
                       {cat.no}
@@ -776,7 +776,7 @@ export default function HomePage() {
 
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <Phone size={18} className="text-primary" />
+                      <MessageCircle size={18} className="text-primary" />
                     </div>
                     <div>
                       <div className="text-sm font-medium text-foreground">

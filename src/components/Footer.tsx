@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, MessageCircle, ExternalLink } from "lucide-react";
+import { Mail, MapPin, MessageCircle, ExternalLink } from "lucide-react";
 import { useLanguage } from "./LanguageSwitcher";
 import { LogoMark } from "./LogoMark";
 
@@ -45,14 +45,10 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <Phone size={16} className="mt-0.5 flex-shrink-0 text-white/[0.4]" />
+                <MessageCircle size={16} className="mt-0.5 flex-shrink-0 text-white/[0.4]" />
                 <a href="https://wa.me/85257098985" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   +852 5709 8985
                 </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <MessageCircle size={16} className="mt-0.5 flex-shrink-0 text-white/[0.4]" />
-                <span>WhatsApp: Jason Li</span>
               </li>
               <li className="flex items-start gap-2">
                 <ExternalLink size={16} className="mt-0.5 flex-shrink-0 text-white/[0.4]" />
