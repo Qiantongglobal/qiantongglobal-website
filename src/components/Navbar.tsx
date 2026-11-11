@@ -40,10 +40,10 @@ export default function Navbar() {
     >
       <nav className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="flex items-center gap-2.5">
-            <LogoMark tone={onDark ? "light" : "dark"} className="h-9 md:h-10" />
+          <a href="#home" className="flex items-center gap-2 md:gap-2.5 min-w-0">
+            <LogoMark tone={onDark ? "light" : "dark"} className="h-8 md:h-10 shrink-0" />
             <span
-              className={`text-base sm:text-lg md:text-xl font-semibold tracking-tight whitespace-nowrap transition-colors ${
+              className={`text-[15px] sm:text-[17px] md:text-xl font-semibold tracking-[-0.015em] whitespace-nowrap transition-colors ${
                 onDark ? "text-white" : "text-foreground"
               }`}
             >
@@ -56,19 +56,21 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-sm transition-colors ${textColor} ${bgHover}`}
+                className={`px-3 py-2 text-[14.5px] font-medium rounded-sm transition-colors ${textColor} ${bgHover}`}
               >
                 {link.label}
               </a>
             ))}
-            <div className="ml-2">
+            <div className="ml-3 mr-1">
               <LanguageSwitcher variant={onDark ? "dark" : "light"} />
             </div>
+            {/* On the dark hero this stays an outline button: the filled white
+                one competed with the hero's primary CTA for the same glance. */}
             <a
               href="#contact"
-              className={`ml-2 px-4 py-2 text-sm font-semibold rounded-sm transition-colors ${
+              className={`ml-1 px-4 py-2 text-[14.5px] font-semibold rounded-sm transition-colors ${
                 onDark
-                  ? "bg-white text-[#00463E] hover:bg-[#F1F6F4]"
+                  ? "border border-white/[0.45] text-white hover:bg-white hover:text-[#00463E] hover:border-white"
                   : "bg-[#00463E] text-white hover:bg-[#00594F]"
               }`}
             >
@@ -76,13 +78,14 @@ export default function Navbar() {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-1.5">
             <LanguageSwitcher variant={onDark ? "dark" : "light"} />
             <button
-              className={`p-2 rounded-sm ${onDark ? "text-white" : "text-foreground"}`}
+              className={`p-1.5 rounded-sm ${onDark ? "text-white" : "text-foreground"}`}
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Menu"
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>

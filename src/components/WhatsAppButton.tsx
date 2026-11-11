@@ -3,6 +3,14 @@ import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppButton() {
   const [atFooter, setAtFooter] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setPastHero(window.scrollY > 420);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -17,21 +25,26 @@ export default function WhatsAppButton() {
     return () => observer.disconnect();
   }, []);
 
+  // Stays out of the hero entirely, so the first screen is nothing but the
+  // headline and the two real buttons.
+  const hidden = atFooter || !pastHero;
+
   return (
     <a
       href="https://wa.me/85257098985"
       target="_blank"
       rel="noopener noreferrer"
-      aria-hidden={atFooter}
-      tabIndex={atFooter ? -1 : 0}
-      className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 ${
-        atFooter ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+      aria-label="Chat on WhatsApp"
+      aria-hidden={hidden}
+      tabIndex={hidden ? -1 : 0}
+      title="WhatsApp"
+      // A 56px disc instead of a worded pill: it keeps the accent colour
+      // without covering the right edge of whatever sits at the page bottom.
+      className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#0E6B4A] text-white shadow-[0_8px_24px_rgba(4,36,31,0.28)] ring-1 ring-white/20 transition-all duration-300 hover:bg-[#0A5B51] hover:shadow-[0_10px_28px_rgba(4,36,31,0.34)] ${
+        hidden ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
       }`}
     >
-      <MessageCircle size={22} />
-      <span className="hidden sm:inline text-sm font-semibold">
-        Chat on WhatsApp
-      </span>
+      <MessageCircle size={23} />
     </a>
   );
 }

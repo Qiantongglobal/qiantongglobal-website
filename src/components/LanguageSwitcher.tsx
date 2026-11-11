@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, createContext, useContext, useCallback } from 'react';
 import { ChevronDown, Globe } from 'lucide-react';
-import { translations, type Language, languageNames, languageFlags } from '@/lib/i18n';
+import { translations, type Language, languageNames } from '@/lib/i18n';
 
 interface LanguageContextType {
   lang: Language;
@@ -69,20 +69,23 @@ export function LanguageSwitcher({ variant = 'dark' }: LanguageSwitcherProps) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 text-[13px] font-medium rounded-sm border transition-colors ${
           isDark
-            ? 'text-white/80 hover:text-white bg-white/10 backdrop-blur-sm border-white/20'
-            : 'text-foreground/70 hover:text-primary bg-secondary border-gray-200'
+            ? 'text-white/80 hover:text-white border-white/25 hover:border-white/50'
+            : 'text-foreground/70 hover:text-primary border-[#DDE4E2] hover:border-[#C4D3CF]'
         }`}
+        aria-label="Change language"
       >
-        <Globe size={14} />
-        <span className="hidden sm:inline">{languageFlags[lang]} {languageNames[lang]}</span>
+        <Globe size={13} />
+        {/* No flag emoji: Windows renders them as bare letter pairs, which is
+            how "GB" ended up looking like a stray word before the language. */}
+        <span className="hidden sm:inline whitespace-nowrap">{languageNames[lang]}</span>
         <span className="sm:hidden font-semibold tracking-wide">{lang.toUpperCase()}</span>
         <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-40 bg-white rounded-lg shadow-xl border border-gray-100 py-1 z-50">
+        <div className="absolute right-0 top-full mt-1.5 w-44 bg-white rounded-sm shadow-lg border border-[#E2E8E6] py-1 z-50">
           {languages.map((l) => (
             <button
               key={l}
@@ -90,13 +93,12 @@ export function LanguageSwitcher({ variant = 'dark' }: LanguageSwitcherProps) {
                 setLang(l);
                 setIsOpen(false);
               }}
-              className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
-                lang === l ? 'bg-teal-50 text-primary font-medium' : 'text-gray-700'
+              className={`w-full flex items-center justify-between gap-2 px-3 py-2 text-[13.5px] hover:bg-[#F5F9F8] transition-colors ${
+                lang === l ? 'bg-[#EDF4F2] text-primary font-semibold' : 'text-foreground/80'
               }`}
             >
-              <span>{languageFlags[l]}</span>
               <span>{languageNames[l]}</span>
-              {lang === l && <span className="ml-auto text-primary">✓</span>}
+              {lang === l && <span className="text-primary">&#10003;</span>}
             </button>
           ))}
         </div>
