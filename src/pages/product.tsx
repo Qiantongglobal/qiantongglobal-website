@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowRight, ChevronRight, Mail } from "lucide-react";
+import { ArrowRight, ChevronRight, FileDown, Mail } from "lucide-react";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { Reveal } from "@/components/Reveal";
 import { Seo, SITE_URL } from "@/components/Seo";
@@ -121,6 +121,16 @@ export default function ProductPage() {
                   {t("product_back")}
                 </Link>
               </div>
+
+              <a
+                href="/qiantong-global-catalogue-2026.pdf"
+                download="Qiantong-Global-Catalogue-2026.pdf"
+                className="mt-5 inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-primary"
+              >
+                <FileDown size={14} className="shrink-0" />
+                {t("catalogue_dl")}
+                <span className="font-mono text-[11px] tracking-[0.06em]">· {t("catalogue_meta")}</span>
+              </a>
             </div>
 
             {/* Code plate: the catalogue has one image per category, so the

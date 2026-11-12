@@ -9,6 +9,7 @@ import {
   Clock,
   Award,
   FileText,
+  FileDown,
   Mail,
   MessageCircle,
   User,
@@ -709,13 +710,26 @@ export default function HomePage() {
                 <p className="text-[14px] text-muted-foreground max-w-2xl leading-[1.7]">{t("prod_note")}</p>
                 <p className="text-[14px] text-muted-foreground max-w-2xl leading-[1.7]">{t("custom_note")}</p>
               </div>
-              <Link
-                to="/products"
-                className="group/all inline-flex items-center gap-2 text-[13.5px] font-semibold text-primary whitespace-nowrap hover:gap-3 transition-all duration-200"
-              >
-                {t("hero_cta_products")}
-                <ArrowRight size={15} className="transition-transform duration-200 group-hover/all:translate-x-0.5" />
-              </Link>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+                <a
+                  href="/qiantong-global-catalogue-2026.pdf"
+                  download="Qiantong-Global-Catalogue-2026.pdf"
+                  className="group/dl inline-flex items-center gap-2 whitespace-nowrap text-[13.5px] font-semibold text-primary transition-all duration-200 hover:gap-3"
+                >
+                  <FileDown size={15} className="shrink-0 transition-transform duration-200 group-hover/dl:translate-y-0.5" />
+                  {t("catalogue_dl")}
+                  <span className="font-mono text-[11px] font-normal tracking-[0.06em] text-muted-foreground">
+                    {t("catalogue_meta")}
+                  </span>
+                </a>
+                <Link
+                  to="/products"
+                  className="group/all inline-flex items-center gap-2 text-[13.5px] font-semibold text-primary whitespace-nowrap hover:gap-3 transition-all duration-200"
+                >
+                  {t("hero_cta_products")}
+                  <ArrowRight size={15} className="transition-transform duration-200 group-hover/all:translate-x-0.5" />
+                </Link>
+              </div>
             </div>
           </Reveal>
         </div>

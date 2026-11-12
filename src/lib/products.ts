@@ -67,7 +67,7 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-004",
-        name: "Laryngeal Mask Airway",
+        name: "Laryngeal Mask Airway (LMA)",
         slug: "laryngeal-mask-airway",
         application:
           "Supraglottic airway for short procedures and emergency resuscitation, placed without direct visualisation of the vocal cords.",
@@ -130,7 +130,7 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-013",
-        name: "Heat and Moisture Exchanger",
+        name: "Heat and Moisture Exchanger (HME)",
         slug: "heat-and-moisture-exchanger",
         application:
           "Preserves airway humidity and filters exhaled gas where the breathing circuit is in use.",
@@ -243,7 +243,7 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-006",
-        name: "Disposable Pressure Transducer",
+        name: "Disposable Pressure Transducer (IBP)",
         slug: "disposable-pressure-transducer",
         application:
           "Single-use transducer for continuous arterial or venous pressure monitoring in theatre and intensive care.",

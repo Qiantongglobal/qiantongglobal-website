@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight, Mail } from "lucide-react";
+import { ArrowRight, ChevronRight, FileDown, Mail } from "lucide-react";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { Reveal } from "@/components/Reveal";
 import { Seo, SITE_URL } from "@/components/Seo";
@@ -43,7 +43,20 @@ export default function ProductsPage() {
               <span className="eyebrow">{t("products_label")}</span>
               <h1 className="h2-section mt-3 max-w-[24ch]">{t("products_title")}</h1>
             </div>
-            <p className="lead lg:pb-1.5">{t("products_desc")}</p>
+            <div>
+              <p className="lead lg:pb-1.5">{t("products_desc")}</p>
+              <a
+                href="/qiantong-global-catalogue-2026.pdf"
+                download="Qiantong-Global-Catalogue-2026.pdf"
+                className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-primary transition-colors hover:text-[#00463E]"
+              >
+                <FileDown size={14} className="shrink-0" />
+                {t("catalogue_dl")}
+                <span className="font-mono text-[11px] font-normal tracking-[0.06em] text-muted-foreground">
+                  · {t("catalogue_meta")}
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
