@@ -21,26 +21,14 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { SectionHead } from "@/components/SectionHead";
-import { useReveal } from "@/hooks/useReveal";
-import { categories, additionalSourcing } from "@/lib/products";
+import { Reveal } from "@/components/Reveal";
+import { categories, additionalSourcing, skuPath } from "@/lib/products";
 import { useState } from "react";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgqbjqk";
-
-function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const { ref, isVisible } = useReveal();
-  return (
-    <div
-      ref={ref}
-      className={`${className} reveal ${isVisible ? "active" : ""}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
 
 function ContactForm() {
   const { t } = useLanguage();
@@ -584,15 +572,20 @@ export default function HomePage() {
                       {t(cat.descKey)}
                     </p>
 
-                    <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-2.5">
+                    <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-1">
                       {cat.skus.map((sku) => (
-                        <li key={sku.code} className="flex items-baseline gap-2 min-w-0">
-                          <span className="font-mono text-[11px] text-[#0A5B51]/75 w-[74px] shrink-0 tabular-nums">
-                            {sku.code}
-                          </span>
-                          <span className="text-[14px] text-foreground/[0.88] leading-snug">
-                            {sku.name}
-                          </span>
+                        <li key={sku.code}>
+                          <Link
+                            to={skuPath(cat, sku)}
+                            className="group/li flex items-baseline gap-2 min-w-0 py-1.5 -my-0.5"
+                          >
+                            <span className="font-mono text-[11px] text-[#0A5B51]/75 w-[74px] shrink-0 tabular-nums">
+                              {sku.code}
+                            </span>
+                            <span className="text-[14px] text-foreground/[0.88] leading-snug group-hover/li:text-primary transition-colors">
+                              {sku.name}
+                            </span>
+                          </Link>
                         </li>
                       ))}
                     </ul>

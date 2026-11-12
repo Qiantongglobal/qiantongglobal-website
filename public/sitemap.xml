@@ -1,32 +1,231 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://qiantongglobal.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="el" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://qiantongglobal.com/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://qiantongglobal.com/" />
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://qiantongglobal.com/products</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/reinforced-endotracheal-tube</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/double-lumen-endobronchial-tube</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/tracheostomy-tube</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/laryngeal-mask-airway</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/endotracheal-tube</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/guedel-airway</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/anesthesia-mask</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/anesthesia-kit</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/anesthesia-needle</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/epidural-catheter</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/lor-syringe</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/breathing-circuit</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/heat-and-moisture-exchanger</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/manual-resuscitator</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/anesthesia/closed-suction-catheter</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/urology/precision-urine-meter</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/urology/foley-catheter-kit</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/urology/disposable-urine-bag</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/urology/colostomy-bag</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/urology/disposable-underpads</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/surgical/disposable-surgical-gown</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/surgical/disposable-surgical-kit</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/surgical/suction-handle</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/surgical/connecting-tube</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/surgical/central-venous-catheter-kit</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/surgical/disposable-pressure-transducer</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/respiratory/medical-face-mask</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/respiratory/nitrile-examination-gloves</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/respiratory/nasal-oxygen-tube</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/respiratory/oxygen-mask</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/respiratory/suction-catheter</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/radiotherapy/thermoplastic-radiotherapy-mask</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/radiotherapy/elastomeric-infusion-pump</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/radiotherapy/enteral-feeding-set</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://qiantongglobal.com/products/radiotherapy/iv-cannula</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://qiantongglobal.com/privacy</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="el" href="https://qiantongglobal.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://qiantongglobal.com/privacy" />
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.3</priority>
   </url>
 </urlset>
