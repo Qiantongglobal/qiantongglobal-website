@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { SectionHead } from "@/components/SectionHead";
 import { Reveal } from "@/components/Reveal";
+import { LogoMark } from "@/components/LogoMark";
 import { categories, additionalSourcing, skuPath } from "@/lib/products";
 import { useState } from "react";
 
@@ -232,14 +233,36 @@ export default function HomePage() {
       {/* Hero Section */}
       <section
         id="home"
-        className="relative flex items-center min-h-[100svh] bg-[#05332D]"
+        className="relative flex items-center min-h-[100svh] bg-[#05332D] grain overflow-hidden"
         style={{
           backgroundImage:
             "linear-gradient(158deg, #04241F 0%, #05352F 34%, #06463D 64%, #0A5B51 100%)",
         }}
       >
-        <div className="relative container-custom pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-28 md:pb-14">
+        {/* Brand mark at seal scale, sunk into the gradient. The content sits
+            above it on a real stacking order, so the mark never fights the
+            headline for contrast. */}
+        <div className="hero-watermark" aria-hidden="true">
+          <span className="hero-ring" />
+          <LogoMark tone="light" className="hero-mark" />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(56% 44% at 50% 42%, rgba(255,255,255,0.075) 0%, rgba(255,255,255,0) 72%)",
+          }}
+        />
+        <div className="relative z-10 w-full container-custom pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-28 md:pb-14">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Ornament instead of a second wordmark: the navbar already
+                carries the name, this only sets the eye before the claim. */}
+            <div className="mx-auto mb-8 sm:mb-9 flex items-center justify-center gap-3">
+              <span className="h-px w-12 bg-white/20" />
+              <span className="w-[5px] h-[5px] rotate-45 bg-[#C9A96A]/75" />
+              <span className="h-px w-12 bg-white/20" />
+            </div>
             <h1
               className={`font-semibold text-white leading-[1.12] ${
                 isCJK
@@ -308,10 +331,10 @@ export default function HomePage() {
                       key={stat.label}
                       className={`text-left sm:text-center ${i > 0 ? "sm:border-l sm:border-white/[0.14]" : ""}`}
                     >
-                      <div className="text-[1.5rem] sm:text-[1.6rem] font-semibold text-white tracking-tight leading-none whitespace-nowrap tnum">
+                      <div className="num-display text-[1.7rem] sm:text-[1.85rem] text-white leading-none whitespace-nowrap tnum">
                         {stat.value}
                       </div>
-                      <div className="text-[10.5px] text-white/[0.52] mt-2.5 uppercase tracking-[0.12em] leading-[1.5]">
+                      <div className="text-[10.5px] text-white/[0.56] mt-3 uppercase tracking-[0.14em] leading-[1.5]">
                         {stat.label}
                       </div>
                     </div>
@@ -320,10 +343,10 @@ export default function HomePage() {
                 {/* OEM/ODM is a capability, not a metric — it gets its own
                     block instead of sitting in the same row as three numbers. */}
                 <div className="sm:pl-9 sm:border-l sm:border-white/[0.22] text-left">
-                  <div className="text-[1.15rem] sm:text-[1.25rem] font-semibold text-white tracking-tight leading-none whitespace-nowrap">
+                  <div className="num-display text-[1.35rem] sm:text-[1.45rem] text-white leading-none whitespace-nowrap">
                     {t("stat_quality")}
                   </div>
-                  <div className="text-[10.5px] text-white/[0.52] mt-2.5 uppercase tracking-[0.12em] leading-[1.5]">
+                  <div className="text-[10.5px] text-white/[0.56] mt-3 uppercase tracking-[0.14em] leading-[1.5]">
                     {t("stat_quality_label")}
                   </div>
                 </div>
@@ -334,10 +357,11 @@ export default function HomePage() {
       </section>
 
       {/* Three Advantages Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white relative overflow-hidden grain-pale">
         <div className="container-custom">
           <Reveal>
             <SectionHead
+              no="01"
               label={t("why_choose")}
               title={t("advantages_title")}
               desc={t("advantages_desc")}
@@ -345,23 +369,31 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Rules instead of cards: the same three points, but read as a
+              document rather than three boxes on a template. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 col-rule">
             {[
               { icon: ClipboardCheck, title: "feat1_title", desc: "feat1_desc" },
               { icon: Factory, title: "feat2_title", desc: "feat2_desc" },
               { icon: Award, title: "feat3_title", desc: "feat3_desc" },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="card-hover bg-white border border-[#E2E8E6] rounded-sm p-8 h-full">
-                  <div className="w-12 h-12 bg-[#EDF4F2] rounded-sm flex items-center justify-center mb-5">
-                    <item.icon size={23} className="text-primary" />
+                <div
+                  className={`group relative h-full pt-7 md:pt-8 md:pb-2 ${
+                    i > 0 ? "md:pl-10 lg:pl-12 md:border-l md:border-[#E5ECE9]" : ""
+                  } ${i < 2 ? "md:pr-10 lg:pr-12" : ""}`}
+                >
+                  <span className="absolute left-0 -top-px h-px w-0 bg-[#9E7120]/70 transition-all duration-500 group-hover:w-full" />
+                  <div className="flex items-start justify-between">
+                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#9E7120]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <item.icon size={20} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                   </div>
-                  <h3 className="h3-card mb-2.5 md:min-h-[2.7em]">
+                  <h3 className="mt-8 text-[1.15rem] font-semibold text-foreground leading-[1.35] tracking-[-0.01em] max-w-[30ch]">
                     {t(item.title)}
                   </h3>
-                  <p className="body-copy">
-                    {t(item.desc)}
-                  </p>
+                  <p className="mt-3 body-copy max-w-[36ch]">{t(item.desc)}</p>
                 </div>
               </Reveal>
             ))}
@@ -370,51 +402,58 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section-padding bg-[#F7F9F8]">
+      <section id="about" className="section-padding bg-[#F4F7F5] relative overflow-hidden grain-pale">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-[420px_minmax(0,1fr)] gap-10 lg:gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-[420px_minmax(0,1fr)] gap-10 lg:gap-0">
             <Reveal>
-              <div>
-                <span className="text-[10.5px] font-semibold text-[#0A5B51] uppercase tracking-[0.18em]">
-                  {t("about_label")}
-                </span>
-                <h2 className="h2-section mt-3 max-w-[22ch]">
+              <div className="lg:pr-16">
+                <div className="index-row">
+                  <span className="index-no">02</span>
+                  <span className="index-rule" />
+                  <span className="eyebrow">{t("about_label")}</span>
+                </div>
+                <h2 className="h2-section mt-4 max-w-[20ch]">
                   {t("about_title")}
                 </h2>
-                <div className="w-10 h-px bg-[#C3D3CE] mt-7"></div>
+                <div className="w-9 h-px bg-[#9E7120]/45 mt-8"></div>
               </div>
             </Reveal>
 
             <Reveal>
-              <div className="max-w-[64ch]">
-                <p className="text-[15.5px] text-muted-foreground leading-[1.8]">
+              <div className="max-w-[64ch] lg:border-l lg:border-[#E1E8E5] lg:pl-16">
+                <p className="text-[15.5px] text-muted-foreground leading-[1.85]">
                   {t("about_p1")}{" "}
                   <strong className="text-foreground font-semibold">{t("about_p1_highlight1")}</strong>{" "}
                   {t("about_p1_and")}{" "}
                   <strong className="text-foreground font-semibold">{t("about_p1_highlight2")}</strong>
                   {t("about_p1_end")}
                 </p>
-                <p className="text-[15.5px] text-muted-foreground leading-[1.8] mt-5">
+                <p className="text-[15.5px] text-muted-foreground leading-[1.85] mt-5">
                   {t("about_p2")}{" "}
                   <strong className="text-foreground font-semibold">{t("about_p2_highlight")}</strong>{" "}
                   {t("about_p2_end")}
                 </p>
 
-                <div className="mt-10 pt-8 border-t border-[#E2E8E6]">
+                <div className="mt-11 pt-8 border-t border-[#E1E8E5]">
                   <h3 className="meta-label">
                     {t("focus_title")}
                   </h3>
-                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {[t("focus_1"), t("focus_2"), t("focus_3"), t("focus_4"), t("focus_5")].map((item) => (
-                      <span
+                  {/* A single column of numbered rows. Two columns left the
+                      fifth item orphaned and made five short labels look like
+                      a form; a numbered list reads as an index instead. */}
+                  <ul className="mt-4 border-t border-[#E1E8E5]">
+                    {[t("focus_1"), t("focus_2"), t("focus_3"), t("focus_4"), t("focus_5")].map((item, i) => (
+                      <li
                         key={item}
-                        className="inline-flex items-center gap-2 bg-white border border-[#DDE4E2] rounded-sm px-3 py-2 text-[13.5px] text-foreground"
+                        className="flex items-baseline gap-4 py-3 border-b border-[#E1E8E5] text-[13.5px] text-foreground/[0.88]"
                       >
-                        <CheckCircle size={13} className="text-[#0A5B51]" />
+                        <span className="font-mono text-[10px] tracking-[0.1em] text-[#9E7120]/85 w-4 shrink-0 tnum">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
                         {item}
-                      </span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </Reveal>
@@ -422,11 +461,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Certifications Section */}
-      <section id="certifications" className="section-padding bg-white">
-        <div className="container-custom">
+      {/* Certifications Section — the one dark band in the middle of the page.
+          Without it the whole stretch from advantages to contact reads as one
+          long pale field; this gives the scroll a place to land. */}
+      <section
+        id="certifications"
+        className="section-padding relative overflow-hidden text-white grain"
+        style={{
+          background:
+            "linear-gradient(158deg, #04231F 0%, #053B34 52%, #06473E 100%)",
+        }}
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(52% 60% at 82% 8%, rgba(201,169,106,0.10) 0%, rgba(201,169,106,0) 70%)",
+          }}
+        />
+        <div className="container-custom relative">
           <Reveal>
             <SectionHead
+              no="03"
+              tone="light"
               label={t("cert_label")}
               title={t("cert_title")}
               desc={t("cert_desc")}
@@ -434,7 +492,7 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 lg:gap-x-20">
             {[
               { icon: Award, title: "cert_ce", desc: "cert_ce_desc" },
               { icon: FileText, title: "cert_fda", desc: "cert_fda_desc" },
@@ -442,37 +500,51 @@ export default function HomePage() {
               { icon: Shield, title: "cert_ec", desc: "cert_ec_desc" },
             ].map((cert, i) => (
               <Reveal key={cert.title} delay={i * 80}>
-                <div className="relative card-hover bg-white border border-[#E2E8E6] rounded-sm p-8 h-full">
-                  <span className="absolute right-7 top-7 font-mono text-[11px] tracking-[0.14em] text-[#A9B8B4]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="w-12 h-12 bg-[#EDF4F2] rounded-sm flex items-center justify-center mb-5">
-                    <cert.icon size={23} className="text-primary" />
+                <div className="group border-t border-white/[0.14] py-7 md:py-8 transition-colors duration-300 hover:border-white/[0.3]">
+                  <div className="flex items-baseline gap-4 md:gap-5">
+                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#C9A96A]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-[1.05rem] font-semibold text-white leading-snug">
+                          {t(cert.title)}
+                        </h3>
+                        <cert.icon
+                          size={17}
+                          strokeWidth={1.5}
+                          className="ml-auto shrink-0 text-[#C9A96A]/45"
+                        />
+                      </div>
+                      <p className="mt-2.5 text-[14.5px] leading-[1.72] text-white/[0.58]">
+                        {t(cert.desc)}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="h3-card mb-2">
-                    {t(cert.title)}
-                  </h3>
-                  <p className="body-copy">
-                    {t(cert.desc)}
-                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
 
+          {/* Closes the band on a rule instead of letting the centred note
+              trail off into the section padding. */}
           <Reveal>
-            <p className="text-center text-sm text-muted-foreground mt-10 max-w-2xl mx-auto leading-relaxed">
-              {t("cert_footer")}
-            </p>
+            <div className="mt-14 pt-7 border-t border-white/[0.14] flex flex-col md:flex-row md:items-start gap-4 md:gap-10">
+              <span aria-hidden="true" className="mt-[9px] h-px w-10 shrink-0 bg-[#C9A96A]/45" />
+              <p className="text-[13.5px] text-white/[0.48] max-w-3xl leading-[1.75]">
+                {t("cert_footer")}
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* Factory Gallery Section */}
-      <section id="factory" className="section-padding bg-[#F7F9F8]">
+      <section id="factory" className="section-padding bg-[#F4F7F5] relative overflow-hidden grain-pale">
         <div className="container-custom">
           <Reveal>
             <SectionHead
+              no="04"
               label={t("factory_label")}
               title={t("factory_title")}
               desc={t("factory_desc")}
@@ -505,17 +577,21 @@ export default function HomePage() {
               },
             ].map((img, i) => (
               <Reveal key={img.alt} delay={i * 100}>
-                <div className="h-full">
-                  <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[#E4EBE9]">
+                <div className="group h-full">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[#E4EBE9] ring-1 ring-inset ring-[#0B2F2A]/10 transition-shadow duration-500 group-hover:shadow-[0_22px_50px_-28px_rgba(4,36,31,0.55)]">
                     <img
                       src={img.src}
                       alt={t(img.alt)}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                       style={{ filter: img.grade }}
                       loading="lazy"
                     />
+                    <span className="absolute left-3.5 top-3.5 font-mono text-[10.5px] tracking-[0.2em] text-white/85 bg-[#04241F]/35 backdrop-blur-[2px] px-2 py-[3px]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
                   <div className="pt-5">
+                    <div className="h-px w-8 bg-[#9E7120]/45 mb-4 transition-all duration-500 group-hover:w-14" />
                     <h3 className="h3-card mb-2">
                       {t(img.capTitle)}
                     </h3>
@@ -531,10 +607,11 @@ export default function HomePage() {
       </section>
 
       {/* Products Section */}
-      <section id="products" className="section-padding bg-white">
+      <section id="products" className="section-padding bg-white relative overflow-hidden grain-pale">
         <div className="container-custom">
           <Reveal>
             <SectionHead
+              no="05"
               label={t("products_label")}
               title={t("products_title")}
               desc={t("products_desc")}
@@ -545,15 +622,15 @@ export default function HomePage() {
           <div className="border-t border-[#E2E8E6]">
             {categories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 50}>
-                <article className="group grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-10 py-10 md:py-12 border-b border-[#E2E8E6]">
+                <article className="group grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-12 py-12 md:py-16 px-5 -mx-5 border-b border-[#E6ECE9] transition-colors duration-300 hover:bg-[#FAFCFB]">
                   <div className="relative flex items-center justify-center bg-[#0B2F2A] border border-[#0B2F2A] rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4]">
                     <img
                       src={cat.image}
                       alt={t(cat.titleKey)}
                       loading="lazy"
-                      className="w-[90%] h-[90%] object-contain object-center transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="w-[90%] h-[90%] object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
-                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.14em] text-white/[0.45]">
+                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.18em] text-[#C9A96A]/85">
                       {cat.no}
                     </span>
                   </div>
@@ -572,17 +649,17 @@ export default function HomePage() {
                       {t(cat.descKey)}
                     </p>
 
-                    <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-1">
+                    <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-9">
                       {cat.skus.map((sku) => (
-                        <li key={sku.code}>
+                        <li key={sku.code} className="border-b border-[#EFF3F1]">
                           <Link
                             to={skuPath(cat, sku)}
-                            className="group/li flex items-baseline gap-2 min-w-0 py-1.5 -my-0.5"
+                            className="group/li flex items-baseline gap-2.5 min-w-0 py-2.5"
                           >
-                            <span className="font-mono text-[11px] text-[#0A5B51]/75 w-[74px] shrink-0 tabular-nums">
+                            <span className="font-mono text-[10.5px] text-[#9E7120]/80 w-[72px] shrink-0 tabular-nums tracking-[0.02em]">
                               {sku.code}
                             </span>
-                            <span className="text-[14px] text-foreground/[0.88] leading-snug group-hover/li:text-primary transition-colors">
+                            <span className="text-[14px] text-foreground/[0.86] leading-snug group-hover/li:text-primary transition-colors">
                               {sku.name}
                             </span>
                           </Link>
@@ -628,19 +705,29 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal>
-            <div className="mt-8 space-y-1.5">
-              <p className="text-[14px] text-muted-foreground max-w-3xl leading-[1.7]">{t("prod_note")}</p>
-              <p className="text-[14px] text-muted-foreground max-w-3xl leading-[1.7]">{t("custom_note")}</p>
+            <div className="mt-12 pt-8 border-t border-[#E2E8E6] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-6 md:gap-14 md:items-end">
+              <div className="space-y-2">
+                <p className="text-[14px] text-muted-foreground max-w-2xl leading-[1.7]">{t("prod_note")}</p>
+                <p className="text-[14px] text-muted-foreground max-w-2xl leading-[1.7]">{t("custom_note")}</p>
+              </div>
+              <Link
+                to="/products"
+                className="group/all inline-flex items-center gap-2 text-[13.5px] font-semibold text-primary whitespace-nowrap hover:gap-3 transition-all duration-200"
+              >
+                {t("hero_cta_products")}
+                <ArrowRight size={15} className="transition-transform duration-200 group-hover/all:translate-x-0.5" />
+              </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* Solutions Section */}
-      <section id="solutions" className="section-padding bg-[#F7F9F8]">
+      <section id="solutions" className="section-padding bg-[#F4F7F5] relative overflow-hidden grain-pale">
         <div className="container-custom">
           <Reveal>
             <SectionHead
+              no="06"
               label={t("solutions_label")}
               title={t("solutions_title")}
               desc={t("solutions_desc")}
@@ -648,41 +735,57 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Same rules-not-cards treatment as the advantages block: a problem
+              set, a hairline, then the answer. The boxed version made these
+              read as promo cards next to sections that had gone editorial. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 col-rule">
             {[
               { problemIcon: AlertTriangle, problemTitle: "sol1_problem_title", problemDesc: "sol1_problem_desc", solutionTitle: "sol1_solution_title", solutionDesc: "sol1_solution_desc" },
               { problemIcon: Clock, problemTitle: "sol2_problem_title", problemDesc: "sol2_problem_desc", solutionTitle: "sol2_solution_title", solutionDesc: "sol2_solution_desc" },
               { problemIcon: Package, problemTitle: "sol3_problem_title", problemDesc: "sol3_problem_desc", solutionTitle: "sol3_solution_title", solutionDesc: "sol3_solution_desc" },
             ].map((sol, i) => (
               <Reveal key={i} delay={i * 120}>
-                <div className="card-hover bg-white rounded-sm border border-[#E2E8E6] h-full">
-                  <div className="p-7 border-b border-[#E2E8E6]">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#A5B4B0]"></span>
-                      <span className="text-[10.5px] font-semibold text-[#7E908C] uppercase tracking-[0.16em]">
-                        {t("sol1_problem")}
-                      </span>
-                      <sol.problemIcon size={15} className="ml-auto text-[#C3CFCC]" />
-                    </div>
-                    <h3 className="text-[16px] font-semibold text-foreground leading-snug">
-                      {t(sol.problemTitle)}
-                    </h3>
-                    <p className="text-[14.5px] text-muted-foreground mt-2.5 leading-[1.65]">
-                      {t(sol.problemDesc)}
-                    </p>
+                <div
+                  className={`group relative h-full pt-7 md:pt-8 md:pb-2 ${
+                    i > 0 ? "md:pl-10 lg:pl-12 md:border-l md:border-[#E5ECE9]" : ""
+                  } ${i < 2 ? "md:pr-10 lg:pr-12" : ""}`}
+                >
+                  <span className="absolute left-0 -top-px h-px w-0 bg-[#9E7120]/70 transition-all duration-500 group-hover:w-full" />
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#9E7120]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#8A7A5A]">
+                      {t("sol1_problem")}
+                    </span>
+                    <sol.problemIcon
+                      size={16}
+                      strokeWidth={1.5}
+                      className="ml-auto text-[#C9BFA5]"
+                    />
                   </div>
-                  <div className="p-7">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0A5B51]"></span>
-                      <span className="text-[10.5px] font-semibold text-[#0A5B51] uppercase tracking-[0.16em]">
+                  <h3 className="mt-4 text-[1.0625rem] font-semibold text-foreground leading-[1.4]">
+                    {t(sol.problemTitle)}
+                  </h3>
+                  <p className="mt-2.5 text-[14.5px] text-muted-foreground leading-[1.7]">
+                    {t(sol.problemDesc)}
+                  </p>
+
+                  <div className="mt-7 pt-6 border-t border-[#DCE5E1]">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#0A5B51]">
                         {t("sol1_solution")}
                       </span>
-                      <CheckCircle size={15} className="ml-auto text-[#0A5B51]/40" />
+                      <CheckCircle
+                        size={16}
+                        strokeWidth={1.5}
+                        className="ml-auto text-[#0A5B51]/30"
+                      />
                     </div>
-                    <h4 className="text-[16px] font-semibold text-foreground leading-snug">
+                    <h4 className="mt-4 text-[1.0625rem] font-semibold text-foreground leading-[1.4]">
                       {t(sol.solutionTitle)}
                     </h4>
-                    <p className="text-[14.5px] text-muted-foreground mt-2.5 leading-[1.65]">
+                    <p className="mt-2.5 text-[14.5px] text-muted-foreground leading-[1.7]">
                       {t(sol.solutionDesc)}
                     </p>
                   </div>
@@ -698,6 +801,7 @@ export default function HomePage() {
         <div className="container-custom">
           <Reveal>
             <SectionHead
+              no="07"
               label={t("contact_label")}
               title={t("contact_title")}
               desc={t("contact_desc")}
@@ -708,15 +812,15 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-[400px_minmax(0,1fr)] gap-8 lg:gap-10 items-start">
             {/* Left: Contact Info */}
             <Reveal className="reveal-left">
-              <div className="bg-white rounded-sm p-8 border border-[#E2E8E6] h-full">
+              <div className="h-full lg:pr-8">
                 <h3 className="text-[17px] font-semibold text-foreground mb-6">
                   {t("contact_get")}
                 </h3>
 
-                <div className="space-y-5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <User size={18} className="text-primary" />
+                <div className="divide-y divide-[#EBF0EE] border-t border-[#EBF0EE]">
+                  <div className="flex items-start gap-4 py-3.5">
+                    <div className="w-[18px] shrink-0 flex items-center justify-center pt-[3px]">
+                      <User size={15} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                     </div>
                     <div>
                       <div className="text-[14.5px] font-medium text-foreground">
@@ -728,9 +832,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <Mail size={18} className="text-primary" />
+                  <div className="flex items-start gap-4 py-3.5">
+                    <div className="w-[18px] shrink-0 flex items-center justify-center pt-[3px]">
+                      <Mail size={15} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                     </div>
                     <div>
                       <div className="text-[14.5px] font-medium text-foreground">
@@ -745,9 +849,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <MessageCircle size={18} className="text-primary" />
+                  <div className="flex items-start gap-4 py-3.5">
+                    <div className="w-[18px] shrink-0 flex items-center justify-center pt-[3px]">
+                      <MessageCircle size={15} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                     </div>
                     <div>
                       <div className="text-[14.5px] font-medium text-foreground">
@@ -764,9 +868,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <ExternalLink size={18} className="text-primary" />
+                  <div className="flex items-start gap-4 py-3.5">
+                    <div className="w-[18px] shrink-0 flex items-center justify-center pt-[3px]">
+                      <ExternalLink size={15} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                     </div>
                     <div>
                       <div className="text-[14.5px] font-medium text-foreground">
@@ -783,9 +887,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <MessageSquare size={18} className="text-primary" />
+                  <div className="flex items-start gap-4 py-3.5">
+                    <div className="w-[18px] shrink-0 flex items-center justify-center pt-[3px]">
+                      <MessageSquare size={15} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                     </div>
                     <div>
                       <div className="text-[14.5px] font-medium text-foreground">
@@ -797,9 +901,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#EDF4F2] rounded-sm flex items-center justify-center flex-shrink-0">
-                      <Building2 size={18} className="text-primary" />
+                  <div className="flex items-start gap-4 py-3.5">
+                    <div className="w-[18px] shrink-0 flex items-center justify-center pt-[3px]">
+                      <Building2 size={15} strokeWidth={1.5} className="text-[#0A5B51]/55" />
                     </div>
                     <div>
                       <div className="text-[14.5px] font-medium text-foreground">
@@ -835,12 +939,21 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#00463E] py-16 md:py-[5.5rem]">
-        <div className="container-custom text-center">
+      <section className="relative overflow-hidden bg-[#00463E] py-20 md:py-[7rem] grain">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(48% 70% at 50% 0%, rgba(201,169,106,0.14) 0%, rgba(201,169,106,0) 70%)",
+          }}
+        />
+        <div className="container-custom text-center relative">
+          <span className="mx-auto mb-7 block h-px w-12 bg-[#C9A96A]/60" />
           <h2 className="h2-section text-white">
             {t("cta_title")}
           </h2>
-          <p className="text-white/[0.7] text-[15px] md:text-[16px] leading-[1.65] max-w-xl mx-auto mt-4 mb-9">
+          <p className="text-white/[0.66] text-[15px] md:text-[16px] leading-[1.7] max-w-xl mx-auto mt-5 mb-10">
             {t("cta_desc")}
           </p>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">

@@ -56,7 +56,7 @@
 @layer components {
   /* Vertical rhythm: one step, used everywhere. Uniform beats per-section guessing. */
   .section-padding {
-    @apply py-16 md:py-[5.5rem];
+    @apply py-20 md:py-[6.5rem] lg:py-[7.5rem];
   }
 
   .container-custom {
@@ -65,14 +65,25 @@
 
   /* --- type scale ---------------------------------------------------------
      Five steps only. Anything below 12px is gone; body copy is 15px so it
-     reads as a paragraph rather than a caption. */
+     reads as a paragraph rather than a caption.
+     Section titles sit in a serif display face: at this size it reads as
+     editorial rather than as a UI heading, which is the difference between
+     "clean" and "considered". Chinese falls back to 宋体 and pairs with it. */
+  .font-display {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+      Georgia, "Songti SC", "SimSun", serif;
+  }
+
   .eyebrow {
     @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0A5B51];
   }
 
   .h2-section {
-    @apply text-[1.7rem] md:text-[2.35rem] font-semibold tracking-[-0.025em] text-foreground
-      leading-[1.14];
+    @apply text-[1.75rem] md:text-[2.4rem] tracking-[-0.02em] text-foreground
+      leading-[1.16];
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+      Georgia, "Songti SC", "SimSun", serif;
+    font-weight: 500;
     text-wrap: balance;
   }
 
@@ -108,6 +119,105 @@
     @apply w-full px-4 py-3.5 border border-[#D2DBD8] rounded-sm text-[15px] text-foreground
       placeholder:text-[#94A5A1] bg-white
       focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors;
+  }
+
+  /* --- hero watermark -----------------------------------------------------
+     A hairline ring sets the circle; the mark sits inside it at seal scale.
+     Both are ghosts: the ring at 22% gold, the mark at 7.5% white. The mark is
+     brightened to pure white first — the gold gradients turn to mud at this
+     opacity, but as a silhouette they read as an emboss. */
+  .hero-watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-mark {
+    width: min(40vw, 520px);
+    height: min(40vw, 520px);
+    opacity: 0.09;
+    filter: brightness(0) invert(1);
+  }
+
+  .hero-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(56vw, 620px);
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    border: 1px solid rgba(201, 169, 106, 0.2);
+    box-shadow: 0 0 0 16px rgba(201, 169, 106, 0.03);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* On a phone the fixed 520px seal shrinks to a smudge behind the sub-line.
+     Scale it against the viewport instead and drop the opacity: at 88vw it
+     reads as a soft emblem, at 250px it just reads as dirt. */
+  @media (max-width: 640px) {
+    .hero-mark {
+      width: 88vw;
+      height: 88vw;
+      opacity: 0.05;
+    }
+    .hero-ring {
+      width: 96vw;
+      height: 96vw;
+    }
+  }
+
+  /* Paper grain: keeps large flat areas from reading as dead pixels.
+     Two strengths — full for the dark bands, half for the pale sections where
+     the same noise would read as dirt. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='0.05'/></svg>");
+  }
+
+  .grain-pale::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.3;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='0.16'/></svg>");
+  }
+
+  /* Serif numerals for the figures that carry the claim (hero stats). Sans
+     numerals at this size read as dashboard; old-style ones read as print. */
+  .num-display {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+      Georgia, "Songti SC", "SimSun", serif;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+  }
+
+  /* Editorial section index: numeral, hairline, label — used at the head of
+     every section so the page reads as numbered chapters. */
+  .index-row {
+    @apply flex items-center gap-3;
+  }
+  .index-no {
+    @apply font-mono text-[10.5px] tracking-[0.22em] text-[#9E7120];
+  }
+  .index-rule {
+    @apply h-px w-7 bg-[#9E7120]/40;
+  }
+
+  /* Hairline column grid: no boxes, just rules — the oldest trick for making
+     a three-up layout look like a document instead of a card template. */
+  .col-rule {
+    @apply border-t border-[#DCE5E1];
   }
 }
 
