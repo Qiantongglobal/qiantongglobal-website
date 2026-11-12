@@ -24,8 +24,7 @@ export default function ProductPage() {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
         { "@type": "ListItem", position: 2, name: "Products", item: `${SITE_URL}/products` },
-        { "@type": "ListItem", position: 3, name: category.name, item: `${SITE_URL}/products/${category.id}` },
-        { "@type": "ListItem", position: 4, name: sku.name, item: `${SITE_URL}${path}` },
+        { "@type": "ListItem", position: 3, name: sku.name, item: `${SITE_URL}${path}` },
       ],
     },
     {
