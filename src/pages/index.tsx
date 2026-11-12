@@ -244,7 +244,7 @@ export default function HomePage() {
             headline for contrast. */}
         <div className="hero-watermark" aria-hidden="true">
           <span className="hero-ring" />
-          <LogoMark tone="light" className="hero-mark" />
+          <LogoMark tone="watermark" className="hero-mark" />
         </div>
         <div
           aria-hidden="true"
@@ -623,14 +623,14 @@ export default function HomePage() {
             {categories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 50}>
                 <article className="group grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-12 py-12 md:py-16 px-5 -mx-5 border-b border-[#E6ECE9] transition-colors duration-300 hover:bg-[#FAFCFB]">
-                  <div className="relative flex items-center justify-center bg-[#0B2F2A] border border-[#0B2F2A] rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4]">
+                  <div className="relative flex items-center justify-center bg-[#F6F5F0] rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4] ring-1 ring-inset ring-[#E6E2D5]">
                     <img
                       src={cat.image}
                       alt={t(cat.titleKey)}
                       loading="lazy"
                       className="w-[90%] h-[90%] object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
-                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.18em] text-[#C9A96A]/85">
+                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.18em] text-[#9E7120]/55">
                       {cat.no}
                     </span>
                   </div>
@@ -651,10 +651,10 @@ export default function HomePage() {
 
                     <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-9">
                       {cat.skus.map((sku) => (
-                        <li key={sku.code} className="border-b border-[#EFF3F1]">
+                        <li key={sku.code}>
                           <Link
                             to={skuPath(cat, sku)}
-                            className="group/li flex items-baseline gap-2.5 min-w-0 py-2.5"
+                            className="group/li flex h-full min-h-[52px] items-center gap-2.5 min-w-0 border-b border-[#EFF3F1] py-2"
                           >
                             <span className="font-mono text-[10.5px] text-[#9E7120]/80 w-[72px] shrink-0 tabular-nums tracking-[0.02em]">
                               {sku.code}

@@ -2,8 +2,12 @@ import { useId, useMemo } from "react";
 import logoSvg from "@/assets/logo-mark.svg?raw";
 
 type LogoMarkProps = {
-  /** dark = 墨绿原色（浅底用）；light = 白色描形 + 保金羽毛（深底用） */
-  tone?: "dark" | "light";
+  /**
+   * dark      = 墨绿原色（浅底用）
+   * light     = 白色描形 + 保金（深底用，导航/页脚）
+   * watermark = 墨绿改成 6% 白 + 金色保持原样（首屏印章用）
+   */
+  tone?: "dark" | "light" | "watermark";
   className?: string;
 };
 
@@ -19,7 +23,7 @@ type LogoMarkProps = {
  *   2. 给渐变 id 加实例前缀，避免同页重复 id；
  *   3. light 色调只反白墨绿实色，金色渐变一律不动。
  */
-function buildMarkup(raw: string, uid: string, tone: "dark" | "light") {
+function buildMarkup(raw: string, uid: string, tone: "dark" | "light" | "watermark") {
   // 去掉 XML 声明与注释（内联到 HTML 里没有意义，还会被当成异常节点）
   let svg = raw
     .replace(/<\?xml[^>]*\?>/g, "")
@@ -36,7 +40,12 @@ function buildMarkup(raw: string, uid: string, tone: "dark" | "light") {
   svg = svg.replace(/<style[^>]*>[\s\S]*?<\/style>/g, "");
   svg = svg.replace(/class="(st\d+)"/g, (_m, cls: string) => {
     const fill = fills[cls];
-    return fill ? `fill="${fill}"` : "";
+    if (!fill) return "";
+    // watermark：墨绿主体只留 6% 白，金色羽毛保持原色 → 远处只见金
+    if (tone === "watermark" && /^#004[36]3[Ee]$/i.test(fill)) {
+      return 'fill="#FFFFFF" fill-opacity="0.06"';
+    }
+    return `fill="${fill}"`;
   });
 
   // 3. 渐变 / 组件 id 加实例前缀，顺带去掉 Illustrator 的中文图层 id
