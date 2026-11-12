@@ -142,7 +142,7 @@
     width: min(64vw, 900px);
     height: min(64vw, 900px);
     transform: translate(-50%, -50%);
-    opacity: 0.21;
+    opacity: 0.11;
     /* screen, not normal: at low opacity the gold multiplied over dark green
        turns olive, while screen keeps it warm and lets the plate glow. */
     mix-blend-mode: screen;
@@ -156,14 +156,14 @@
     width: min(68vw, 960px);
     aspect-ratio: 1;
     border-radius: 9999px;
-    border: 1px solid rgba(201, 169, 106, 0.15);
+    border: 1px solid rgba(201, 169, 106, 0.1);
   }
 
   @media (max-width: 640px) {
     .hero-mark {
-      width: 132vw;
+        width: 132vw;
       height: 132vw;
-      opacity: 0.2;
+      opacity: 0.1;
     }
     .hero-ring {
       width: 140vw;
