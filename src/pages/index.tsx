@@ -243,7 +243,6 @@ export default function HomePage() {
             above it on a real stacking order, so the mark never fights the
             headline for contrast. */}
         <div className="hero-watermark" aria-hidden="true">
-          <span className="hero-ring" />
           <LogoMark tone="watermark" className="hero-mark" />
         </div>
         <div

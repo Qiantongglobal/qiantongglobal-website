@@ -143,32 +143,18 @@
     height: min(64vw, 900px);
     transform: translate(-50%, -50%);
     /* 白主体已压到 3%，这里的 opacity 基本只作用于金色：
-       取 0.15 让金线还剩一口气，盘面轮廓则靠更细的 ring 交代。 */
+       取 0.15 让金线还剩一口气，盘面本身不再描边。 */
     opacity: 0.15;
     /* screen, not normal: at low opacity the gold multiplied over dark green
        turns olive, while screen keeps it warm and lets the plate glow. */
     mix-blend-mode: screen;
   }
 
-  .hero-ring {
-    position: absolute;
-    left: 50%;
-    top: calc(50% - 42px);
-    transform: translate(-50%, -50%);
-    width: min(68vw, 960px);
-    aspect-ratio: 1;
-    border-radius: 9999px;
-    border: 1px solid rgba(201, 169, 106, 0.1);
-  }
-
   @media (max-width: 640px) {
     .hero-mark {
-        width: 132vw;
+      width: 132vw;
       height: 132vw;
       opacity: 0.14;
-    }
-    .hero-ring {
-      width: 140vw;
     }
   }
 
