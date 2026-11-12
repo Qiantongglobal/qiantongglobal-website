@@ -68,14 +68,14 @@ export default function ProductsPage() {
             {categories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 50}>
                 <article className="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-10 py-10 md:py-12 border-b border-[#E2E8E6]">
-                  <div className="relative flex items-center justify-center bg-[#F6F5F0] rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4] ring-1 ring-inset ring-[#E6E2D5]">
+                  <div className="relative flex items-center justify-center bg-white rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4] ring-1 ring-inset ring-[#E9E7DF]">
                     <img
                       src={cat.image}
                       alt={t(cat.titleKey)}
                       loading="lazy"
-                      className="w-[90%] h-[90%] object-contain object-center"
+                      className="w-[88%] h-[88%] object-contain object-center drop-shadow-[0_16px_26px_rgba(11,47,42,0.20)]"
                     />
-                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.14em] text-white/[0.45]">
+                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.14em] text-[#9E7120]/55">
                       {cat.no}
                     </span>
                   </div>

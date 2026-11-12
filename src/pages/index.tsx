@@ -526,7 +526,7 @@ export default function HomePage() {
               { icon: Shield, title: "cert_ec", desc: "cert_ec_desc" },
             ].map((cert, i) => (
               <Reveal key={cert.title} delay={i * 80}>
-                <div className="group border-t border-white/[0.14] py-7 md:py-8 transition-colors duration-300 hover:border-white/[0.3]">
+                <div className="group border-t border-white/[0.14] py-6 md:py-7 transition-colors duration-300 hover:border-white/[0.3]">
                   <div className="flex items-baseline gap-4 md:gap-5">
                     <span className="font-mono text-[11px] tracking-[0.2em] text-[#C9A96A]">
                       {String(i + 1).padStart(2, "0")}
@@ -539,10 +539,10 @@ export default function HomePage() {
                         <cert.icon
                           size={17}
                           strokeWidth={1.5}
-                          className="ml-auto shrink-0 text-[#C9A96A]/45"
+                          className="ml-auto shrink-0 text-[#C9A96A]/60"
                         />
                       </div>
-                      <p className="mt-2.5 text-[14.5px] leading-[1.72] text-white/[0.58]">
+                      <p className="mt-2 text-[14.5px] leading-[1.7] text-white/[0.68]">
                         {t(cert.desc)}
                       </p>
                     </div>
@@ -581,30 +581,32 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                src: "https://dingtalk-ai-app.oss-cn-zhangjiakou.aliyuncs.com/1a6db8dc-7fb0-4b3e-a801-27432e20cb5b.PNG",
+                src: "/images/facilities/01-cleanroom.webp",
                 alt: "factory_img1",
                 capTitle: "factory_cap1_title",
                 capDesc: "factory_cap1_desc",
-                grade: "brightness(1.14) contrast(1.02) saturate(0.9)",
+                // Brightness is normalised to a common target (~145 / 255) so the
+                // three shots read as one photo edit. Measured means: 128 / 149 / 152.
+                grade: "brightness(1.13) contrast(1.02) saturate(0.92)",
               },
               {
-                src: "https://dingtalk-ai-app.oss-cn-zhangjiakou.aliyuncs.com/67c3a951-d06e-40f9-87b1-42d5c9d718d6.jpg",
+                src: "/images/facilities/02-inspection.webp",
                 alt: "factory_img2",
                 capTitle: "factory_cap2_title",
                 capDesc: "factory_cap2_desc",
-                grade: "brightness(0.97) contrast(1.02) saturate(0.9)",
+                grade: "brightness(0.97) contrast(1.02) saturate(0.92)",
               },
               {
-                src: "https://dingtalk-ai-app.oss-cn-zhangjiakou.aliyuncs.com/98802f05-abde-443e-a560-e3c70342b571.jpg",
+                src: "/images/facilities/03-sewing.webp",
                 alt: "factory_img3",
                 capTitle: "factory_cap3_title",
                 capDesc: "factory_cap3_desc",
-                grade: "brightness(1.03) contrast(1.03) saturate(0.9)",
+                grade: "brightness(0.95) contrast(1.02) saturate(0.92)",
               },
             ].map((img, i) => (
               <Reveal key={img.alt} delay={i * 100}>
                 <div className="group h-full">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[#E4EBE9] ring-1 ring-inset ring-[#0B2F2A]/10 transition-shadow duration-500 group-hover:shadow-[0_22px_50px_-28px_rgba(4,36,31,0.55)]">
+                  <div className="relative aspect-[3/2] overflow-hidden rounded-sm bg-[#E4EBE9] ring-1 ring-inset ring-[#0B2F2A]/10 transition-shadow duration-500 group-hover:shadow-[0_22px_50px_-28px_rgba(4,36,31,0.55)]">
                     <img
                       src={img.src}
                       alt={t(img.alt)}
@@ -649,12 +651,15 @@ export default function HomePage() {
             {categories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 50}>
                 <article className="group grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-12 py-12 md:py-16 px-5 -mx-5 border-b border-[#E6ECE9] transition-colors duration-300 hover:bg-[#FAFCFB]">
-                  <div className="relative flex items-center justify-center bg-[#F6F5F0] rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4] ring-1 ring-inset ring-[#E6E2D5]">
+                  <div className="relative flex items-center justify-center bg-white rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4] ring-1 ring-inset ring-[#E9E7DF]">
                     <img
                       src={cat.image}
                       alt={t(cat.titleKey)}
                       loading="lazy"
-                      className="w-[90%] h-[90%] object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      /* Most of this catalogue is clear or frosted PVC. On a tinted
+                         plate those items lose their edge entirely; a white plate
+                         plus a shadow cast from the alpha channel restores it. */
+                      className="w-[88%] h-[88%] object-contain object-center drop-shadow-[0_16px_26px_rgba(11,47,42,0.20)] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                     <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.18em] text-[#9E7120]/55">
                       {cat.no}
@@ -978,7 +983,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-[#00463E] py-20 md:py-[7rem] grain">
+      <section className="relative overflow-hidden bg-[#00463E] py-16 md:py-20 grain">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
@@ -1012,6 +1017,14 @@ export default function HomePage() {
               <MessageSquare size={17} />
               {t("cta_whatsapp")}
             </a>
+          </div>
+
+          {/* A rule-and-label line under the buttons: without it the band was a
+              large empty field of dark green with a paragraph floating in it. */}
+          <div className="mt-9 flex items-center justify-center gap-4 text-[12.5px] tracking-[0.08em] uppercase text-white/[0.42]">
+            <span aria-hidden="true" className="h-px w-10 bg-[#C9A96A]/30" />
+            {t("contact_response_val")}
+            <span aria-hidden="true" className="h-px w-10 bg-[#C9A96A]/30" />
           </div>
         </div>
       </section>
