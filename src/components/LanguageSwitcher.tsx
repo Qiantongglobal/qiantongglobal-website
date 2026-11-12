@@ -31,6 +31,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('qiantong_lang', newLang);
   }, []);
 
+  // Keep <html lang> in step with the chosen locale. index.html ships with a
+  // hard-coded lang="en"; without this, a visitor reading the Spanish page is
+  // still served a document declared as English — which makes screen readers
+  // mispronounce it and makes Chrome offer to translate it back to English.
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const t = useCallback((key: string): string => {
     return translations[lang]?.[key] ?? translations.en[key] ?? key;
   }, [lang]);

@@ -302,7 +302,7 @@ export default function HomePage() {
 
             <p className="mt-6 sm:mt-7 text-[1.0625rem] sm:text-[1.15rem] md:text-[1.25rem] text-white/[0.8] max-w-2xl mx-auto leading-[1.6]">
               {t("hero_desc_1")}{" "}
-              <span className="text-white font-semibold">{t("hero_desc_percent")}</span>{" "}
+              <span className="text-white font-semibold whitespace-nowrap">{t("hero_desc_percent")}</span>{" "}
               {t("hero_desc_2")}
             </p>
 
