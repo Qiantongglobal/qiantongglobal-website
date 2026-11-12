@@ -38,6 +38,12 @@ function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
+  /* Product pages link here with ?code=QG-XX-NNN so the buyer never retypes the
+     code; the hidden field puts it in the notification as well. */
+  const [refCode] = useState(
+    () => new URLSearchParams(window.location.search).get("code") || ""
+  );
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
@@ -95,6 +101,15 @@ function ContactForm() {
         {t("form_title")}
       </h3>
       <form onSubmit={handleSubmit} className="space-y-5">
+        {refCode && <input type="hidden" name="product_code" value={refCode} />}
+        {refCode && (
+          <div className="flex items-center gap-2 border border-[#DCE7E3] bg-[#F5F9F8] px-3.5 py-2.5 rounded-sm">
+            <FileText size={14} className="shrink-0 text-[#0A5B51]/60" />
+            <span className="font-mono text-[12.5px] tracking-[0.04em] text-foreground">
+              {refCode}
+            </span>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label className="block text-[13.5px] font-semibold text-foreground mb-2">
@@ -156,12 +171,16 @@ function ContactForm() {
             className="field bg-white"
           >
             <option value="">{t("form_product_ph")}</option>
-            <option value="non-woven">{t("form_product_1")}</option>
-            <option value="gauze-cotton">{t("form_product_2")}</option>
-            <option value="surgical-kits">{t("form_product_3")}</option>
-            <option value="anesthesia">{t("form_product_5")}</option>
-            <option value="lab">{t("form_product_6")}</option>
-            <option value="custom">{t("form_product_4")}</option>
+            {/* Options follow the catalogue's five categories. The old list
+                (non-woven, gauze, lab consumables) described a range we do not
+                carry any more, so buyers were picking a category that has no
+                SKU behind it. */}
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {t(cat.titleKey)}
+              </option>
+            ))}
+            <option value="multiple">{t("form_product_multi")}</option>
           </select>
         </div>
 
@@ -175,12 +194,19 @@ function ContactForm() {
             rows={4}
             className="field resize-none"
             placeholder={t("form_message_ph")}
+            defaultValue={refCode ? `I would like a quotation for ${refCode}.\n\n` : undefined}
           ></textarea>
         </div>
 
         {error && (
-          <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-sm px-4 py-2.5">
-            {error}
+          <div className="text-[13px] text-red-700 bg-red-50 border border-red-200 rounded-sm px-4 py-3 leading-relaxed">
+            {error}{" "}
+            <a
+              href={`mailto:${t("cta_email")}`}
+              className="font-medium underline underline-offset-2"
+            >
+              {t("cta_email")}
+            </a>
           </div>
         )}
 

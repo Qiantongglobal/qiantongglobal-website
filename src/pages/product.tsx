@@ -40,6 +40,7 @@ export default function ProductPage() {
   ];
 
   const mailto = `mailto:${t("cta_email")}?subject=${encodeURIComponent(`Quotation request — ${sku.name} (${sku.code})`)}`;
+  const quoteHref = `/?code=${encodeURIComponent(sku.code)}#contact`;
 
   return (
     <div>
@@ -105,15 +106,17 @@ export default function ProductPage() {
                 ))}
               </dl>
 
+              {/* Every quote request now lands in the one form, carrying the
+                  product code so the buyer never has to retype it. Email stays
+                  as a secondary route for people who prefer their own client. */}
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
-                <a
-                  href={mailto}
+                <Link
+                  to={quoteHref}
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary text-white text-[13.5px] font-semibold rounded-sm hover:bg-[#00594F] transition-colors"
                 >
-                  <Mail size={15} />
                   {t("request_quote")}
                   <ArrowRight size={14} />
-                </a>
+                </Link>
                 <Link
                   to="/products"
                   className="inline-flex items-center justify-center px-6 py-3.5 border border-[#D2DBD8] text-foreground text-[13.5px] font-medium rounded-sm hover:bg-[#F5F9F8] transition-colors"
@@ -122,15 +125,24 @@ export default function ProductPage() {
                 </Link>
               </div>
 
-              <a
-                href="/qiantong-global-catalogue-2026.pdf"
-                download="Qiantong-Global-Catalogue-2026.pdf"
-                className="mt-5 inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-primary"
-              >
-                <FileDown size={14} className="shrink-0" />
-                {t("catalogue_dl")}
-                <span className="font-mono text-[11px] tracking-[0.06em]">· {t("catalogue_meta")}</span>
-              </a>
+              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+                <a
+                  href="/qiantong-global-catalogue-2026.pdf"
+                  download="Qiantong-Global-Catalogue-2026.pdf"
+                  className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <FileDown size={14} className="shrink-0" />
+                  {t("catalogue_dl")}
+                  <span className="font-mono text-[11px] tracking-[0.06em]">· {t("catalogue_meta")}</span>
+                </a>
+                <a
+                  href={mailto}
+                  className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <Mail size={14} className="shrink-0" />
+                  {t("cta_email")}
+                </a>
+              </div>
             </div>
 
             {/* Code plate: the catalogue has one image per category, so the

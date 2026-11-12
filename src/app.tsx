@@ -25,7 +25,10 @@ function ScrollManager() {
     if (hash) {
       const raf = requestAnimationFrame(() => {
         const el = document.getElementById(hash.slice(1));
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Instant, not smooth: arriving from a product page means travelling
+        // the whole document, and a slow glide through every section reads as
+        // a loading stall rather than a transition.
+        if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
         else window.scrollTo(0, 0);
       });
       return () => cancelAnimationFrame(raf);
