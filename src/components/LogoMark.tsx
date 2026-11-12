@@ -5,7 +5,7 @@ type LogoMarkProps = {
   /**
    * dark      = 墨绿原色（浅底用）
    * light     = 白色描形 + 保金（深底用，导航/页脚）
-   * watermark = 墨绿改成 6% 白 + 金色保持原样（首屏印章用）
+   * watermark = 墨绿压成极淡白 + 金色满强度（首屏印章用，靠外层 opacity 收）
    */
   tone?: "dark" | "light" | "watermark";
   className?: string;
@@ -41,9 +41,11 @@ function buildMarkup(raw: string, uid: string, tone: "dark" | "light" | "waterma
   svg = svg.replace(/class="(st\d+)"/g, (_m, cls: string) => {
     const fill = fills[cls];
     if (!fill) return "";
-    // watermark：墨绿主体只留 6% 白，金色羽毛保持原色 → 远处只见金
+    // watermark：墨绿主体只剩 3% 白（近乎无痕），金色保持满强度。
+    // 外层的低 opacity 会把两者一起压暗，因此金色最终仍比白主体亮出一个量级，
+    // 视觉上就是「盘面几乎看不见，只有金色还在微微透气」。
     if (tone === "watermark" && /^#004[36]3[Ee]$/i.test(fill)) {
-      return 'fill="#FFFFFF" fill-opacity="0.06"';
+      return 'fill="#FFFFFF" fill-opacity="0.03"';
     }
     return `fill="${fill}"`;
   });

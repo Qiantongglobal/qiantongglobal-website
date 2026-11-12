@@ -142,7 +142,9 @@
     width: min(64vw, 900px);
     height: min(64vw, 900px);
     transform: translate(-50%, -50%);
-    opacity: 0.11;
+    /* 白主体已压到 3%，这里的 opacity 基本只作用于金色：
+       取 0.15 让金线还剩一口气，盘面轮廓则靠更细的 ring 交代。 */
+    opacity: 0.15;
     /* screen, not normal: at low opacity the gold multiplied over dark green
        turns olive, while screen keeps it warm and lets the plate glow. */
     mix-blend-mode: screen;
@@ -163,7 +165,7 @@
     .hero-mark {
         width: 132vw;
       height: 132vw;
-      opacity: 0.1;
+      opacity: 0.14;
     }
     .hero-ring {
       width: 140vw;
