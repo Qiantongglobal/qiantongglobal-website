@@ -41,11 +41,10 @@ function buildMarkup(raw: string, uid: string, tone: "dark" | "light" | "waterma
   svg = svg.replace(/class="(st\d+)"/g, (_m, cls: string) => {
     const fill = fills[cls];
     if (!fill) return "";
-    // watermark：墨绿主体只剩 3% 白（近乎无痕），金色保持满强度。
-    // 外层的低 opacity 会把两者一起压暗，因此金色最终仍比白主体亮出一个量级，
-    // 视觉上就是「盘面几乎看不见，只有金色还在微微透气」。
+    // watermark：墨绿主体留 15% 白，乘上外层 0.15 的 opacity 后净亮度约 2.3%。
+    // 这是「还认得出来是一枚圆印、但绝不算图案」的那条线。金色保持满强度。
     if (tone === "watermark" && /^#004[36]3[Ee]$/i.test(fill)) {
-      return 'fill="#FFFFFF" fill-opacity="0.03"';
+      return 'fill="#FFFFFF" fill-opacity="0.15"';
     }
     return `fill="${fill}"`;
   });
