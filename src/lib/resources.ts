@@ -12,7 +12,11 @@ export type Block =
   | { type: "h2"; text: string }
   | { type: "list"; items: string[] }
   | { type: "note"; text: string }
-  | { type: "table"; head: [string, string, string]; rows: [string, string, string][] };
+  | {
+      type: "table";
+      head: string[];
+      rows: string[][];
+    };
 
 /** Languages a note has been written in. English is the source text and is
  *  never listed here — it is the fallback, not a translation. */
@@ -267,6 +271,146 @@ const DOC_DE: ArticleTranslation = {
     {
       type: "p",
       text: "Bewahren Sie genau die Version auf, die Sie erhalten haben, mit dem Eingangsdatum, abgelegt zum jeweiligen Gerät. Wird ein Zertifikat erneuert, sollte die Erklärung neu ausgestellt werden; die frühere ist nicht falsch, sie ist überholt — und beide Versionen zeigen zu können, macht aus einer Rückfrage Ihrer Behörde eine Antwort in zwei Minuten.",
+    },
+  ],
+};
+
+const SWISSDAMED_DE: ArticleTranslation = {
+  title: "Die Registrierung in swissdamed ist jetzt Pflicht — was sich für Hersteller im Ausland ändert",
+  dek: "Seit dem 1. Juli 2026 registriert die Schweiz Geräte selbst, statt Meldungen entgegenzunehmen. Die Übergangsfrist endet am 31. Dezember 2026, und die Gebühr fällt pro UDI-DI an, nicht pro Lieferung.",
+  tag: "Schweiz",
+  keyPoints: [
+    "Seit dem 1. Juli 2026 müssen Geräte, Systeme und Behandlungseinheiten in swissdamed registriert sein, bevor sie in Verkehr gebracht werden.",
+    "Die Registrierung nimmt der Hersteller oder sein Bevollmächtigter vor; ein Distributor kann sie nicht in eigenem Namen erledigen.",
+    "Für Geräte, die bereits im Markt sind, läuft die Übergangsfrist bis zum 31. Dezember 2026.",
+    "CHF 200 für die erste UDI-DI, CHF 20 für jede weitere, mit einer Obergrenze pro Kalenderjahr.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "Die Schweiz hat früher mit Meldungen gearbeitet: ein Formular für bestimmte Gerätegruppen, eingereicht, wenn sich etwas änderte. Seit dem 1. Juli 2026 arbeitet sie mit einem Register. swissdamed — das schweizerische Gegenstück zu EUDAMED — übernimmt: Geräte, Systeme und Behandlungseinheiten werden im Modul UDI Devices registriert, bevor sie in Verkehr gebracht werden.",
+    },
+    {
+      type: "p",
+      text: "Der Unterschied ist größer, als er klingt. Eine Meldung war ein Schreiben; eine Registrierung ist ein Datensatz, der zum Etikett, zum Zertifikat und zur UDI passen muss. Eine Abweichung, die früher unsichtbar blieb, ist jetzt ein Eintrag, den jeder abfragen kann.",
+    },
+    { type: "h2", text: "Wer registriert" },
+    {
+      type: "p",
+      text: "Die Registrierung ist ein Akt des Herstellers, ausgeführt über seinen Schweizer Bevollmächtigten. Ein Importeur kann ein Gerät nicht in eigenem Namen registrieren, und ein Distributor nicht im Namen eines Herstellers. Wenn ein Schweizer Kunde sagt, das Gerät sei „schon registriert“, lautet die richtige Rückfrage: von wem.",
+    },
+    {
+      type: "table",
+      head: ["Akteur", "Was er in swissdamed tun kann"],
+      rows: [
+        ["Hersteller im Ausland, über den CH-REP", "Registriert das Gerät und hält den Eintrag aktuell"],
+        ["Bevollmächtigter in der Schweiz", "Registriert im Namen des Herstellers; pflegt auch die Daten der Wirtschaftsakteure"],
+        ["Importeur in der Schweiz", "Verknüpft sich mit einem bereits registrierten Gerät; legt keinen Geräteeintrag an"],
+        ["Distributor", "Kein eigener Geräteeintrag"],
+      ],
+    },
+    { type: "h2", text: "Was der Zeitplan tatsächlich sagt" },
+    {
+      type: "list",
+      items: [
+        "1. Juli 2026 — die Registrierung wird Pflicht für Geräte, Systeme und Behandlungseinheiten, deren Verkaufseinheiten nach diesem Datum in Verkehr gebracht werden.",
+        "31. Dezember 2026 — Ende der Übergangsfrist für Geräte, die vor dem Juli bereits im Markt waren.",
+        "Keine Übergangsfrist gilt für Geräte, die Gegenstand eines schwerwiegenden Vorkommnisses, einer Field Safety Corrective Action oder eines Trendberichts waren: Sie werden sofort registriert.",
+        "Meldungen bleiben in wenigen Ecken bestehen — Sonderanfertigungen, umgepackte oder umetikettierte Geräte und Geräte, die in einer Gesundheitseinrichtung hergestellt und dort verwendet werden.",
+      ],
+    },
+    { type: "h2", text: "Was es kostet" },
+    {
+      type: "p",
+      text: "CHF 200 für die erste UDI-DI und CHF 20 für jede weitere mit dem Status „im Markt“, gedeckelt auf CHF 10.000 pro Kalenderjahr. Die ersten Rechnungen gehen ab Januar 2027 hinaus. Für einen Lieferanten mit breitem Katalog ist die Obergrenze die relevante Zahl, für einen Käufer mit einer einzigen Gerätefamilie die 200 Franken.",
+    },
+    { type: "h2", text: "Der Teil, den niemand eingepreist hat: 2028" },
+    {
+      type: "p",
+      text: "Am 2. März 2026 haben die EU und die Schweiz ein Paket unterzeichnet, das ein Protokoll zur Änderung des Abkommens über die gegenseitige Anerkennung enthält. Wird es ratifiziert, wäre die CE-Zertifizierung wieder auf beiden Seiten anerkannt — und, das ist der Punkt, die Pflicht zum CH-REP dürfte mit der entsprechenden Änderung der MepV entfallen. Mit einem Inkrafttreten ist nicht vor 2028 zu rechnen, und bis dahin ändert sich nichts.",
+    },
+    {
+      type: "p",
+      text: "Daraus ergibt sich eine merkwürdige geschäftliche Lage: Die Rolle ist heute Pflicht und wahrscheinlich befristet. Wer jetzt einen Bevollmächtigten bestellt, entscheidet über die Vertragslaufzeit. Eine fünfjährige Exklusivbestellung, 2026 unterschrieben, kann die Pflicht überleben, für die sie unterschrieben wurde.",
+    },
+    {
+      type: "note",
+      text: "Bis zur Ratifizierung gilt Art. 51 MepV ohne Einschränkung: Jedes Gerät von außerhalb der Schweiz braucht einen Bevollmächtigten in der Schweiz, unabhängig von der Klasse — auch Geräte, die noch auf älteren Zertifikaten im Markt sind.",
+    },
+    { type: "h2", text: "Wo wir in diesem Bild stehen" },
+    {
+      type: "p",
+      text: "Wir bereiten die Registrierungsdaten vor — die UDI-DI, die Basic UDI-DI, die dazu passende Druckvorlage des Etiketts — und halten Zertifikat und Konformitätserklärung des Werks in dem Paket aktuell, das wir übergeben. Die Registrierung selbst nimmt der Hersteller oder sein Bevollmächtigter vor: Wir führen kein Konto und registrieren keine Geräte in fremdem Namen.",
+    },
+  ],
+};
+
+const SWISSDAMED_FR: ArticleTranslation = {
+  title: "L'enregistrement dans swissdamed est désormais obligatoire — ce qui change pour un fabricant hors de Suisse",
+  dek: "Depuis le 1er juillet 2026, la Suisse enregistre elle-même les dispositifs au lieu de recevoir des notifications. La période transitoire court jusqu'au 31 décembre 2026, et l'émolument se paie par UDI-DI, non par livraison.",
+  tag: "Suisse",
+  keyPoints: [
+    "Depuis le 1er juillet 2026, les dispositifs, systèmes et trousses doivent être enregistrés dans swissdamed avant leur mise sur le marché.",
+    "L'enregistrement est fait par le fabricant ou son mandataire ; un distributeur ne peut pas le faire en son propre nom.",
+    "Pour les dispositifs déjà sur le marché, la période transitoire court jusqu'au 31 décembre 2026.",
+    "200 CHF pour le premier UDI-DI, 20 CHF par UDI-DI supplémentaire, avec un plafond annuel.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "La Suisse fonctionnait par notifications : un formulaire pour certains groupes de dispositifs, déposé lorsque quelque chose changeait. Depuis le 1er juillet 2026, elle fonctionne par registre. swissdamed — l'équivalent suisse d'EUDAMED — prend le relais : les dispositifs, systèmes et trousses sont enregistrés dans le module UDI Devices avant leur mise sur le marché.",
+    },
+    {
+      type: "p",
+      text: "La différence est plus grande qu'elle n'en a l'air. Une notification était une lettre ; un enregistrement est une fiche qui doit correspondre à l'étiquette, au certificat et à l'UDI. Un écart qui restait invisible est désormais une entrée que n'importe qui peut interroger.",
+    },
+    { type: "h2", text: "Qui l'enregistre" },
+    {
+      type: "p",
+      text: "L'enregistrement est un acte du fabricant, exécuté par son mandataire suisse. Un importateur ne peut pas enregistrer un dispositif en son nom, et un distributeur ne peut pas le faire au nom d'un fabricant. Si un client suisse affirme que le dispositif est « déjà enregistré », la bonne question est : par qui ?",
+    },
+    {
+      type: "table",
+      head: ["Opérateur", "Ce qu'il peut faire dans swissdamed"],
+      rows: [
+        ["Fabricant hors de Suisse, via le CH-REP", "Enregistre le dispositif et tient la fiche à jour"],
+        ["Mandataire en Suisse", "Enregistre au nom du fabricant ; tient aussi les données des opérateurs économiques"],
+        ["Importateur en Suisse", "Se lie à un dispositif déjà enregistré ; ne crée pas la fiche du dispositif"],
+        ["Distributeur", "Aucune fiche de dispositif en son nom"],
+      ],
+    },
+    { type: "h2", text: "Ce que dit réellement le calendrier" },
+    {
+      type: "list",
+      items: [
+        "1er juillet 2026 — l'enregistrement devient obligatoire pour les dispositifs, systèmes et trousses dont les unités de vente sont mises sur le marché après cette date.",
+        "31 décembre 2026 — fin de la période transitoire pour les dispositifs déjà sur le marché avant juillet.",
+        "Aucune période transitoire pour les dispositifs ayant fait l'objet d'un incident grave, d'une action corrective de sécurité ou d'un rapport de tendance : ceux-là s'enregistrent immédiatement.",
+        "Les notifications subsistent dans quelques cas — dispositifs sur mesure, dispositifs reconditionnés ou réétiquetés, et dispositifs fabriqués et utilisés au sein d'un établissement de santé.",
+      ],
+    },
+    { type: "h2", text: "Ce que cela coûte" },
+    {
+      type: "p",
+      text: "200 CHF pour le premier UDI-DI et 20 CHF pour chaque UDI-DI supplémentaire au statut « sur le marché », avec un plafond de 10 000 CHF par année civile. Les premières factures partiront en janvier 2027. Pour un fournisseur à large catalogue, le plafond est le chiffre qui compte ; pour un acheteur d'une seule famille de dispositifs, les 200 francs.",
+    },
+    { type: "h2", text: "La partie que personne n'a intégrée : 2028" },
+    {
+      type: "p",
+      text: "Le 2 mars 2026, l'UE et la Suisse ont signé un paquet comprenant un protocole modifiant l'accord de reconnaissance mutuelle. S'il est ratifié, la certification CE serait de nouveau reconnue de part et d'autre — et, c'est le point, l'obligation de mandataire suisse devrait tomber avec la modification correspondante de l'ODim. L'entrée en vigueur n'est pas attendue avant 2028, et rien ne change d'ici là.",
+    },
+    {
+      type: "p",
+      text: "D'où une situation commerciale étrange : le rôle est obligatoire aujourd'hui et probablement temporaire. Nommer un mandataire maintenant, c'est décider d'une durée. Une désignation exclusive de cinq ans signée en 2026 peut survivre à l'obligation qui l'a justifiée.",
+    },
+    {
+      type: "note",
+      text: "Jusqu'à la ratification, l'art. 51 ODim s'applique sans réserve : tout dispositif venant de l'étranger exige un mandataire en Suisse, quelle que soit sa classe — y compris les dispositifs encore vendus sur des certificats plus anciens.",
+    },
+    { type: "h2", text: "Notre place dans tout cela" },
+    {
+      type: "p",
+      text: "Nous préparons les données d'enregistrement — l'UDI-DI, le Basic UDI-DI, le fichier d'étiquette qui doit y correspondre — et nous maintenons à jour le certificat et la déclaration de conformité de l'usine dans le dossier remis. L'enregistrement lui-même est fait par le fabricant ou son mandataire : nous ne détenons pas de compte et nous n'enregistrons aucun dispositif au nom d'autrui.",
     },
   ],
 };
@@ -644,6 +788,145 @@ export const articles: Article[] = [
       {
         type: "p",
         text: "We supply from factories that hold CE certification under the MDR, and we hand over the certificate, the DoC and the sterilisation documents as the factory issues them. Appointing a UK Responsible Person, registering the device and maintaining the post-market file belong to the manufacturer and to the entity it appoints: we do not act in that capacity, and we do not register devices in anyone's name.",
+      },
+    ],
+  },
+  {
+    slug: "swissdamed-registration-2026",
+    no: "07",
+    title: "Switzerland now registers devices itself, and the fee is per UDI-DI",
+    dek: "Since 1 July 2026 swissdamed replaces the old notification forms. The transition closes on 31 December 2026 — and the appointment behind the registration has an expiry date of its own.",
+    date: "2026-11-16",
+    minutes: 5,
+    tag: "Switzerland",
+    keyPoints: [
+      "Since 1 July 2026 devices, systems and procedure packs must be registered in swissdamed before they are placed on the market.",
+      "The registration is made by the manufacturer or its Swiss representative; a distributor cannot make it in its own name.",
+      "Devices already on the market have until 31 December 2026 to be registered.",
+      "CHF 200 for the first UDI-DI, CHF 20 for each further one, capped per calendar year.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "Switzerland used to run on notifications: a form for certain device groups, filed whenever something changed. Since 1 July 2026 it runs on a register. swissdamed — the Swiss counterpart to EUDAMED — takes over, and devices, systems and procedure packs are registered in its UDI Devices module before they are placed on the market.",
+      },
+      {
+        type: "p",
+        text: "The difference is larger than it sounds. A notification was a letter. A registration is a record that has to match the label, the certificate and the UDI — and a mismatch that used to stay invisible is now an entry anyone can query.",
+      },
+      { type: "h2", text: "Who makes the registration" },
+      {
+        type: "p",
+        text: "Registration is an act of the manufacturer, carried out through its Swiss authorised representative. An importer cannot register a device in its own name, and a distributor cannot register on a manufacturer's behalf. When a Swiss customer says the device is “already registered”, the question worth asking is: by whom.",
+      },
+      {
+        type: "table",
+        head: ["Operator", "What it can do in swissdamed"],
+        rows: [
+          ["Manufacturer outside Switzerland, via the CH-REP", "Registers the device and keeps the entry current"],
+          ["Swiss authorised representative", "Registers on the manufacturer's behalf; also maintains the economic-operator records"],
+          ["Swiss importer", "Links itself to a device already registered; does not create the device entry"],
+          ["Distributor", "No device entry of its own"],
+        ],
+      },
+      { type: "h2", text: "What the timetable actually says" },
+      {
+        type: "list",
+        items: [
+          "1 July 2026 — registration becomes mandatory for devices, systems and procedure packs whose sales units are placed on the market after that date.",
+          "31 December 2026 — end of the transition for devices that were already on the market before July.",
+          "No transition at all for devices that have been the subject of a serious incident, a field safety corrective action or a trend report: those are registered immediately.",
+          "Notifications survive in a few corners — custom-made devices, repackaged or relabelled devices, and devices manufactured and used inside a health institution.",
+        ],
+      },
+      { type: "h2", text: "What it costs" },
+      {
+        type: "p",
+        text: "CHF 200 for the first UDI-DI and CHF 20 for each additional one with the status “on the market”, capped at CHF 10,000 per calendar year. The first invoices go out from January 2027. For a supplier with a broad catalogue the cap is the number that matters; for a buyer with a single device family it is the 200 francs.",
+      },
+      { type: "h2", text: "The part nobody has priced in: 2028" },
+      {
+        type: "p",
+        text: "On 2 March 2026 the EU and Switzerland signed a package that includes a protocol amending the mutual recognition agreement. If it is ratified, CE certification would again be recognised on both sides — and, this is the point, the CH-REP requirement is expected to fall away with the corresponding amendment of the MepV. Entry into force is not expected before 2028, and nothing changes until then.",
+      },
+      {
+        type: "p",
+        text: "Which produces an odd commercial situation: the role is mandatory today and probably temporary. Appointing a representative now is also a decision about contract length. A five-year exclusive appointment signed in 2026 can outlive the obligation that justified it.",
+      },
+      {
+        type: "note",
+        text: "Until ratification, Article 51 MepV applies without qualification: every device from outside Switzerland needs a representative in Switzerland, whatever its class — including devices still sold on older certificates.",
+      },
+      { type: "h2", text: "Where we sit in this" },
+      {
+        type: "p",
+        text: "We prepare the registration data — the UDI-DI, the basic UDI-DI, and the label artwork that has to match them — and we keep the factory's certificate and DoC current in the pack we hand over. The registration itself is made by the manufacturer or its representative: we hold no account, and we do not register devices in anyone's name.",
+      },
+    ],
+    translations: { de: SWISSDAMED_DE, fr: SWISSDAMED_FR },
+  },
+  {
+    slug: "ce-is-not-a-global-passport",
+    no: "08",
+    title: "CE is a European answer to a European question",
+    dek: "A CE certificate says whether a device may be placed on the European market. A buyer in Riyadh, Toronto or Seoul is asking something else, and the same PDF will not answer it.",
+    date: "2026-11-16",
+    minutes: 5,
+    tag: "Other markets",
+    keyPoints: [
+      "CE marking is recognised in the EU and the EEA. Outside them it is evidence, not permission.",
+      "Most markets require a registration held by an entity established there — and that entity is not the exporter.",
+      "Several authorities accept a CE certificate as an input to their own review. None accept it as a substitute for it.",
+      "The honest answer to “can you ship to my country” is a list of what the importer must already hold.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "A CE certificate issued under the MDR is a statement about Europe: the device has been assessed against European requirements and may be placed on the European market. It travels well as evidence. It does not travel as permission.",
+      },
+      {
+        type: "p",
+        text: "The confusion is understandable, because the document looks like a passport — a formal paper, an accredited issuer, a number, a validity period. The difference is that a passport is addressed to border posts everywhere, while a certificate is addressed to one legal order.",
+      },
+      { type: "h2", text: "What other markets actually ask for" },
+      {
+        type: "table",
+        head: ["Market", "What the importer must hold", "What CE does there"],
+        rows: [
+          ["United States", "FDA establishment registration and device listing; a 510(k) clearance for most Class II devices; a US agent", "Nothing formal: the FDA reviews against its own requirements"],
+          ["Canada", "A medical device licence for the device, and an establishment licence for the importer", "Supports the file; does not replace the licence"],
+          ["Australia", "An ARTG entry held by an Australian sponsor", "Taken as part of the conformity evidence"],
+          ["Saudi Arabia", "An SFDA authorisation with a Saudi authorised representative", "One input among several"],
+          ["Brazil", "An ANVISA registration with a Brazilian registration holder", "Considered, but a national dossier is still required"],
+          ["Japan", "Approval, and a marketing authorisation holder established in Japan", "Rarely sufficient on its own"],
+        ],
+      },
+      {
+        type: "p",
+        text: "The pattern is the same in every row: a local entity holds the permission, and the permission is granted under local law. The certificate you already have shortens the work. It does not do the work.",
+      },
+      { type: "h2", text: "Four questions that keep a quote honest" },
+      {
+        type: "list",
+        items: [
+          "Who holds the registration in that country, and is it held for this device — not for a similar one?",
+          "Which parts of the file has that authority already accepted, and which will it want re-issued in its own language?",
+          "Who is the importer of record, and does it hold the licence the registration depends on?",
+          "What happens at the border if the registration lapses between the order and the arrival?",
+        ],
+      },
+      {
+        type: "note",
+        text: "“We can ship anywhere” is usually wrong in a way that only surfaces at customs. “We ship to the EU, Switzerland and the UK, and for other markets we tell you what your importer has to hold” is shorter, true, and loses only the orders that would have failed later.",
+      },
+      { type: "h2", text: "What a trading company can honestly promise" },
+      {
+        type: "p",
+        text: "The boundary is simple. We can state what the factory holds, in which scope, and until when. We can prepare the documents a registration needs. We cannot hold a registration in a country where we have no establishment, and we cannot sign as importer of record in a jurisdiction where we are not the importer.",
+      },
+      {
+        type: "p",
+        text: "Where a market matters commercially, the workable arrangement is a local partner who holds the registration and an agreed split of the file. That arrangement is worth setting up before the first order rather than after the container has sailed — and it is the reason we quote market by market instead of quoting “worldwide”.",
       },
     ],
   },
