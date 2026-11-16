@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Seo } from "@/components/Seo";
 import { useLanguage } from "@/components/LanguageSwitcher";
-import { articles, formatDate } from "@/lib/resources";
+import { articles, articleText, availableLangs, formatDate } from "@/lib/resources";
 
 /**
  * Index of the compliance notes.
@@ -12,7 +12,7 @@ import { articles, formatDate } from "@/lib/resources";
  * one screen on a laptop instead of three rows of identical boxes.
  */
 export default function ResourcesPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="min-h-screen bg-white">
@@ -57,7 +57,10 @@ export default function ResourcesPage() {
 
       <section className="container-custom py-14 md:py-20">
         <ul className="border-t border-[#DCE5E1]">
-          {articles.map((a) => (
+          {articles.map((a) => {
+            const tx = articleText(a, lang);
+            const also = availableLangs(a).filter((l) => l !== "en");
+            return (
             <li key={a.slug} className="border-b border-[#DCE5E1]">
               <Link
                 to={`/resources/${a.slug}`}
@@ -68,17 +71,22 @@ export default function ResourcesPage() {
                 </span>
                 <span className="min-w-0">
                   <span className="block font-display text-[1.2rem] md:text-[1.42rem] leading-[1.3] tracking-[-0.01em] text-foreground group-hover:text-primary transition-colors [text-wrap:balance]">
-                    {a.title}
+                    {tx.title}
                   </span>
                   <span className="mt-2 block text-[14.5px] leading-[1.65] text-muted-foreground max-w-[52ch]">
-                    {a.dek}
+                    {tx.dek}
                   </span>
                 </span>
                 <span className="hidden md:flex flex-col items-end gap-2 pt-1.5">
-                  <span className="meta-label">{a.tag}</span>
+                  <span className="meta-label">{tx.tag}</span>
                   <span className="text-[12px] text-[#5F716D]">
-                    {a.minutes} min · {formatDate(a.date)}
+                    {tx.minutes} min · {formatDate(a.date, tx.lang)}
                   </span>
+                  {also.length > 0 && (
+                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#8F6519]/80">
+                      {also.map((l) => l.toUpperCase()).join(" · ")}
+                    </span>
+                  )}
                   <ArrowUpRight
                     size={15}
                     className="mt-1 text-[#0A5B51]/35 transition-all group-hover:text-primary group-hover:-translate-y-0.5"
@@ -86,7 +94,8 @@ export default function ResourcesPage() {
                 </span>
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ul>
 
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] gap-8 items-center border border-[#DCE5E1] bg-[#F7FAF9] px-6 md:px-10 py-8 md:py-10">

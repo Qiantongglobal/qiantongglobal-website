@@ -1,7 +1,73 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, ArrowRight } from "lucide-react";
 import { Seo } from "@/components/Seo";
-import { articleBySlug, adjacent, formatDate, type Block } from "@/lib/resources";
+import { useLanguage } from "@/components/LanguageSwitcher";
+import {
+  articleBySlug,
+  adjacent,
+  articleText,
+  availableLangs,
+  formatDate,
+  type Block,
+  type ResolvedLang,
+} from "@/lib/resources";
+
+/** Page furniture for the languages the notes are actually written in. The
+ *  English note rendered inside German chrome would look like an unfinished
+ *  translation, so the two travel together. */
+const CHROME = {
+  en: {
+    all: "All notes",
+    onPage: "On this page",
+    inShort: "In short",
+    minRead: "min read",
+    disclaimer:
+      "This note describes the rules as written and is not legal advice. For a specific device, the documents and the appointed representative decide the answer.",
+    ask: "Ask about a specific device",
+    browse: "Browse the catalogue",
+    prev: "Previous",
+    next: "Next",
+    allNotes: "All compliance notes",
+    langLabel: "Also published in",
+  },
+  de: {
+    all: "Alle Beiträge",
+    onPage: "Auf dieser Seite",
+    inShort: "Kurz gefasst",
+    minRead: "Min. Lesezeit",
+    disclaimer:
+      "Dieser Beitrag beschreibt die Regeln, wie sie geschrieben stehen, und ist keine Rechtsberatung. Bei einem konkreten Gerät entscheiden die Unterlagen und der bestellte Bevollmächtigte.",
+    ask: "Zu einem konkreten Gerät fragen",
+    browse: "Katalog ansehen",
+    prev: "Vorheriger Beitrag",
+    next: "Nächster Beitrag",
+    allNotes: "Alle Fachbeiträge",
+    langLabel: "Auch erschienen auf",
+  },
+  fr: {
+    all: "Toutes les notes",
+    onPage: "Sur cette page",
+    inShort: "En bref",
+    minRead: "min de lecture",
+    disclaimer:
+      "Cette note décrit les règles telles qu'elles sont écrites et ne constitue pas un conseil juridique. Pour un dispositif précis, ce sont les documents et le mandataire désigné qui tranchent.",
+    ask: "Poser une question sur un dispositif",
+    browse: "Voir le catalogue",
+    prev: "Note précédente",
+    next: "Note suivante",
+    allNotes: "Toutes les notes de conformité",
+    langLabel: "Également publié en",
+  },
+} as const;
+
+/** Language names follow the page language, not the reader's UI language:
+ *  a German page that offers "Français" instead of "Französisch" reads like a
+ *  machine-assembled menu. */
+const LANG_NAME: Record<ResolvedLang, Record<ResolvedLang, string>> = {
+  en: { en: "English", de: "Deutsch", fr: "Français" },
+  de: { en: "Englisch", de: "Deutsch", fr: "Französisch" },
+  fr: { en: "anglais", de: "allemand", fr: "français" },
+};
 
 function slugify(s: string): string {
   return s
@@ -116,26 +182,35 @@ function BlockView({ block }: { block: Block }) {
 
 export default function ResourcePage() {
   const { slug } = useParams();
+  const { lang, setLang } = useLanguage();
   const article = slug ? articleBySlug(slug) : undefined;
 
   if (!article) return <Navigate to="/resources" replace />;
 
+  // A note translated into German, opened by a French reader, must fall back
+  // to English *and* say so, rather than mixing German chrome with English
+  // body copy. `text.lang` is the language the reader is actually getting.
+  const text = articleText(article, lang);
+  const chrome = CHROME[text.lang];
+  const langs = availableLangs(article);
+
   const { prev, next } = adjacent(article.slug);
-  const headings = article.blocks.filter((b): b is Extract<Block, { type: "h2" }> => b.type === "h2");
+  const headings = text.blocks.filter((b): b is Extract<Block, { type: "h2" }> => b.type === "h2");
 
   return (
     <div className="min-h-screen bg-white">
       <Seo
-        title={article.title}
-        description={article.dek}
+        title={text.title}
+        description={text.dek}
         path={`/resources/${article.slug}`}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: article.title,
-          description: article.dek,
+          headline: text.title,
+          description: text.dek,
           datePublished: article.date,
           dateModified: article.date,
+          inLanguage: text.lang,
           author: { "@type": "Person", name: "Jason Li" },
           publisher: {
             "@type": "Organization",
@@ -153,28 +228,52 @@ export default function ResourcePage() {
             className="inline-flex items-center gap-2 text-[12.5px] font-medium text-[#5F716D] hover:text-primary transition-colors"
           >
             <ArrowLeft size={13} />
-            All notes
+            {chrome.all}
           </Link>
 
           <div className="index-row mt-8">
             <span className="index-no">{article.no}</span>
             <span className="index-rule" />
-            <span className="eyebrow">{article.tag}</span>
+            <span className="eyebrow">{text.tag}</span>
           </div>
 
           <h1 className="mt-5 max-w-[30ch] font-display text-[1.72rem] md:text-[2.7rem] leading-[1.16] tracking-[-0.02em] text-foreground [text-wrap:balance]">
-            <KeepTogether text={article.title} />
+            <KeepTogether text={text.title} />
           </h1>
 
-          <p className="mt-5 max-w-[52ch] lead [text-wrap:pretty]">{article.dek}</p>
+          <p className="mt-5 max-w-[52ch] lead [text-wrap:pretty]">{text.dek}</p>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12.5px] text-[#5F716D]">
-            <span>{formatDate(article.date)}</span>
+            <span>{formatDate(article.date, text.lang)}</span>
             <span aria-hidden="true">·</span>
-            <span>{article.minutes} min read</span>
+            <span>
+              {text.minutes} {chrome.minRead}
+            </span>
             <span aria-hidden="true">·</span>
             <span>Jason Li, Qiantong Global</span>
           </div>
+
+          {langs.length > 1 && (
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px]">
+              <span className="text-[#5F716D]">{chrome.langLabel}</span>
+              {langs.map((l) =>
+                l === text.lang ? (
+                  <span key={l} className="font-semibold text-foreground">
+                    {LANG_NAME[text.lang][l]}
+                  </span>
+                ) : (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setLang(l)}
+                    className="underline decoration-[#C9A96A]/70 decoration-1 underline-offset-[5px] text-[#0A5B51] hover:text-primary transition-colors"
+                  >
+                    {LANG_NAME[text.lang][l]}
+                  </button>
+                )
+              )}
+            </div>
+          )}
         </div>
       </header>
 
@@ -185,7 +284,7 @@ export default function ResourcePage() {
           <aside className="lg:sticky lg:top-28 lg:self-start order-2 lg:order-1">
             {headings.length > 0 && (
               <nav aria-label="On this page" className="hidden lg:block">
-                <p className="meta-label">On this page</p>
+                <p className="meta-label">{chrome.onPage}</p>
                 <ul className="mt-4 space-y-2.5 border-l border-[#DCE5E1] pl-4">
                   {headings.map((h) => (
                     <li key={h.text}>
@@ -202,9 +301,9 @@ export default function ResourcePage() {
             )}
 
             <div className="mt-10 border-t border-[#DCE5E1] pt-5">
-              <p className="meta-label">In short</p>
+              <p className="meta-label">{chrome.inShort}</p>
               <ul className="mt-3.5 divide-y divide-[#E4EBE8] border-t border-[#E4EBE8]">
-                {article.keyPoints.map((p, i) => (
+                {text.keyPoints.map((p, i) => (
                   <li key={i} className="py-2.5 text-[12.5px] leading-[1.6] text-[#5F716D]">
                     {p}
                   </li>
@@ -214,22 +313,20 @@ export default function ResourcePage() {
           </aside>
 
           <article className="order-1 lg:order-2 min-w-0 max-w-[44rem]">
-            {article.blocks.map((b, i) => (
+            {text.blocks.map((b, i) => (
               <BlockView key={i} block={b} />
             ))}
 
             <div className="mt-14 border-t border-[#0A5B51]/20 pt-7">
               <p className="text-[14.5px] leading-[1.7] text-muted-foreground max-w-[52ch]">
-                This note describes the rules as written and is not legal
-                advice. For a specific device, the documents and the appointed
-                representative decide the answer.
+                {chrome.disclaimer}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link to="/#contact" className="btn-primary">
-                  Ask about a specific device
+                  {chrome.ask}
                 </Link>
                 <Link to="/products" className="btn-outline">
-                  Browse the catalogue
+                  {chrome.browse}
                 </Link>
               </div>
             </div>
@@ -240,10 +337,10 @@ export default function ResourcePage() {
                   to={`/resources/${prev.slug}`}
                   className="group border border-[#DCE5E1] px-5 py-4 hover:border-[#B9CFC9] transition-colors"
                 >
-                  <span className="meta-label">Previous</span>
+                  <span className="meta-label">{chrome.prev}</span>
                   <span className="mt-2 flex items-start gap-2 text-[14px] font-medium leading-[1.4] text-foreground group-hover:text-primary transition-colors">
                     <ArrowLeft size={13} className="mt-1 shrink-0" />
-                    {prev.title}
+                    {articleText(prev, lang).title}
                   </span>
                 </Link>
               ) : (
@@ -254,9 +351,9 @@ export default function ResourcePage() {
                   to={`/resources/${next.slug}`}
                   className="group border border-[#DCE5E1] px-5 py-4 hover:border-[#B9CFC9] transition-colors sm:text-right"
                 >
-                  <span className="meta-label">Next</span>
+                  <span className="meta-label">{chrome.next}</span>
                   <span className="mt-2 flex items-start gap-2 text-[14px] font-medium leading-[1.4] text-foreground group-hover:text-primary transition-colors sm:justify-end">
-                    {next.title}
+                    {articleText(next, lang).title}
                     <ArrowRight size={13} className="mt-1 shrink-0" />
                   </span>
                 </Link>
@@ -268,7 +365,7 @@ export default function ResourcePage() {
                 to="/resources"
                 className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#0A5B51] hover:text-primary"
               >
-                All compliance notes
+                {chrome.allNotes}
                 <ArrowUpRight size={13} />
               </Link>
             </p>

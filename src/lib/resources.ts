@@ -14,6 +14,19 @@ export type Block =
   | { type: "note"; text: string }
   | { type: "table"; head: [string, string, string]; rows: [string, string, string][] };
 
+/** Languages a note has been written in. English is the source text and is
+ *  never listed here — it is the fallback, not a translation. */
+export type ArticleLang = "de" | "fr";
+
+export interface ArticleTranslation {
+  title: string;
+  dek: string;
+  tag?: string;
+  minutes?: number;
+  keyPoints: string[];
+  blocks: Block[];
+}
+
 export interface Article {
   slug: string;
   no: string;
@@ -26,7 +39,237 @@ export interface Article {
   /** Shown in the right-hand rail of the article page */
   keyPoints: string[];
   blocks: Block[];
+  /** Written translations. Anything missing falls back to the English text. */
+  translations?: Partial<Record<ArticleLang, ArticleTranslation>>;
 }
+
+/** Which language a reader is actually going to get for this note. */
+export type ResolvedLang = "en" | ArticleLang;
+
+export interface ArticleText {
+  lang: ResolvedLang;
+  title: string;
+  dek: string;
+  tag: string;
+  minutes: number;
+  keyPoints: string[];
+  blocks: Block[];
+}
+
+/**
+ * Pick the text to render for a note. A note translated into German but read
+ * by a French visitor must not fall back to French chrome over English body
+ * copy silently — the caller gets `lang` back and can show the language line.
+ */
+export function articleText(article: Article, lang: string): ArticleText {
+  const wanted = (lang === "de" || lang === "fr" ? lang : null) as ArticleLang | null;
+  const t = wanted ? article.translations?.[wanted] : undefined;
+  if (t) {
+    return {
+      lang: wanted as ArticleLang,
+      title: t.title,
+      dek: t.dek,
+      tag: t.tag ?? article.tag,
+      minutes: t.minutes ?? article.minutes,
+      keyPoints: t.keyPoints,
+      blocks: t.blocks,
+    };
+  }
+  return {
+    lang: "en",
+    title: article.title,
+    dek: article.dek,
+    tag: article.tag,
+    minutes: article.minutes,
+    keyPoints: article.keyPoints,
+    blocks: article.blocks,
+  };
+}
+
+/** Languages this note exists in, English included. */
+export function availableLangs(article: Article): ResolvedLang[] {
+  const out: ResolvedLang[] = ["en"];
+  (["de", "fr"] as ArticleLang[]).forEach((l) => {
+    if (article.translations?.[l]) out.push(l);
+  });
+  return out;
+}
+
+/* ---------------------------------------------------------------------------
+ * Translations.
+ *
+ * Terminology is the whole point here, so it follows the regulations rather
+ * than the dictionary: Bevollmächtigter (MedDO), Benannte Stelle (MDR),
+ * Konformitätserklärung; mandataire, organisme notifié, déclaration de
+ * conformité. A literal translation of "authorised representative" reads as a
+ * commercial agent in German, which is a different legal animal.
+ * ------------------------------------------------------------------------- */
+
+const CH_REP_DE: ArticleTranslation = {
+  title: "Wer Ihr CH-REP sein kann — und was die Rolle wirklich verlangt",
+  dek: "Jedes Gerät, das von außerhalb in die Schweiz gelangt, braucht einen Schweizer Bevollmächtigten. Die Rolle ist kleiner als die eines Händlers und größer als eine Postadresse.",
+  tag: "Schweiz",
+  keyPoints: [
+    "Der Bevollmächtigte muss in der Schweiz niedergelassen und bei Swissmedic registriert sein.",
+    "Name und Adresse stehen auf dem Etikett — die Ernennung ist damit eine Kennzeichnungsentscheidung.",
+    "Ein in der Schweiz niedergelassener Importeur kann beide Rollen übernehmen, getrennt gekennzeichnet.",
+    "EU-Bevollmächtigter und Schweizer Bevollmächtigter sind zwei getrennte Ernennungen.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "Ein Schweizer Bevollmächtigter — üblicherweise als CH-REP bezeichnet — ist der Wirtschaftsakteur in der Schweiz, den ein Hersteller außerhalb der Schweiz bestellt, um in seinem Namen zu handeln. Ohne ihn darf ein Gerät nicht in der Schweiz in Verkehr gebracht werden. Der Bevollmächtigte muss in der Schweiz niedergelassen, bei Swissmedic registriert und auf dem Etikett oder in der Gebrauchsanweisung genannt sein.",
+    },
+    {
+      type: "p",
+      text: "Die Rolle existiert, weil die Behörde einen Ansprechpartner in ihrem eigenen Rechtsraum braucht, den sie erreichen kann, der die technische Dokumentation vorlegen kann und der für das Gerät einsteht. Das ist ihr ganzer Zweck — und genau das ist der Maßstab, wenn Sie einen Kandidaten prüfen.",
+    },
+    { type: "h2", text: "Was die Rolle nicht ist" },
+    {
+      type: "list",
+      items: [
+        "Keine Postweiterleitungsadresse. Vom Bevollmächtigten wird erwartet, dass er inhaltlich zu dem Gerät antwortet, nicht Briefe weiterleitet.",
+        "Nicht der Importeur — auch wenn ein Unternehmen beide Rollen innehaben kann. Dann müssen beide Eigenschaften getrennt auf dem Etikett erscheinen.",
+        "Nicht der EU-Bevollmächtigte. Die Ernennung für die EU und die für die Schweiz sind getrennt, nach getrennten Regeln, und die eine erfüllt die andere nicht.",
+      ],
+    },
+    { type: "h2", text: "Kann der Importeur sein eigener Bevollmächtigter sein?" },
+    {
+      type: "p",
+      text: "Ja — sofern der Importeur in der Schweiz niedergelassen ist. Dann steht dasselbe Unternehmen zweimal auf dem Etikett, je einmal in jeder Eigenschaft, mit getrennt benannten Rollen. Das ist bei Schweizer Distributoren, die auch importieren, üblich und spart eine Korrespondenzebene zwischen zwei Unternehmen, die sich sonst gegenseitig auf dem Laufenden halten müssten.",
+    },
+    { type: "h2", text: "Fünf Punkte, die Sie vor der Ernennung prüfen sollten" },
+    {
+      type: "list",
+      items: [
+        "Registrierung. Lassen Sie sich die Swissmedic-Registrierung zeigen und prüfen Sie, ob die von Ihnen gelieferten Gerätefamilien im erfassten Umfang liegen.",
+        "Portfolio. Ein Bevollmächtigter, der bereits Geräte Ihrer Art führt, kann sie in der Regel vertreten; einer ohne solche Geräte in der Regel nicht.",
+        "Wer unterschreibt. Fragen Sie nach der namentlich benannten Person hinter der Ernennung. Im Alltag ist sie es, an die sich die Behörde Ihrer Kunden wendet.",
+        "Dokumentenzugriff. Bestätigen Sie, dass die vollständige technische Dokumentation — bei sterilen Geräten einschließlich der Sterilisationsakte — innerhalb einer Arbeitswoche vorgelegt werden kann.",
+        "Beendigung. Fragen Sie, was passiert, wenn die Ernennung endet. Der Name steht auf dem Etikett; eine Kündigung bedeutet also Umkennzeichnung, nicht nur ein Schreiben.",
+      ],
+    },
+    {
+      type: "note",
+      text: "Praxistipp: Der Name und die Adresse auf dem Etikett, der Name in der Swissmedic-Registrierung und der Name im Ernennungsschreiben müssen dieselbe juristische Person in identischer Schreibweise sein. Eine Abweichung ist das Erste, wonach ein Inspektor sucht.",
+    },
+    { type: "h2", text: "Wo wir in diesem Bild stehen" },
+    {
+      type: "p",
+      text: "Wir sind Lieferkettenpartner, kein Bevollmächtigter. Wir erstellen die Druckvorlagen und die Etikettentexte, stellen die Unterlagen zusammen, die der Bevollmächtigte benötigt, und halten die Versionen im Gleichlauf, wenn sich ein Gerät oder eine Fabrik ändert. Die Ernennung selbst erfolgt zwischen Ihnen und dem Schweizer Unternehmen: Wir handeln nicht als Bevollmächtigte und bestellen auch keinen in Ihrem Namen.",
+    },
+  ],
+};
+
+const CH_REP_FR: ArticleTranslation = {
+  title: "Qui peut être votre mandataire suisse (CH-REP), et ce que ce rôle engage",
+  dek: "Tout dispositif entrant en Suisse depuis l'étranger exige un mandataire établi en Suisse. Ce rôle est plus étroit que celui d'un distributeur et plus large qu'une adresse de réexpédition.",
+  tag: "Suisse",
+  keyPoints: [
+    "Le mandataire doit être établi en Suisse et enregistré auprès de Swissmedic.",
+    "Son nom et son adresse figurent sur l'étiquette : le nommer est donc une décision d'étiquetage.",
+    "Un importateur établi en Suisse peut assumer les deux rôles, mentionnés séparément.",
+    "Le mandataire UE et le mandataire suisse sont deux désignations distinctes.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "Le mandataire suisse — généralement désigné CH-REP — est l'opérateur économique établi en Suisse qu'un fabricant hors de Suisse désigne pour agir en son nom. Sans lui, un dispositif ne peut pas être mis sur le marché suisse. Le mandataire doit être établi en Suisse, enregistré auprès de Swissmedic, et mentionné sur l'étiquette ou dans la notice d'utilisation.",
+    },
+    {
+      type: "p",
+      text: "Ce rôle existe parce que l'autorité a besoin, dans son propre ressort, d'un interlocuteur qu'elle peut joindre, qui peut produire la documentation technique et qui répond du dispositif. C'est tout son objet — et c'est le critère à appliquer quand vous évaluez un candidat.",
+    },
+    { type: "h2", text: "Ce que ce rôle n'est pas" },
+    {
+      type: "list",
+      items: [
+        "Pas une adresse de réexpédition du courrier. On attend du mandataire qu'il réponde sur le fond au sujet du dispositif, pas qu'il transmette des lettres.",
+        "Pas l'importateur, même si une même société peut cumuler les deux rôles. Dans ce cas, les deux qualités doivent apparaître séparément sur l'étiquette.",
+        "Pas le mandataire UE. La désignation pour l'Union et celle pour la Suisse sont distinctes, relèvent de règles distinctes, et l'une ne satisfait pas l'autre.",
+      ],
+    },
+    { type: "h2", text: "L'importateur peut-il être son propre mandataire ?" },
+    {
+      type: "p",
+      text: "Oui — à condition que l'importateur soit établi en Suisse. L'étiquette porte alors deux fois la même société, une fois dans chaque qualité, avec des rôles nommés séparément. C'est courant chez les distributeurs suisses qui importent également, et cela supprime un niveau de correspondance entre deux sociétés qui devraient sinon se tenir mutuellement informées.",
+    },
+    { type: "h2", text: "Cinq points à vérifier avant de le désigner" },
+    {
+      type: "list",
+      items: [
+        "L'enregistrement. Demandez l'enregistrement Swissmedic et vérifiez que les familles de dispositifs que vous fournissez entrent dans le périmètre couvert.",
+        "Le portefeuille. Un mandataire qui porte déjà des dispositifs de votre type peut généralement en répondre ; un mandataire qui n'en porte aucun, généralement pas.",
+        "Qui signe. Demandez le nom de la personne derrière la désignation. En pratique, c'est elle que l'autorité de vos clients contactera.",
+        "L'accès aux documents. Confirmez que la documentation technique complète — y compris le dossier de stérilisation lorsque le dispositif est stérile — peut être produite en une semaine ouvrable.",
+        "La sortie. Demandez ce qui se passe si la désignation prend fin. Le nom figure sur l'étiquette : une démission implique donc un ré-étiquetage, pas seulement une lettre.",
+      ],
+    },
+    {
+      type: "note",
+      text: "Règle pratique : le nom et l'adresse sur l'étiquette, le nom de l'enregistrement Swissmedic et le nom figurant sur la lettre de désignation doivent être la même personne morale, orthographiée de la même façon. Une divergence est la première chose que cherche un inspecteur.",
+    },
+    { type: "h2", text: "Notre position dans ce dispositif" },
+    {
+      type: "p",
+      text: "Nous sommes un partenaire de la chaîne d'approvisionnement, pas un mandataire. Nous préparons les fichiers d'impression et les textes d'étiquette, nous rassemblons les documents dont le mandataire aura besoin, et nous maintenons les versions alignées lorsqu'un dispositif ou une usine change. La désignation elle-même se fait entre vous et l'entité suisse : nous n'agissons pas comme mandataire et nous n'en désignons pas un en votre nom.",
+    },
+  ],
+};
+
+const DOC_DE: ArticleTranslation = {
+  title: "Wie man die Konformitätserklärung eines Lieferanten liest",
+  dek: "Eine Seite, vom Hersteller unterschrieben — und rechtlich gewichtiger als das Zertifikat, nach dem üblicherweise gefragt wird. Sechs Punkte, der Reihe nach.",
+  tag: "Dokumente",
+  keyPoints: [
+    "Die Erklärung muss das Gerät, seine Klasse, die angewandten Normen und — soweit beteiligt — die Benannte Stelle benennen.",
+    "Zertifikatsdaten und Unterzeichnungsdatum sind zwei verschiedene Dinge.",
+    "Das Unterzeichnungsdatum darf nicht vor dem Datum des Zertifikats liegen, auf das es sich stützt.",
+    "Nur der Hersteller unterzeichnet eine Konformitätserklärung. Ein Händler kann sie nicht im Namen der Fabrik ausstellen.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "Die Konformitätserklärung ist die eigene Erklärung des Herstellers, dass das Gerät die Verordnung erfüllt, gestützt auf die auf derselben Seite aufgeführten Nachweise. Sie wird in der Verantwortung des Herstellers unterzeichnet — deshalb ist sie das Dokument, das man zuerst liest und aufbewahrt.",
+    },
+    { type: "h2", text: "Was darauf stehen muss" },
+    {
+      type: "list",
+      items: [
+        "Name und Anschrift des Herstellers sowie, soweit einschlägig, des Bevollmächtigten.",
+        "Eine Identifizierung des Geräts, die ausreicht, um die Erklärung den tatsächlich gelieferten Produkten zuzuordnen.",
+        "Die Klassifizierung und die angewandte Regel.",
+        "Die Normen und gemeinsamen Spezifikationen, mit denen die Konformität nachgewiesen wurde.",
+        "Name und Nummer der Benannten Stelle und die Zertifikatsreferenz, sofern eine Benannte Stelle beteiligt war.",
+        "Ort und Datum der Erklärung sowie Name und Funktion des Unterzeichners.",
+      ],
+    },
+    { type: "h2", text: "Die beiden Daten sind nicht dasselbe Datum" },
+    {
+      type: "p",
+      text: "Eine Erklärung zeigt in der Regel zwei Datumsangaben, und sie werden regelmäßig als eines gelesen. Ausstellungs- und Gültigkeitsdatum des Zertifikats gehören der Benannten Stelle. Ort und Datum am Seitenfuß gehören der Erklärung selbst. Sie müssen nicht übereinstimmen: Die Erklärung darf nicht vor dem Zertifikat datiert sein, auf das sie sich stützt, und sie muss in dessen Gültigkeitszeitraum fallen. Ein Abstand von mehreren Monaten zwischen beiden ist normal und kein Mangel.",
+    },
+    {
+      type: "note",
+      text: "Ist eine Erklärung vor dem Zertifikat datiert, das sie zitiert, ist das Dokument fehlerhaft — unabhängig davon, wie gut das Gerät ist. Die Erklärung wurde auf Grundlage eines Zertifikats unterzeichnet, das es noch nicht gab.",
+    },
+    { type: "h2", text: "Vier Punkte, bei denen Sie nachfragen sollten" },
+    {
+      type: "list",
+      items: [
+        "Ein steriles Gerät, dessen Erklärung an keiner Stelle eine Nummer einer Benannten Stelle enthält.",
+        "Normen, die nur als EN ISO 13485 aufgeführt sind — das ist eine Norm für Qualitätsmanagementsysteme, keine Produktnorm.",
+        "Eine Herstelleranschrift, die nicht zum Etikett oder zum Zertifikat passt.",
+        "Kein Ort, kein Datum oder kein namentlich genannter Unterzeichner.",
+      ],
+    },
+    { type: "h2", text: "Was Sie aufbewahren sollten — und wie lange" },
+    {
+      type: "p",
+      text: "Bewahren Sie genau die Version auf, die Sie erhalten haben, mit dem Eingangsdatum, abgelegt zum jeweiligen Gerät. Wird ein Zertifikat erneuert, sollte die Erklärung neu ausgestellt werden; die frühere ist nicht falsch, sie ist überholt — und beide Versionen zeigen zu können, macht aus einer Rückfrage Ihrer Behörde eine Antwort in zwei Minuten.",
+    },
+  ],
+};
 
 export const articles: Article[] = [
   {
@@ -87,6 +330,7 @@ export const articles: Article[] = [
         text: "We are a supply chain partner, not a regulatory representative. We prepare the artwork and the label wording, assemble the documents the representative will need, and keep the versions aligned when a device or a factory changes. The appointment itself is between you and the Swiss entity: we do not act as a representative and we do not appoint one on your behalf.",
       },
     ],
+    translations: { de: CH_REP_DE, fr: CH_REP_FR },
   },
   {
     slug: "class-i-sterile-notified-body",
@@ -197,6 +441,7 @@ export const articles: Article[] = [
         text: "Keep the exact version you were given, with the date you received it, filed against the device. When a certificate is renewed the declaration should be reissued; the earlier one is not false, it is superseded, and being able to show both versions is what turns a question from your authority into a two-minute answer.",
       },
     ],
+    translations: { de: DOC_DE },
   },
   {
     slug: "importer-obligations-article-13",
@@ -313,7 +558,8 @@ export function adjacent(slug: string): { prev?: Article; next?: Article } {
   return { prev: articles[i - 1], next: articles[i + 1] };
 }
 
-export function formatDate(iso: string): string {
+export function formatDate(iso: string, lang: ResolvedLang = "en"): string {
   const d = new Date(iso);
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const locale = lang === "de" ? "de-CH" : lang === "fr" ? "fr-CH" : "en-GB";
+  return d.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" });
 }

@@ -29,7 +29,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { Reveal } from "@/components/Reveal";
 import { LogoMark } from "@/components/LogoMark";
 import { categories, additionalSourcing, skuPath, skuName } from "@/lib/products";
-import { articles } from "@/lib/resources";
+import { articles, articleText } from "@/lib/resources";
 import { useState } from "react";
 import { submitInquiry } from "@/lib/inquiry";
 
@@ -895,7 +895,9 @@ export default function HomePage() {
           </Reveal>
 
           <div className="border-t border-[#DCE5E1]">
-            {articles.slice(0, 3).map((a, i) => (
+            {articles.slice(0, 3).map((a, i) => {
+              const tx = articleText(a, lang);
+              return (
               <Reveal key={a.slug} delay={i * 90}>
                 <Link
                   to={`/resources/${a.slug}`}
@@ -907,23 +909,24 @@ export default function HomePage() {
                   </span>
                   <div>
                     <h3 className="font-display text-[1.125rem] md:text-[1.375rem] leading-[1.3] text-foreground transition-colors group-hover:text-[#0A5B51] [text-wrap:pretty]">
-                      {a.title}
+                      {tx.title}
                     </h3>
                     <p className="mt-2.5 max-w-[54ch] text-[14px] leading-[1.7] text-muted-foreground">
-                      {a.dek}
+                      {tx.dek}
                     </p>
                   </div>
                   <div className="flex items-baseline gap-3 md:block md:text-right">
                     <span className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#8F6519]">
-                      {a.tag}
+                      {tx.tag}
                     </span>
                     <span className="md:mt-1.5 md:block text-[11.5px] text-[#5F716D]">
-                      {a.minutes} min
+                      {tx.minutes} min
                     </span>
                   </div>
                 </Link>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
