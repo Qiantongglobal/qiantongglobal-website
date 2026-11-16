@@ -879,7 +879,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Compliance notes — three of the five, kept on the homepage so a buyer
+      {/* Compliance notes — the first three, kept on the homepage so a buyer
           who never leaves this page still sees the paperwork we can explain.
           The full set lives at /resources; the band sits here, after the
           solutions block, because it answers objections rather than selling. */}

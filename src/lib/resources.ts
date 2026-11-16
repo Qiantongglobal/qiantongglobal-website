@@ -547,6 +547,106 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    slug: "uk-ce-marking-indefinite-recognition",
+    no: "06",
+    title: "The UK dropped the deadline, not the paperwork",
+    dek: "In October 2026 Great Britain stopped requiring a UKCA mark alongside CE. Registration, the responsible person and the post-market duties all stayed — and Northern Ireland never left the EU system at all.",
+    date: "2026-11-16",
+    minutes: 7,
+    tag: "United Kingdom",
+    keyPoints: [
+      "CE certificates under the EU MDR or IVDR are now accepted in Great Britain without an end date.",
+      "Registration with the MHRA and a UK Responsible Person are still required before the device is placed on the GB market.",
+      "Northern Ireland follows EU rules: CE only, UKCA not accepted, plus UKNI where a UK body assesses.",
+      "Devices still certified only under the older EU directives keep their earlier cut-off dates.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "On 21 October 2026 the MHRA confirmed that medical devices certified under the EU MDR or IVDR can be placed on the Great Britain market on a long-term basis, with no further deadline to obtain a UKCA mark. Read as a headline, the UK has moved back towards the EU. Read as an operating instruction, rather less has changed than the headline suggests.",
+      },
+      {
+        type: "p",
+        text: "Great Britain — England, Scotland and Wales — runs its own law, the Medical Devices Regulations 2002. What the announcement removed is the compulsion to hold a second, UK-issued certificate. What it did not remove is the requirement to be registered, to have someone inside the country answerable for the device, and to keep watching the device once it is in use.",
+      },
+      { type: "h2", text: "What changed, and what it is worth" },
+      {
+        type: "list",
+        items: [
+          "CE certificates issued under the EU MDR or IVDR are recognised without an end date. A manufacturer no longer has to budget for a UKCA assessment simply to keep selling into Great Britain.",
+          "UKCA remains available as a domestic route. It has become a commercial choice rather than a deadline.",
+          "Devices still placed on the market under the older EU directives stay on the earlier timetable: the sooner of the certificate's expiry or 30 June 2028 for general devices.",
+          "More than nine in ten devices registered for use in Great Britain are CE marked, which is why the announcement was framed as continuity rather than as reform.",
+        ],
+      },
+      { type: "h2", text: "What the announcement did not touch" },
+      {
+        type: "table",
+        head: ["Requirement", "Who carries it", "Where it is written"],
+        rows: [
+          [
+            "Registration before the device is placed on the market",
+            "The manufacturer, or the UK Responsible Person on its behalf",
+            "UK MDR 2002, regulation 7A; MHRA registration service",
+          ],
+          [
+            "A UK Responsible Person for any manufacturer outside the UK",
+            "The manufacturer appoints one; it must be a single named entity",
+            "UK MDR 2002, regulation 7A(2)(a)(ii)",
+          ],
+          [
+            "Technical documentation and the DoC kept available for inspection",
+            "The UK Responsible Person holds copies",
+            "UK MDR 2002, regulation 7A(3)",
+          ],
+          [
+            "Post-market surveillance and incident reporting",
+            "The manufacturer, with the Responsible Person relaying",
+            "MHRA guidance, strengthened since June 2025",
+          ],
+        ],
+      },
+      {
+        type: "p",
+        text: "Registration is the point that catches suppliers. It is not approval, and the MHRA says so in its own guidance: it confers no certification and no right to use the agency's name on a label or a brochure. What it does is place the device on a list the authority can act against — which is why a device can be perfectly CE compliant and still not lawfully sellable in Great Britain.",
+      },
+      { type: "h2", text: "Great Britain is not the United Kingdom" },
+      {
+        type: "p",
+        text: "Northern Ireland is not in the same position. Under the Windsor Framework it continues to apply EU rules: CE marking, the EU MDR, and an authorised representative established in the EU or in Northern Ireland. UKCA is not accepted there. Where a UK approved body carries out the assessment, the device carries UKNI alongside CE.",
+      },
+      {
+        type: "p",
+        text: "Two consequences follow for anyone shipping into both. A Northern Ireland customer is, for regulatory purposes, an EU customer. And since 28 May 2026 registration for the Northern Ireland market runs through EUDAMED rather than the MHRA system — custom-made devices excepted.",
+      },
+      { type: "h2", text: "What to ask before you quote a UK customer" },
+      {
+        type: "list",
+        items: [
+          "Which mark is on the device, and under which regulation was it certified? An MDR certificate and an MDD certificate now sit on different timelines.",
+          "Who is the UK Responsible Person, and can they produce the registration? Ask for the registration, not for an assurance that it exists.",
+          "Is the device registered for Great Britain, or only for Northern Ireland? The two answers come from different systems.",
+          "Whose name is on the label? A UKCA-marked device carries the Responsible Person; a CE-marked device carries the EU representative. Confirm which applies before the artwork is signed off.",
+          "When does the certificate expire, and is the surveillance audit current? Indefinite recognition of CE is not indefinite validity of a certificate.",
+        ],
+      },
+      {
+        type: "note",
+        text: "A trading company cannot be a UK Responsible Person, and cannot register a device in a manufacturer's name. If a supplier offers to “handle UK registration” without naming the entity that holds the appointment, that claim is worth checking before the order, not after.",
+      },
+      { type: "h2", text: "What this means for a Class I sterile device" },
+      {
+        type: "p",
+        text: "For the products most often bought from us — sterile Class I consumables — the CE certificate issued after a notified body assessment of the sterilisation aspects is exactly the certificate Great Britain now accepts. The assessment work is already done. What remains is administrative: a registration, a named responsible person, an English label, and a post-market file that someone actually maintains. Administrative work of that kind is what stops shipments at the border, because it fails quietly.",
+      },
+      { type: "h2", text: "Where we sit in this" },
+      {
+        type: "p",
+        text: "We supply from factories that hold CE certification under the MDR, and we hand over the certificate, the DoC and the sterilisation documents as the factory issues them. Appointing a UK Responsible Person, registering the device and maintaining the post-market file belong to the manufacturer and to the entity it appoints: we do not act in that capacity, and we do not register devices in anyone's name.",
+      },
+    ],
+  },
 ];
 
 export function articleBySlug(slug: string): Article | undefined {

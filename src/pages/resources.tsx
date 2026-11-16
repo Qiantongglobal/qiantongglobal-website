@@ -5,14 +5,65 @@ import { useLanguage } from "@/components/LanguageSwitcher";
 import { articles, articleText, availableLangs, formatDate } from "@/lib/resources";
 
 /**
+ * Page furniture for the notes index. Only the languages the notes themselves
+ * are written in get their own hero — an index promise in German over
+ * English-only body copy reads like a half-finished translation. Everything
+ * else falls back to English, which is the language of the notes.
+ */
+const INDEX: Record<
+  "en" | "de" | "fr",
+  {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    ctaTitle: string;
+    ctaBody: string;
+    ctaAsk: string;
+    ctaBrowse: string;
+  }
+> = {
+  en: {
+    eyebrow: "Compliance notes",
+    title: "The documents behind the product",
+    lead: "Short notes on the paperwork that decides whether a consignment can enter Switzerland, the EU or the UK — written for buyers who have to file it, defend it and live with it.",
+    ctaTitle: "Looking for these documents for a specific device?",
+    ctaBody:
+      "Tell us the product and the market. We will tell you which documents the factory already holds and which ones have to be requested or reissued.",
+    ctaAsk: "Ask about a device",
+    ctaBrowse: "Browse catalogue",
+  },
+  de: {
+    eyebrow: "Fachbeiträge",
+    title: "Die Dokumente hinter dem Produkt",
+    lead: "Kurze Beiträge zu den Unterlagen, die darüber entscheiden, ob eine Lieferung in die Schweiz, in die EU oder nach Großbritannien gelangen darf — geschrieben für Käufer, die sie einreichen, verteidigen und damit leben müssen.",
+    ctaTitle: "Sie suchen diese Unterlagen für ein konkretes Gerät?",
+    ctaBody:
+      "Nennen Sie uns Produkt und Zielmarkt. Wir sagen Ihnen, welche Unterlagen das Werk bereits hat und welche angefordert oder neu ausgestellt werden müssen.",
+    ctaAsk: "Zu einem Gerät fragen",
+    ctaBrowse: "Katalog ansehen",
+  },
+  fr: {
+    eyebrow: "Notes de conformité",
+    title: "Les documents derrière le produit",
+    lead: "Notes brèves sur les pièces qui décident si une expédition peut entrer en Suisse, dans l'UE ou au Royaume-Uni — écrites pour les acheteurs qui doivent les déposer, les défendre et vivre avec.",
+    ctaTitle: "Vous cherchez ces documents pour un dispositif précis ?",
+    ctaBody:
+      "Indiquez-nous le produit et le marché. Nous vous dirons quels documents l'usine détient déjà et lesquels doivent être demandés ou réémis.",
+    ctaAsk: "Poser une question sur un dispositif",
+    ctaBrowse: "Voir le catalogue",
+  },
+};
+
+/**
  * Index of the compliance notes.
  *
- * Set as a numbered editorial index rather than a card grid: the five pieces
- * are read in any order, and a list with hairlines keeps the whole section to
- * one screen on a laptop instead of three rows of identical boxes.
+ * Set as a numbered editorial index rather than a card grid: the pieces are
+ * read in any order, and a list with hairlines keeps the whole section to one
+ * screen on a laptop instead of three rows of identical boxes.
  */
 export default function ResourcesPage() {
   const { t, lang } = useLanguage();
+  const copy = INDEX[lang === "de" || lang === "fr" ? lang : "en"];
 
   return (
     <div className="min-h-screen bg-white">
@@ -39,16 +90,14 @@ export default function ResourcesPage() {
           <div className="index-row">
             <span className="index-no">00</span>
             <span className="index-rule" />
-            <span className="eyebrow">Compliance notes</span>
+            <span className="eyebrow">{copy.eyebrow}</span>
           </div>
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-6 lg:gap-16 lg:items-end">
             <h1 className="h2-section !text-[2rem] md:!text-[2.9rem] max-w-[24ch]">
-              The documents behind the product
+              {copy.title}
             </h1>
             <p className="lead lg:pb-1.5 [text-wrap:pretty]">
-              Five short notes on the paperwork that decides whether a
-              consignment can enter Switzerland or the EU — written for buyers
-              who have to file it, defend it and live with it.
+              {copy.lead}
             </p>
           </div>
           <p className="mt-8 text-[12.5px] text-[#5F716D]">{t("res_note")}</p>
@@ -101,20 +150,16 @@ export default function ResourcesPage() {
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] gap-8 items-center border border-[#DCE5E1] bg-[#F7FAF9] px-6 md:px-10 py-8 md:py-10">
           <div>
             <h2 className="font-display text-[1.35rem] md:text-[1.55rem] leading-[1.3] text-foreground">
-              Looking for these documents for a specific device?
+              {copy.ctaTitle}
             </h2>
-            <p className="mt-2.5 body-copy max-w-[46ch]">
-              Tell us the product and the market. We will tell you which
-              documents the factory already holds and which ones have to be
-              requested or reissued.
-            </p>
+            <p className="mt-2.5 body-copy max-w-[46ch]">{copy.ctaBody}</p>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">
             <Link to="/#contact" className="btn-primary">
-              Ask about a device
+              {copy.ctaAsk}
             </Link>
             <Link to="/products" className="btn-outline">
-              Browse catalogue
+              {copy.ctaBrowse}
             </Link>
           </div>
         </div>
