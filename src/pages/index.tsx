@@ -29,6 +29,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { Reveal } from "@/components/Reveal";
 import { LogoMark } from "@/components/LogoMark";
 import { categories, additionalSourcing, skuPath, skuName } from "@/lib/products";
+import { articles } from "@/lib/resources";
 import { useState } from "react";
 import { submitInquiry } from "@/lib/inquiry";
 
@@ -878,12 +879,78 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Compliance notes — three of the five, kept on the homepage so a buyer
+          who never leaves this page still sees the paperwork we can explain.
+          The full set lives at /resources; the band sits here, after the
+          solutions block, because it answers objections rather than selling. */}
+      <section id="resources" className="section-padding bg-white">
+        <div className="container-custom">
+          <Reveal>
+            <SectionHead
+              no="07"
+              label={t("notes_label")}
+              title={t("notes_title")}
+              desc={t("notes_desc")}
+            />
+          </Reveal>
+
+          <div className="border-t border-[#DCE5E1]">
+            {articles.slice(0, 3).map((a, i) => (
+              <Reveal key={a.slug} delay={i * 90}>
+                <Link
+                  to={`/resources/${a.slug}`}
+                  className="group relative grid grid-cols-1 md:grid-cols-[3.5rem_minmax(0,1fr)_9.5rem] items-baseline gap-x-6 gap-y-2.5 border-b border-[#DCE5E1] py-7 md:py-8"
+                >
+                  <span className="absolute left-0 -top-px h-px w-0 bg-[#9E7120]/70 transition-all duration-500 group-hover:w-full" />
+                  <span className="font-mono text-[11px] tracking-[0.2em] text-[#8F6519]">
+                    {a.no}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-[1.125rem] md:text-[1.375rem] leading-[1.3] text-foreground transition-colors group-hover:text-[#0A5B51] [text-wrap:pretty]">
+                      {a.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-[54ch] text-[14px] leading-[1.7] text-muted-foreground">
+                      {a.dek}
+                    </p>
+                  </div>
+                  <div className="flex items-baseline gap-3 md:block md:text-right">
+                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#8F6519]">
+                      {a.tag}
+                    </span>
+                    <span className="md:mt-1.5 md:block text-[11.5px] text-[#5F716D]">
+                      {a.minutes} min
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <Link
+              to="/resources"
+              className="group inline-flex items-center gap-2 text-[13.5px] font-semibold text-[#0A5B51] transition-colors hover:text-[#8F6519]"
+            >
+              {t("notes_all")}
+              <ArrowRight
+                size={15}
+                strokeWidth={2}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+            <span className="text-[11.5px] leading-[1.6] text-[#5F716D]">
+              {t("res_note")}
+            </span>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="section-padding bg-white">
         <div className="container-custom">
           <Reveal>
             <SectionHead
-              no="07"
+              no="08"
               label={t("contact_label")}
               title={t("contact_title")}
               desc={t("contact_desc")}
