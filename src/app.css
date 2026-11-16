@@ -51,6 +51,20 @@
   .tnum {
     font-variant-numeric: tabular-nums;
   }
+
+  /* --- keyboard focus ------------------------------------------------------
+     Buttons and inputs always had a ring; links and rows never did, so tabbing
+     through the page showed nothing at all. currentColor lets one rule serve
+     both grounds: white on the deep green hero, ink on paper. Mouse users see
+     nothing because :focus-visible only fires for keyboard and assistive tech. */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 @layer components {
@@ -100,7 +114,9 @@
   }
 
   .meta-label {
-    @apply text-[11px] uppercase tracking-[0.12em] text-[#7E908C];
+    /* was #7E908C — 3.36:1 at 11px, under the 4.5:1 floor. #657773 keeps the
+       grey-green character but lands at 4.7:1. */
+    @apply text-[11px] uppercase tracking-[0.12em] text-[#5F716D];
   }
 
   .btn-primary {
@@ -194,7 +210,9 @@
     @apply flex items-center gap-3;
   }
   .index-no {
-    @apply font-mono text-[10.5px] tracking-[0.22em] text-[#9E7120];
+    /* #946A1C is the darkest gold that still reads as gold: 4.8:1 on white.
+       The lighter #9E7120 measured 4.3:1 — under AA for 11px text. */
+    @apply font-mono text-[10.5px] tracking-[0.22em] text-[#8F6519];
   }
   .index-rule {
     @apply h-px w-7 bg-[#9E7120]/40;

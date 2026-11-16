@@ -24,16 +24,16 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageSwitcher";
+import { Seo } from "@/components/Seo";
 import { SectionHead } from "@/components/SectionHead";
 import { Reveal } from "@/components/Reveal";
 import { LogoMark } from "@/components/LogoMark";
-import { categories, additionalSourcing, skuPath } from "@/lib/products";
+import { categories, additionalSourcing, skuPath, skuName } from "@/lib/products";
 import { useState } from "react";
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgqbjqk";
+import { submitInquiry } from "@/lib/inquiry";
 
 function ContactForm() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -52,19 +52,34 @@ function ContactForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(Object.fromEntries(formData)),
-      });
+    /* 下拉框的可见文案（"Urology & Catheter Care"）比 value（"urology"）更适合
+       在 CRM 里给人看，两者都带上，前端换标签不影响后端。 */
+    const select = form.elements.namedItem("product") as HTMLSelectElement | null;
+    const productLabel =
+      select && select.selectedIndex >= 0 ? select.options[select.selectedIndex]?.text || "" : "";
 
-      if (res.ok) {
+    const payload: Record<string, string> = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      company: String(formData.get("company") || ""),
+      phone: String(formData.get("phone") || ""),
+      product: String(formData.get("product") || ""),
+      product_label: productLabel,
+      product_code: refCode,
+      message: String(formData.get("message") || ""),
+      privacy_consent: formData.get("privacy_consent") ? "true" : "",
+      lang,
+      page: window.location.pathname + window.location.search,
+      _gotcha: String(formData.get("_gotcha") || ""),
+    };
+
+    try {
+      const result = await submitInquiry(payload);
+      if (result.ok) {
         setSubmitted(true);
         form.reset();
       } else {
-        const errData = await res.json().catch(() => null);
-        setError(errData?.error || "Failed to submit. Please try again.");
+        setError(result.error || "Failed to submit. Please try again.");
       }
     } catch {
       setError("Network error. Please check your connection and try again.");
@@ -102,6 +117,16 @@ function ContactForm() {
       </h3>
       <form onSubmit={handleSubmit} className="space-y-5">
         {refCode && <input type="hidden" name="product_code" value={refCode} />}
+        {/* 蜜罐：真人看不见（tabIndex -1 + aria-hidden），机器人会顺手填 */}
+        <input
+          type="text"
+          name="_gotcha"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
+
         {refCode && (
           <div className="flex items-center gap-2 border border-[#DCE7E3] bg-[#F5F9F8] px-3.5 py-2.5 rounded-sm">
             <FileText size={14} className="shrink-0 text-[#0A5B51]/60" />
@@ -257,6 +282,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      {/* 首页 SEO：随界面语言取 i18n 文案，覆盖 index.html 里的英文默认值 */}
+      <Seo title={t("home_title")} description={t("home_desc")} path="/" />
       {/* Hero Section */}
       <section
         id="home"
@@ -300,7 +327,10 @@ export default function HomePage() {
               <span className="text-white">{t("hero_title_highlight")}</span>
             </h1>
 
-            <p className="mt-6 sm:mt-7 text-[1.0625rem] sm:text-[1.15rem] md:text-[1.25rem] text-white/[0.8] max-w-2xl mx-auto leading-[1.6]">
+            {/* The hero is tuned to land just under 100svh on a 1440x900 laptop.
+                Any taller and the stats band at the bottom falls below the fold,
+                which is exactly the proof a first-time buyer never sees. */}
+            <p className="mt-5 sm:mt-6 text-[1.0625rem] sm:text-[1.15rem] md:text-[1.25rem] text-white/[0.8] max-w-2xl mx-auto leading-[1.6]">
               {t("hero_desc_1")}{" "}
               <span className="text-white font-semibold whitespace-nowrap">{t("hero_desc_percent")}</span>{" "}
               {t("hero_desc_2")}
@@ -310,7 +340,7 @@ export default function HomePage() {
               {t("hero_sub")}
             </p>
 
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+            <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#00463E] font-semibold rounded-sm hover:bg-[#F1F6F4] transition-colors duration-200"
@@ -328,7 +358,7 @@ export default function HomePage() {
 
             {/* Certifications sit after the action now, as supporting proof
                 rather than a interruption between the headline and the CTA. */}
-            <div className="mt-9 sm:mt-11 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-[13px] md:text-[14px] font-medium uppercase tracking-[0.1em] text-white/[0.82]">
+            <div className="mt-8 sm:mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-[13px] md:text-[14px] font-medium uppercase tracking-[0.1em] text-white/[0.82]">
               <span className="inline-flex items-center gap-2">
                 <CheckCircle size={15} className="text-white/[0.62]" />
                 CE MDR<span className="hidden sm:inline"> 2017/745</span>
@@ -345,7 +375,7 @@ export default function HomePage() {
               </span>
             </div>
 
-            <div className="mt-10 sm:mt-14 pt-7 sm:pt-8 border-t border-white/[0.16] max-w-4xl mx-auto">
+            <div className="mt-9 sm:mt-11 pt-6 sm:pt-7 border-t border-white/[0.16] max-w-4xl mx-auto">
               <div className="flex flex-col sm:flex-row sm:items-center gap-7 sm:gap-0">
                 <div className="grid grid-cols-3 gap-4 sm:gap-0 flex-1">
                   {[
@@ -411,7 +441,7 @@ export default function HomePage() {
                 >
                   <span className="absolute left-0 -top-px h-px w-0 bg-[#9E7120]/70 transition-all duration-500 group-hover:w-full" />
                   <div className="flex items-start justify-between">
-                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#9E7120]">
+                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#8F6519]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <item.icon size={20} strokeWidth={1.5} className="text-[#0A5B51]/55" />
@@ -473,7 +503,7 @@ export default function HomePage() {
                         key={item}
                         className="flex items-baseline gap-4 py-3 border-b border-[#E1E8E5] text-[13.5px] text-foreground/[0.88]"
                       >
-                        <span className="font-mono text-[10px] tracking-[0.1em] text-[#9E7120]/85 w-4 shrink-0 tnum">
+                        <span className="font-mono text-[11px] tracking-[0.1em] text-[#8F6519] w-4 shrink-0 tnum">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         {item}
@@ -557,7 +587,7 @@ export default function HomePage() {
           <Reveal>
             <div className="mt-14 pt-7 border-t border-white/[0.14] flex flex-col md:flex-row md:items-start gap-4 md:gap-10">
               <span aria-hidden="true" className="mt-[9px] h-px w-10 shrink-0 bg-[#C9A96A]/45" />
-              <p className="text-[13.5px] text-white/[0.48] max-w-3xl leading-[1.75]">
+              <p className="text-[13.5px] text-white/[0.55] max-w-3xl leading-[1.75]">
                 {t("cert_footer")}
               </p>
             </div>
@@ -610,11 +640,13 @@ export default function HomePage() {
                     <img
                       src={img.src}
                       alt={t(img.alt)}
+                      width={1200}
+                      height={800}
                       className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                       style={{ filter: img.grade }}
                       loading="lazy"
                     />
-                    <span className="absolute left-3.5 top-3.5 font-mono text-[10.5px] tracking-[0.2em] text-white/85 bg-[#04241F]/35 backdrop-blur-[2px] px-2 py-[3px]">
+                    <span className="absolute left-3.5 top-3.5 font-mono text-[10.5px] tracking-[0.2em] text-white/95 bg-[#062B26] px-2 py-[3px]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -655,13 +687,19 @@ export default function HomePage() {
                     <img
                       src={cat.image}
                       alt={t(cat.titleKey)}
+                      width={cat.imageW}
+                      height={cat.imageH}
                       loading="lazy"
                       /* Most of this catalogue is clear or frosted PVC. On a tinted
                          plate those items lose their edge entirely; a white plate
-                         plus a shadow cast from the alpha channel restores it. */
-                      className="w-[88%] h-[88%] object-contain object-center drop-shadow-[0_16px_26px_rgba(11,47,42,0.20)] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                         plus a shadow cast from the alpha channel restores it.
+                         The scale is per-plate: the five originals were shot with
+                         different framing, so a shared 88% box made the fullest
+                         one look twice the size of the sparsest. */
+                      style={{ ["--plate-scale" as any]: cat.imageScale ?? 1 }}
+                      className="w-[88%] h-[88%] object-contain object-center drop-shadow-[0_16px_26px_rgba(11,47,42,0.20)] transition-transform duration-700 ease-out scale-[var(--plate-scale)] group-hover:scale-[calc(var(--plate-scale)*1.04)]"
                     />
-                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.18em] text-[#9E7120]/55">
+                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.18em] text-[#8F6519]">
                       {cat.no}
                     </span>
                   </div>
@@ -687,11 +725,11 @@ export default function HomePage() {
                             to={skuPath(cat, sku)}
                             className="group/li flex h-full min-h-[52px] items-center gap-2.5 min-w-0 border-b border-[#EFF3F1] py-2"
                           >
-                            <span className="font-mono text-[10.5px] text-[#9E7120]/80 w-[72px] shrink-0 tabular-nums tracking-[0.02em]">
+                            <span className="font-mono text-[10.5px] text-[#8F6519] w-[72px] shrink-0 tabular-nums tracking-[0.02em]">
                               {sku.code}
                             </span>
                             <span className="text-[14px] text-foreground/[0.86] leading-snug group-hover/li:text-primary transition-colors">
-                              {sku.name}
+                              {skuName(sku, lang)}
                             </span>
                           </Link>
                         </li>
@@ -714,7 +752,7 @@ export default function HomePage() {
           <Reveal>
             <div className="mt-10 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-6 md:gap-12 py-8 md:py-9 border border-[#E2E8E6] bg-[#F7F9F8] rounded-sm px-6 md:px-8 items-center">
               <div>
-                <span className="font-mono text-[11px] tracking-[0.14em] text-[#7E908C]">06</span>
+                <span className="font-mono text-[11px] tracking-[0.14em] text-[#5F716D]">06</span>
                 <h3 className="mt-2 h3-card">
                   {t("prod_add_title")}
                 </h3>
@@ -796,10 +834,10 @@ export default function HomePage() {
                 >
                   <span className="absolute left-0 -top-px h-px w-0 bg-[#9E7120]/70 transition-all duration-500 group-hover:w-full" />
                   <div className="flex items-center gap-2.5">
-                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#9E7120]">
+                    <span className="font-mono text-[11px] tracking-[0.2em] text-[#8F6519]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#8A7A5A]">
+                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#8F6519]">
                       {t("sol1_problem")}
                     </span>
                     <sol.problemIcon
@@ -1021,7 +1059,7 @@ export default function HomePage() {
 
           {/* A rule-and-label line under the buttons: without it the band was a
               large empty field of dark green with a paragraph floating in it. */}
-          <div className="mt-9 flex items-center justify-center gap-4 text-[12.5px] tracking-[0.08em] uppercase text-white/[0.42]">
+          <div className="mt-9 flex items-center justify-center gap-4 text-[12.5px] tracking-[0.08em] uppercase text-white/[0.58]">
             <span aria-hidden="true" className="h-px w-10 bg-[#C9A96A]/30" />
             {t("contact_response_val")}
             <span aria-hidden="true" className="h-px w-10 bg-[#C9A96A]/30" />

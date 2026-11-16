@@ -3,10 +3,10 @@ import { ArrowRight, ChevronRight, FileDown, Mail } from "lucide-react";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { Reveal } from "@/components/Reveal";
 import { Seo, SITE_URL } from "@/components/Seo";
-import { categories, skuPath, totalSku } from "@/lib/products";
+import { categories, skuPath, totalSku, skuName } from "@/lib/products";
 
 export default function ProductsPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -17,7 +17,7 @@ export default function ProductsPage() {
       category.skus.map((sku, si) => ({
         "@type": "ListItem",
         position: ci * 100 + si + 1,
-        name: sku.name,
+        name: skuName(sku, lang),
         url: `${SITE_URL}${skuPath(category, sku)}`,
       })),
     ),
@@ -72,10 +72,13 @@ export default function ProductsPage() {
                     <img
                       src={cat.image}
                       alt={t(cat.titleKey)}
+                      width={cat.imageW}
+                      height={cat.imageH}
                       loading="lazy"
-                      className="w-[88%] h-[88%] object-contain object-center drop-shadow-[0_16px_26px_rgba(11,47,42,0.20)]"
+                      style={{ ["--plate-scale" as any]: cat.imageScale ?? 1 }}
+                      className="w-[88%] h-[88%] object-contain object-center drop-shadow-[0_16px_26px_rgba(11,47,42,0.20)] scale-[var(--plate-scale)]"
                     />
-                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.14em] text-[#9E7120]/55">
+                    <span className="absolute left-3.5 top-3 font-mono text-[11px] tracking-[0.14em] text-[#8F6519]">
                       {cat.no}
                     </span>
                   </div>
@@ -101,11 +104,11 @@ export default function ProductsPage() {
                             to={skuPath(cat, sku)}
                             className="group/li flex items-baseline gap-2 min-w-0 py-1.5 -my-0.5"
                           >
-                            <span className="font-mono text-[11px] text-[#0A5B51]/75 w-[74px] shrink-0 tabular-nums">
+                            <span className="font-mono text-[11px] text-[#0A5B51]/85 w-[74px] shrink-0 tabular-nums">
                               {sku.code}
                             </span>
                             <span className="text-[14px] text-foreground/[0.88] leading-snug group-hover/li:text-primary transition-colors">
-                              {sku.name}
+                              {skuName(sku, lang)}
                             </span>
                           </Link>
                         </li>

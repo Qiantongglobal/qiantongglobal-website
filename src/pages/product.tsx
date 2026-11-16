@@ -3,10 +3,10 @@ import { ArrowRight, ChevronRight, FileDown, Mail } from "lucide-react";
 import { useLanguage } from "@/components/LanguageSwitcher";
 import { Reveal } from "@/components/Reveal";
 import { Seo, SITE_URL } from "@/components/Seo";
-import { findSku, relatedSkus, skuPath } from "@/lib/products";
+import { findSku, relatedSkus, skuApplication, skuName, skuPath } from "@/lib/products";
 
 export default function ProductPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { categoryId = "", slug = "" } = useParams();
   const match = findSku(categoryId, slug);
 
@@ -15,7 +15,8 @@ export default function ProductPage() {
   const related = relatedSkus(category, sku.code);
 
   const path = skuPath(category, sku);
-  const description = `${sku.name} (${sku.code}) from Qiantong Global — ${sku.application}`;
+  // SEO 文案随界面语言走：本地语言搜索（如西语 "mascarilla laríngea"）才能命中本页。
+  const description = `${skuName(sku, lang)} (${sku.code}) — Qiantong Global: ${skuApplication(sku, lang)}`;
 
   const jsonLd = [
     {
@@ -24,15 +25,15 @@ export default function ProductPage() {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
         { "@type": "ListItem", position: 2, name: "Products", item: `${SITE_URL}/products` },
-        { "@type": "ListItem", position: 3, name: sku.name, item: `${SITE_URL}${path}` },
+        { "@type": "ListItem", position: 3, name: skuName(sku, lang), item: `${SITE_URL}${path}` },
       ],
     },
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      name: sku.name,
+      name: skuName(sku, lang),
       sku: sku.code,
-      description: sku.application,
+      description: skuApplication(sku, lang),
       category: category.name,
       brand: { "@type": "Brand", name: "Qiantong Global" },
       url: `${SITE_URL}${path}`,
@@ -45,7 +46,7 @@ export default function ProductPage() {
   return (
     <div>
       <Seo
-        title={`${sku.name} — ${sku.code}`}
+        title={`${skuName(sku, lang)} — ${sku.code}`}
         description={description}
         path={path}
         jsonLd={jsonLd}
@@ -68,7 +69,7 @@ export default function ProductPage() {
             <ChevronRight size={12} className="text-[#B4C2BE] hidden sm:block" />
             <span className="hidden sm:inline">{t(category.titleKey)}</span>
             <ChevronRight size={12} className="text-[#B4C2BE]" />
-            <span className="text-foreground">{sku.name}</span>
+            <span className="text-foreground">{skuName(sku, lang)}</span>
           </nav>
         </div>
       </section>
@@ -79,9 +80,9 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
             <div className="min-w-0 lg:order-2">
               <span className="eyebrow">{t(category.titleKey)}</span>
-              <h1 className="h2-section mt-3 max-w-[26ch]">{sku.name}</h1>
+              <h1 className="h2-section mt-3 max-w-[26ch]">{skuName(sku, lang)}</h1>
               <p className="mt-5 text-[16px] md:text-[17px] text-muted-foreground leading-[1.72] max-w-[62ch]">
-                {sku.application}
+                {skuApplication(sku, lang)}
               </p>
 
               <dl className="mt-8 border-t border-[#E2E8E6] max-w-[30rem]">
@@ -211,12 +212,12 @@ export default function ProductPage() {
                   to={skuPath(category, item)}
                   className="group border border-[#E2E8E6] rounded-sm p-5 hover:border-[#C3D3CE] hover:bg-[#FAFCFB] transition-colors"
                 >
-                  <div className="font-mono text-[11px] text-[#0A5B51]/75 tabular-nums">{item.code}</div>
+                  <div className="font-mono text-[11px] text-[#0A5B51]/85 tabular-nums">{item.code}</div>
                   <div className="mt-2 text-[14.5px] font-medium text-foreground leading-snug group-hover:text-primary transition-colors">
-                    {item.name}
+                    {skuName(item, lang)}
                   </div>
                   <p className="mt-2 text-[12.5px] text-muted-foreground leading-[1.6] line-clamp-3">
-                    {item.application}
+                    {skuApplication(item, lang)}
                   </p>
                 </Link>
               ))}
