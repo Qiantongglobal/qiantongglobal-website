@@ -21,9 +21,9 @@ export default function Navbar() {
     { label: t("nav_home"), to: "/#home" },
     { label: t("nav_about"), to: "/#about" },
     { label: t("nav_products"), to: "/products" },
+    { label: t("nav_resources"), to: "/resources" },
     { label: t("nav_solutions"), to: "/#solutions" },
     { label: t("nav_certifications"), to: "/#certifications" },
-    { label: t("nav_contact"), to: "/#contact" },
   ];
 
   // 未滚动：首屏是深墨绿，导航透明，徽记反白（金羽毛保留）
@@ -54,12 +54,12 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-3 py-2 text-[14.5px] font-medium rounded-sm transition-colors ${textColor} ${bgHover}`}
+                className={`px-2.5 py-2 text-[14px] font-medium rounded-sm whitespace-nowrap transition-colors ${textColor} ${bgHover}`}
               >
                 {link.label}
               </Link>
@@ -71,7 +71,7 @@ export default function Navbar() {
                 one competed with the hero's primary CTA for the same glance. */}
             <Link
               to="/#contact"
-              className={`ml-1 px-4 py-2 text-[14.5px] font-semibold rounded-sm transition-colors ${
+              className={`ml-1 px-4 py-2 text-[14.5px] font-semibold rounded-sm whitespace-nowrap transition-colors ${
                 onDark
                   ? "border border-white/[0.45] text-white hover:bg-white hover:text-[#00463E] hover:border-white"
                   : "bg-[#00463E] text-white hover:bg-[#00594F]"
@@ -81,7 +81,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="md:hidden flex items-center gap-1.5">
+          <div className="xl:hidden flex items-center gap-1.5">
             <LanguageSwitcher variant={onDark ? "dark" : "light"} />
             <button
               className={`p-1.5 rounded-sm ${onDark ? "text-white" : "text-foreground"}`}
@@ -94,7 +94,7 @@ export default function Navbar() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden bg-white rounded-md border border-border mt-2 py-2">
+          <div className="xl:hidden bg-white rounded-md border border-border mt-2 py-2">
             {navLinks.map((link) => (
               <Link
                 key={link.to}

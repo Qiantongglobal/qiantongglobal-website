@@ -29,6 +29,7 @@ export default function Footer() {
               <li><a href="#home" className="hover:text-white transition-colors">{t("nav_home")}</a></li>
               <li><a href="#about" className="hover:text-white transition-colors">{t("nav_about")}</a></li>
               <li><a href="#products" className="hover:text-white transition-colors">{t("footer_products")}</a></li>
+              <li><a href="/resources" className="hover:text-white transition-colors">{t("nav_resources")}</a></li>
               <li><a href="#solutions" className="hover:text-white transition-colors">{t("footer_solutions")}</a></li>
               <li><a href="#certifications" className="hover:text-white transition-colors">{t("footer_certifications")}</a></li>
             </ul>

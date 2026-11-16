@@ -5,6 +5,8 @@ import { LanguageProvider } from "./components/LanguageSwitcher";
 import IndexPage from "./pages/index";
 import ProductsPage from "./pages/products";
 import ProductPage from "./pages/product";
+import ResourcesPage from "./pages/resources";
+import ResourcePage from "./pages/resource";
 import NotFoundPage from "./pages/not-found";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Navbar from "./components/Navbar";
@@ -52,6 +54,8 @@ export default function App() {
                 <Route path="/" element={<IndexPage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/products/:categoryId/:slug" element={<ProductPage />} />
+                <Route path="/resources" element={<ResourcesPage />} />
+                <Route path="/resources/:slug" element={<ResourcePage />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
