@@ -11,6 +11,7 @@ import {
   type Block,
   type ResolvedLang,
 } from "@/lib/resources";
+import SelfCheckForm from "@/components/SelfCheckForm";
 
 /** Page furniture for the languages the notes are actually written in. The
  *  English note rendered inside German chrome would look like an unfinished
@@ -370,6 +371,14 @@ export default function ResourcePage() {
                 <BlockView block={b} />
               </div>
             ))}
+
+            {/* The overview note ends in a self-check form: the reader has
+                just seen the five-market table, so the natural next step is
+                "which of these apply to me". The CRM receives the selection
+                structured, so the reply can be a document list. */}
+            {article.slug === "market-access-at-a-glance" && (
+              <SelfCheckForm noteLang={text.lang} />
+            )}
 
             <div className="mt-14 border-t border-[#0A5B51]/20 pt-7">
               <p className="text-[14.5px] leading-[1.7] text-muted-foreground max-w-[52ch]">

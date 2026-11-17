@@ -879,8 +879,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Compliance notes — the first three, kept on the homepage so a buyer
+      {/* Compliance notes — three entries, kept on the homepage so a buyer
           who never leaves this page still sees the paperwork we can explain.
+          The overview leads: it is the note that frames every other one.
           The full set lives at /resources; the band sits here, after the
           solutions block, because it answers objections rather than selling. */}
       <section id="resources" className="section-padding bg-white">
@@ -895,7 +896,12 @@ export default function HomePage() {
           </Reveal>
 
           <div className="border-t border-[#DCE5E1]">
-            {articles.slice(0, 3).map((a, i) => {
+            {[
+              articles.find((a) => a.slug === "market-access-at-a-glance"),
+              ...articles.filter((a) => a.slug !== "market-access-at-a-glance"),
+            ]
+              .slice(0, 3)
+              .map((a, i) => {
               const tx = articleText(a, lang);
               return (
               <Reveal key={a.slug} delay={i * 90}>

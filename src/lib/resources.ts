@@ -1190,6 +1190,7 @@ export const articles: Article[] = [
         type: "links",
         items: [
           { label: "Market access at a glance (PDF, English)", href: "/files/market-access-one-pager.pdf" },
+          { label: "Accès aux marchés en un coup d'œil (PDF, français)", href: "/files/market-access-one-pager-fr.pdf" },
           { label: "Marktzugang auf einen Blick (PDF, Deutsch)", href: "/files/market-access-one-pager-de.pdf" },
         ],
       },
@@ -1198,6 +1199,7 @@ export const articles: Article[] = [
       de: {
         title: "Marktzugang auf einen Blick: eine Akte, fünf Situationen",
         dek: "Ein CE-Zertifikat ist immer nur die Antwort auf die Frage eines Marktes. Diese Seite stellt die fünf Situationen nebeneinander, in die unsere Käufer liefern — und sagt klar, wer was halten muss.",
+        tag: "Überblick",
         minutes: 6,
         keyPoints: [
           "Die EU-Akte ist die Basis. Jeder andere Markt ist die Basis plus — oder minus — eine lokale Rolle.",
@@ -1317,7 +1319,137 @@ export const articles: Article[] = [
             type: "links",
             items: [
               { label: "Marktzugang auf einen Blick (PDF, Deutsch)", href: "/files/market-access-one-pager-de.pdf" },
+              { label: "Accès aux marchés en un coup d'œil (PDF, Französisch)", href: "/files/market-access-one-pager-fr.pdf" },
               { label: "Market access at a glance (PDF, Englisch)", href: "/files/market-access-one-pager.pdf" },
+            ],
+          },
+        ],
+      },
+      fr: {
+        title: "Accès aux marchés en un coup d'œil : un dossier, cinq situations",
+        dek: "Un certificat CE n'est jamais que la réponse à la question d'un marché. Cette page met côte à côte les cinq situations vers lesquelles nos acheteurs expédient — et dit clairement qui doit détenir quoi.",
+        tag: "Vue d'ensemble",
+        minutes: 6,
+        keyPoints: [
+          "Le dossier UE est la base. Tout autre marché, c'est la base plus — ou moins — un rôle local.",
+          "L'Irlande du Nord suit les règles de l'UE, pas celles de la Grande-Bretagne : CE uniquement, UKCA non accepté.",
+          "En Grande-Bretagne, un certificat CE se reporte désormais ; ce qui reste est administratif.",
+          "Hors d'Europe, le CE est une preuve pour le dossier — jamais le dossier entier.",
+        ],
+        blocks: [
+          {
+            type: "p",
+            text: "Un certificat n'est jamais que la réponse à la question d'un marché. Un acheteur qui expédie vers plusieurs marchés finit par entretenir plusieurs versions du même dossier — et c'est dans leurs différences que les expéditions se bloquent. Cette page met les cinq situations côte à côte. Elle reprend le briefing d'une page que nous joignons aux offres ; les versions imprimées sont en lien à la fin.",
+          },
+          {
+            type: "table",
+            head: ["", "Union européenne (27 + AEE)", "Suisse", "Grande-Bretagne (GB)", "Irlande du Nord (NI)", "Autres marchés"],
+            rows: [
+              [
+                "Ce que le marché accepte",
+                "CE selon les MDR ou IVDR de l'UE. Les dispositifs stériles et à mesurage de classe I nécessitent un organisme notifié.",
+                "Le CE est reconnu. Un mandataire suisse reste requis jusqu'à l'application de l'ALE révisé — 2028 au plus tôt.",
+                "CE (MDR/IVDR) reconnu indéfiniment depuis le 21 octobre 2026. Le UKCA est optionnel.",
+                "Les règles UE continuent : CE uniquement. Le UKCA n'est pas accepté ; UKNI s'ajoute quand un organisme britannique évalue.",
+                "Autorisation nationale. Le CE n'est pas une autorisation hors d'Europe.",
+              ],
+              [
+                "Une personne établie sur place",
+                "Mandataire UE (art. 11) et un importateur nommément désigné (art. 13).",
+                "Mandataire suisse (ODim art. 51). L'importateur peut cumuler les deux rôles, identifiés séparément.",
+                "UK Responsible Person — une entité nommément désignée pour tout le portefeuille.",
+                "Mandataire établi dans l'UE ou en Irlande du Nord.",
+                "Détenteur de l'enregistrement local ou mandataire local.",
+              ],
+              [
+                "Enregistrement avant la vente",
+                "EUDAMED : opérateurs économiques et dispositifs, introduits par classes.",
+                "swissdamed, obligatoire depuis le 1er juillet 2026 (fin de la transition : 31 décembre 2026). CHF 200 pour la première UDI-DI.",
+                "Enregistrement MHRA avant la mise sur le marché.",
+                "EUDAMED (depuis le 28 mai 2026) à la place du système MHRA.",
+                "Enregistrement national avant l'importation : FDA, Santé Canada, TGA, SFDA, ANVISA, PMDA.",
+              ],
+              [
+                "Langues de l'étiquetage",
+                "Langue(s) officielle(s) du pays de destination.",
+                "Allemand, français ou italien, selon la région de vente.",
+                "Anglais.",
+                "Anglais, selon les règles d'étiquetage UE.",
+                "Exigences linguistiques locales, marché par marché.",
+              ],
+              [
+                "Votre certificat CE",
+                "Le sésame complet.",
+                "Se reporte — plus un mandataire et un enregistrement.",
+                "Se reporte ; reste de l'administratif.",
+                "Identique à l'UE — un acheteur d'Irlande du Nord est, en conformité, un acheteur UE.",
+                "Une preuve pour le dossier. Jamais le dossier entier.",
+              ],
+            ],
+          },
+          {
+            type: "h2",
+            text: "Comment lire le tableau",
+          },
+          {
+            type: "p",
+            text: "La colonne UE est la base. La Suisse, c'est la base plus un rôle local plus un enregistrement. La Grande-Bretagne, c'est la base avec une pile de documents plus légère — depuis octobre 2026, un certificat CE reconnu sans limite de durée et un enregistrement auprès de la MHRA. L'Irlande du Nord n'est pas une variante de la Grande-Bretagne : en conformité, c'est l'UE, et la logique d'étiquetage suit. La dernière colonne relève d'un régime différent, où le CE vaut au mieux une preuve.",
+          },
+          {
+            type: "p",
+            text: "Deux dates à retenir : le 31 décembre 2026, fin de la période transitoire de swissdamed en Suisse, et le 30 juin 2028, date à laquelle les certificats délivrés sous les anciennes directives MDD cessent d'être acceptés en Grande-Bretagne.",
+          },
+          {
+            type: "h2",
+            text: "Ce que nous faisons",
+          },
+          {
+            type: "list",
+            items: [
+              "Indiquer quels documents l'usine détient — portée et durée.",
+              "Préparer maquettes d'étiquetage et données d'enregistrement : UDI-DI, UDI-DI de base, les langues de chaque marché.",
+              "Garder certificat, déclaration de conformité et étiquette cohérents quand un dispositif ou une usine change.",
+            ],
+          },
+          {
+            type: "h2",
+            text: "Ce qui vous revient",
+          },
+          {
+            type: "list",
+            items: [
+              "Désigner des mandataires, enregistrer les dispositifs, détenir les autorisations d'importation, signer en qualité d'importateur.",
+              "Aucune société de négoce ne peut le faire en votre nom.",
+              "Qui propose de « gérer l'enregistrement » sans nommer l'entité juridique mérite vérification avant la commande, pas après.",
+            ],
+          },
+          {
+            type: "h2",
+            text: "Une lecture par marché",
+          },
+          {
+            type: "list",
+            items: [
+              "Union européenne : MDR art. 10, 11 et 13.",
+              "Suisse : ODim art. 51 et les pages swissdamed de Swissmedic.",
+              "Royaume-Uni : MHRA, « Regulating medical devices in the UK » (en anglais).",
+              "Autres marchés : la liste de contrôle d'importation de l'autorité concernée, dès qu'une commande est concrète.",
+            ],
+          },
+          {
+            type: "h2",
+            text: "La page imprimée",
+          },
+          {
+            type: "p",
+            text: "Le même tableau existe en briefing A4 paysage d'une page, qui s'annexe proprement aux e-mails et aux offres :",
+          },
+          {
+            type: "links",
+            items: [
+              { label: "Accès aux marchés en un coup d'œil (PDF, français)", href: "/files/market-access-one-pager-fr.pdf" },
+              { label: "Market access at a glance (PDF, anglais)", href: "/files/market-access-one-pager.pdf" },
+              { label: "Marktzugang auf einen Blick (PDF, allemand)", href: "/files/market-access-one-pager-de.pdf" },
             ],
           },
         ],
