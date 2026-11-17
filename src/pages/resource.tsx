@@ -158,16 +158,45 @@ function BlockView({ block }: { block: Block }) {
     );
   }
 
+  if (block.type === "links") {
+    return (
+      <ul className="mt-5 space-y-3">
+        {block.items.map((it) => (
+          <li key={it.href} className="text-[15.5px] md:text-[16px] leading-[1.6]">
+            <a
+              href={it.href}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 font-medium text-[#0A5B51] underline decoration-[#C9A96A]/70 decoration-1 underline-offset-[5px] hover:text-primary transition-colors"
+            >
+              {it.label}
+              <ArrowUpRight size={13} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  // A five-market comparison has six columns; inside a 44rem article column
+  // that needs its own scroll width rather than the default 34rem.
+  const wide = block.head.length >= 5;
+
   return (
     <div className="mt-7 w-full min-w-0 overflow-x-auto">
-      <table className="w-full min-w-[34rem] border-collapse text-left">
+      <table
+        className="w-full border-collapse text-left"
+        style={{ minWidth: wide ? "58rem" : "34rem" }}
+      >
         <thead>
           <tr>
             {block.head.map((h) => (
               <th
                 key={h}
                 scope="col"
-                className="meta-label border-b border-[#0A5B51]/25 pb-2.5 pr-4 align-bottom"
+                className={`meta-label border-b border-[#0A5B51]/25 pb-2.5 align-bottom ${
+                  wide ? "pr-3" : "pr-4"
+                }`}
               >
                 {h}
               </th>
@@ -180,7 +209,9 @@ function BlockView({ block }: { block: Block }) {
               {row.map((cell, j) => (
                 <td
                   key={j}
-                  className={`py-3.5 pr-4 align-top text-[14.5px] leading-[1.6] ${
+                  className={`align-top py-3.5 ${
+                    wide ? "pr-3 text-[13px] leading-[1.5]" : "pr-4 text-[14.5px] leading-[1.6]"
+                  } ${
                     j === 0 ? "font-medium text-foreground" : "text-foreground/80"
                   }`}
                 >
@@ -293,7 +324,13 @@ export default function ResourcePage() {
       </header>
 
       <div className="container-custom py-12 md:py-16">
-        <div className="mx-auto max-w-[64rem] grid grid-cols-1 lg:grid-cols-[15rem_minmax(0,1fr)] gap-10 lg:gap-16">
+        <div
+          className={`mx-auto grid grid-cols-1 gap-10 lg:gap-16 ${
+            article.wide
+              ? "max-w-[78rem] lg:grid-cols-[13rem_minmax(0,1fr)]"
+              : "max-w-[64rem] lg:grid-cols-[15rem_minmax(0,1fr)]"
+          }`}
+        >
           {/* Left rail: contents + the four lines a reader should leave with.
               Sticky only from lg, where there is room for it to hold still. */}
           <aside className="lg:sticky lg:top-28 lg:self-start order-2 lg:order-1">
@@ -327,9 +364,11 @@ export default function ResourcePage() {
             </div>
           </aside>
 
-          <article className="order-1 lg:order-2 min-w-0 max-w-[44rem]">
+          <article className={`order-1 lg:order-2 min-w-0 ${article.wide ? "max-w-[62rem]" : "max-w-[44rem]"}`}>
             {text.blocks.map((b, i) => (
-              <BlockView key={i} block={b} />
+              <div key={i} className={article.wide && b.type !== "table" && b.type !== "links" ? "max-w-[46rem]" : undefined}>
+                <BlockView block={b} />
+              </div>
             ))}
 
             <div className="mt-14 border-t border-[#0A5B51]/20 pt-7">

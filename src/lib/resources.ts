@@ -16,7 +16,10 @@ export type Block =
       type: "table";
       head: string[];
       rows: string[][];
-    };
+    }
+  /** Downloadable assets that belong to the note itself — the printed
+   *  one-pagers travel with the web version. */
+  | { type: "links"; items: { label: string; href: string }[] };
 
 /** Languages a note has been written in. English is the source text and is
  *  never listed here — it is the fallback, not a translation. Italian is used
@@ -44,6 +47,9 @@ export interface Article {
   /** Shown in the right-hand rail of the article page */
   keyPoints: string[];
   blocks: Block[];
+  /** Overview notes carry a wide comparison table that cannot be read inside
+   *  the usual 44rem column; those open with a wider page grid. */
+  wide?: boolean;
   /** Written translations. Anything missing falls back to the English text. */
   translations?: Partial<Record<ArticleLang, ArticleTranslation>>;
 }
@@ -1056,6 +1062,267 @@ export const articles: Article[] = [
         text: "Where a market matters commercially, the workable arrangement is a local partner who holds the registration and an agreed split of the file. That arrangement is worth setting up before the first order rather than after the container has sailed — and it is the reason we quote market by market instead of quoting “worldwide”.",
       },
     ],
+  },
+  {
+    slug: "market-access-at-a-glance",
+    no: "09",
+    title: "Market access at a glance: one file, five situations",
+    dek: "A CE certificate is only ever an answer to one market's question. This page lays the five situations our buyers ship into side by side — what each market accepts, who must be established there, what has to be registered, and what the certificate is actually worth.",
+    date: "2026-11-17",
+    minutes: 6,
+    tag: "Overview",
+    wide: true,
+    keyPoints: [
+      "The EU file is the baseline. Every other market is the baseline plus — or minus — one local role.",
+      "Northern Ireland follows EU rules, not Great Britain's: CE only, UKCA not accepted.",
+      "In Great Britain a CE certificate now carries over; what remains is administrative.",
+      "Outside Europe, CE is evidence for the file — never the whole file.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "A certificate is only ever an answer to one market's question. Buyers who ship into several markets at once end up maintaining several versions of the same file, and the differences between them are where consignments get stuck. This page lays the five situations side by side. It mirrors the one-page briefing we send with quotations; the printed versions are linked at the end.",
+      },
+      {
+        type: "table",
+        head: ["", "European Union (27 + EEA)", "Switzerland", "Great Britain (GB)", "Northern Ireland (NI)", "Other markets"],
+        rows: [
+          [
+            "What the market accepts",
+            "CE under the EU MDR or IVDR. Sterile and measuring Class I devices need a notified body.",
+            "CE is recognised. A Swiss representative is required until the updated MRA applies — 2028 at the earliest.",
+            "CE (MDR/IVDR) recognised indefinitely since 21 October 2026. UKCA is optional.",
+            "EU rules continue: CE only. UKCA is not accepted; UKNI is added where a UK body assesses.",
+            "National approval. CE is not permission outside Europe.",
+          ],
+          [
+            "Someone established there",
+            "EU authorised representative (Art. 11) and a named importer (Art. 13).",
+            "Swiss representative (MepV Art. 51). The importer may hold both roles, labelled separately.",
+            "UK Responsible Person — one named entity for the whole portfolio.",
+            "Representative established in the EU or in Northern Ireland.",
+            "Local registration holder or authorised representative.",
+          ],
+          [
+            "Registration before sale",
+            "EUDAMED: economic operators and devices, phased in by class.",
+            "swissdamed, mandatory since 1 July 2026 (transition ends 31 December 2026). CHF 200 for the first UDI-DI.",
+            "MHRA registration before the device is placed on the market.",
+            "EUDAMED (since 28 May 2026) instead of the MHRA system.",
+            "National registration before import: FDA, Health Canada, TGA, SFDA, ANVISA, PMDA.",
+          ],
+          [
+            "Label languages",
+            "Official language(s) of the destination country.",
+            "German, French or Italian, by sales region.",
+            "English.",
+            "English, under EU labelling rules.",
+            "Local language requirements, market by market.",
+          ],
+          [
+            "Your CE certificate",
+            "The full admission ticket.",
+            "Carries over, plus a representative and a registration.",
+            "Carries over; what remains is administrative.",
+            "The same as the EU — an NI buyer is, for compliance, an EU buyer.",
+            "Evidence for the file. Never the whole file.",
+          ],
+        ],
+      },
+      {
+        type: "h2",
+        text: "How to read the table",
+      },
+      {
+        type: "p",
+        text: "The EU column is the baseline. Switzerland is the baseline plus one local role plus one registration. Great Britain is the baseline with a lighter paperwork stack on top — since October 2026, a CE certificate accepted indefinitely and a registration with the MHRA. Northern Ireland is not a variant of Great Britain at all: for compliance it is the EU, and the label logic follows. Everything in the last column is a different regime, in which CE is supporting evidence at best.",
+      },
+      {
+        type: "p",
+        text: "Two dates are worth keeping in one's head: 31 December 2026, when the swissdamed transition ends in Switzerland, and 30 June 2028, when certificates issued under the old MDD directives stop being accepted in Great Britain.",
+      },
+      {
+        type: "h2",
+        text: "What we do",
+      },
+      {
+        type: "list",
+        items: [
+          "State which documents the manufacturing plant holds, in which scope, and until when.",
+          "Prepare the label artwork and the registration data — UDI-DI, basic UDI-DI, and the languages each market needs.",
+          "Keep the certificate, the DoC and the label aligned when a device or a factory changes.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "What stays with you",
+      },
+      {
+        type: "list",
+        items: [
+          "Appointing representatives, registering devices, holding import licences, signing as importer of record.",
+          "A trading company cannot do any of these in your name.",
+          "Any supplier who offers to “handle registration” without naming the legal entity is worth checking before the order, not after it.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "One source per market",
+      },
+      {
+        type: "list",
+        items: [
+          "European Union: MDR Articles 10, 11 and 13.",
+          "Switzerland: MepV Article 51, and Swissmedic's swissdamed pages.",
+          "United Kingdom: MHRA, “Regulating medical devices in the UK”.",
+          "Other markets: the authority's own import checklist, per country, when an order is real.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The printed page",
+      },
+      {
+        type: "p",
+        text: "The same table is issued as a one-page A4 landscape briefing that attaches cleanly to emails and quotations:",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Market access at a glance (PDF, English)", href: "/files/market-access-one-pager.pdf" },
+          { label: "Marktzugang auf einen Blick (PDF, Deutsch)", href: "/files/market-access-one-pager-de.pdf" },
+        ],
+      },
+    ],
+    translations: {
+      de: {
+        title: "Marktzugang auf einen Blick: eine Akte, fünf Situationen",
+        dek: "Ein CE-Zertifikat ist immer nur die Antwort auf die Frage eines Marktes. Diese Seite stellt die fünf Situationen nebeneinander, in die unsere Käufer liefern — und sagt klar, wer was halten muss.",
+        minutes: 6,
+        keyPoints: [
+          "Die EU-Akte ist die Basis. Jeder andere Markt ist die Basis plus — oder minus — eine lokale Rolle.",
+          "Nordirland folgt den EU-Regeln, nicht denen Grossbritanniens: nur CE, UKCA wird nicht akzeptiert.",
+          "In Grossbritannien gilt ein CE-Zertifikat weiterhin; übrig bleibt Verwaltung.",
+          "Außerhalb Europas ist CE ein Nachweis für die Akte — nie die ganze Akte.",
+        ],
+        blocks: [
+          {
+            type: "p",
+            text: "Ein Zertifikat ist immer nur die Antwort auf die Frage eines Marktes. Wer in mehrere Märkte gleichzeitig liefert, pflegt mehrere Versionen derselben Akte — und in den Unterschieden zwischen ihnen bleiben Sendungen hängen. Diese Seite stellt die fünf Situationen nebeneinander. Sie entspricht der einseitigen Kurzinfo, die wir mit Angeboten senden; die gedruckten Fassungen sind am Ende verlinkt.",
+          },
+          {
+            type: "table",
+            head: ["", "Europäische Union (27 + EWR)", "Schweiz", "Grossbritannien (GB)", "Nordirland (NI)", "Andere Märkte"],
+            rows: [
+              [
+                "Was der Markt akzeptiert",
+                "CE nach der EU-MDR oder IVDR. Sterile und messtechnische Klasse-I-Produkte benötigen eine Benannte Stelle.",
+                "CE wird anerkannt. Ein Bevollmächtigter in der Schweiz bleibt erforderlich, bis das revidierte MRA anwendbar ist — frühestens 2028.",
+                "CE (MDR/IVDR) unbefristet anerkannt seit 21. Oktober 2026. UKCA ist optional.",
+                "EU-Regeln gelten weiter: nur CE. UKCA wird nicht akzeptiert; UKNI kommt hinzu, wo eine britische Stelle bewertet.",
+                "Nationale Zulassung. CE ist außerhalb Europas keine Verkehrszulassung.",
+              ],
+              [
+                "Ansässige Person vor Ort",
+                "EU-Bevollmächtigter (Art. 11) und ein namentlich genannter Importeur (Art. 13).",
+                "Schweizer Bevollmächtigter (MepV Art. 51). Der Importeur kann beide Rollen innehaben, getrennt gekennzeichnet.",
+                "UK Responsible Person — eine namentlich genannte Einheit für das gesamte Portfolio.",
+                "Bevollmächtigter mit Sitz in der EU oder in Nordirland.",
+                "Lokaler Registrierungsinhaber oder Bevollmächtigter.",
+              ],
+              [
+                "Registrierung vor dem Verkauf",
+                "EUDAMED: Wirtschaftsbeteiligte und Produkte, klassenweise eingeführt.",
+                "swissdamed, verpflichtend seit 1. Juli 2026 (Übergangsfrist endet am 31. Dezember 2026). CHF 200 für die erste UDI-DI.",
+                "MHRA-Registrierung, bevor das Produkt in Verkehr gebracht wird.",
+                "EUDAMED (seit 28. Mai 2026) statt des MHRA-Systems.",
+                "Nationale Registrierung vor der Einfuhr: FDA, Health Canada, TGA, SFDA, ANVISA, PMDA.",
+              ],
+              [
+                "Etikettensprachen",
+                "Amtssprache(n) des Bestimmungslandes.",
+                "Deutsch, Französisch oder Italienisch, je nach Verkaufsregion.",
+                "Englisch.",
+                "Englisch, nach den EU-Kennzeichnungsregeln.",
+                "Lokale Sprachanforderungen, Markt für Markt.",
+              ],
+              [
+                "Ihr CE-Zertifikat",
+                "Das vollständige Einlassticket.",
+                "Gilt weiter — zusätzlich ein Bevollmächtigter und eine Registrierung.",
+                "Gilt weiter; übrig bleibt Verwaltung.",
+                "Wie in der EU — ein NI-Käufer ist, compliance-mässig, ein EU-Käufer.",
+                "Nachweis für die Akte. Nie die ganze Akte.",
+              ],
+            ],
+          },
+          {
+            type: "h2",
+            text: "Wie man die Tabelle liest",
+          },
+          {
+            type: "p",
+            text: "Die EU-Spalte ist die Basis. Die Schweiz ist die Basis plus eine lokale Rolle plus eine Registrierung. Grossbritannien ist die Basis mit einem leichteren Papierstapel — seit Oktober 2026 ein unbefristet anerkanntes CE-Zertifikat und eine Registrierung bei der MHRA. Nordirland ist keine Variante Grossbritanniens: compliance-mässig ist es die EU, und die Etikettenlogik folgt. Die letzte Spalte ist ein eigenes Regime, in dem CE höchstens als Nachweis zählt.",
+          },
+          {
+            type: "p",
+            text: "Zwei Daten sollte man im Kopf behalten: der 31. Dezember 2026, wenn die Übergangsfrist von swissdamed in der Schweiz endet, und der 30. Juni 2028, wenn nach den alten MDD-Richtlinien ausgestellte Zertifikate in Grossbritannien nicht mehr akzeptiert werden.",
+          },
+          {
+            type: "h2",
+            text: "Was wir tun",
+          },
+          {
+            type: "list",
+            items: [
+              "Ausweisen, welche Dokumente das Fertigungswerk hält — Geltungsbereich und Laufzeit.",
+              "Etikettenartwork und Registrierungsdaten vorbereiten: UDI-DI, Basic UDI-DI, die Sprachen des jeweiligen Marktes.",
+              "Zertifikat, Konformitätserklärung und Etikett im Einklang halten, wenn Produkt oder Werk wechseln.",
+            ],
+          },
+          {
+            type: "h2",
+            text: "Was bei Ihnen bleibt",
+          },
+          {
+            type: "list",
+            items: [
+              "Bevollmächtigte benennen, Produkte registrieren, Einfuhrgenehmigungen halten, als Importeur des Geschäftsverlaufs unterschreiben.",
+              "Kein Handelsunternehmen kann dies in Ihrem Namen tun.",
+              "Wer „Registrierung übernehmen“ anbietet, ohne die juristische Einheit zu nennen, verdient eine Prüfung vor der Bestellung — nicht danach.",
+            ],
+          },
+          {
+            type: "h2",
+            text: "Je eine Quelle pro Markt",
+          },
+          {
+            type: "list",
+            items: [
+              "Europäische Union: MDR Art. 10, 11 und 13.",
+              "Schweiz: MepV Art. 51 und die swissdamed-Seiten von Swissmedic.",
+              "Grossbritannien: MHRA, „Regulating medical devices in the UK“ (englisch).",
+              "Andere Märkte: die Einfuhr-Checkliste der jeweiligen Behörde, sobald ein Auftrag konkret ist.",
+            ],
+          },
+          {
+            type: "h2",
+            text: "Die gedruckte Seite",
+          },
+          {
+            type: "p",
+            text: "Dieselbe Tabelle erscheint als einseitige A4-Kurzinfo im Querformat, die sich sauber an E-Mails und Angebote anhängen lässt:",
+          },
+          {
+            type: "links",
+            items: [
+              { label: "Marktzugang auf einen Blick (PDF, Deutsch)", href: "/files/market-access-one-pager-de.pdf" },
+              { label: "Market access at a glance (PDF, Englisch)", href: "/files/market-access-one-pager.pdf" },
+            ],
+          },
+        ],
+      },
+    },
   },
 ];
 
