@@ -11,7 +11,7 @@ import { articles, articleText, availableLangs, formatDate } from "@/lib/resourc
  * else falls back to English, which is the language of the notes.
  */
 const INDEX: Record<
-  "en" | "de" | "fr",
+  "en" | "de" | "fr" | "it",
   {
     eyebrow: string;
     title: string;
@@ -52,6 +52,16 @@ const INDEX: Record<
     ctaAsk: "Poser une question sur un dispositif",
     ctaBrowse: "Voir le catalogue",
   },
+  it: {
+    eyebrow: "Note di conformità",
+    title: "I documenti dietro il prodotto",
+    lead: "Note brevi sui documenti che decidono se una spedizione può entrare in Svizzera, nell'UE o nel Regno Unito — scritte per gli acquirenti che devono presentarli, difenderli e conviverci.",
+    ctaTitle: "Cercate questi documenti per un dispositivo preciso?",
+    ctaBody:
+      "Indicateci il prodotto e il mercato. Vi diremo quali documenti lo stabilimento già detiene e quali vanno richiesti o riemessi.",
+    ctaAsk: "Chiedere informazioni su un dispositivo",
+    ctaBrowse: "Sfogliare il catalogo",
+  },
 };
 
 /**
@@ -63,7 +73,7 @@ const INDEX: Record<
  */
 export default function ResourcesPage() {
   const { t, lang } = useLanguage();
-  const copy = INDEX[lang === "de" || lang === "fr" ? lang : "en"];
+  const copy = INDEX[lang === "de" || lang === "fr" || lang === "it" ? lang : "en"];
 
   return (
     <div className="min-h-screen bg-white">

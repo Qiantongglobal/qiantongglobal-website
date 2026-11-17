@@ -58,15 +58,30 @@ const CHROME = {
     allNotes: "Toutes les notes de conformité",
     langLabel: "Également publié en",
   },
+  it: {
+    all: "Tutte le note",
+    onPage: "In questa pagina",
+    inShort: "In sintesi",
+    minRead: "min di lettura",
+    disclaimer:
+      "Questa nota descrive le regole così come sono scritte e non costituisce un parere legale. Per un dispositivo preciso, a decidere sono i documenti e il rappresentante designato.",
+    ask: "Chiedere informazioni su un dispositivo",
+    browse: "Sfogliare il catalogo",
+    prev: "Nota precedente",
+    next: "Nota successiva",
+    allNotes: "Tutte le note di conformità",
+    langLabel: "Pubblicato anche in",
+  },
 } as const;
 
 /** Language names follow the page language, not the reader's UI language:
  *  a German page that offers "Français" instead of "Französisch" reads like a
  *  machine-assembled menu. */
 const LANG_NAME: Record<ResolvedLang, Record<ResolvedLang, string>> = {
-  en: { en: "English", de: "Deutsch", fr: "Français" },
-  de: { en: "Englisch", de: "Deutsch", fr: "Französisch" },
-  fr: { en: "anglais", de: "allemand", fr: "français" },
+  en: { en: "English", de: "Deutsch", fr: "Français", it: "Italiano" },
+  de: { en: "Englisch", de: "Deutsch", fr: "Französisch", it: "Italienisch" },
+  fr: { en: "anglais", de: "allemand", fr: "français", it: "italien" },
+  it: { en: "inglese", de: "tedesco", fr: "francese", it: "italiano" },
 };
 
 function slugify(s: string): string {

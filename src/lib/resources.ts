@@ -19,8 +19,9 @@ export type Block =
     };
 
 /** Languages a note has been written in. English is the source text and is
- *  never listed here — it is the fallback, not a translation. */
-export type ArticleLang = "de" | "fr";
+ *  never listed here — it is the fallback, not a translation. Italian is used
+ *  for the Switzerland notes (Ticino) and for Italian buyers. */
+export type ArticleLang = "de" | "fr" | "it";
 
 export interface ArticleTranslation {
   title: string;
@@ -66,7 +67,7 @@ export interface ArticleText {
  * copy silently — the caller gets `lang` back and can show the language line.
  */
 export function articleText(article: Article, lang: string): ArticleText {
-  const wanted = (lang === "de" || lang === "fr" ? lang : null) as ArticleLang | null;
+  const wanted = (["de", "fr", "it"].includes(lang) ? (lang as ArticleLang) : null);
   const t = wanted ? article.translations?.[wanted] : undefined;
   if (t) {
     return {
@@ -275,6 +276,62 @@ const DOC_DE: ArticleTranslation = {
   ],
 };
 
+const CH_REP_IT: ArticleTranslation = {
+  title: "Chi può fare da vostro rappresentante svizzero (CH-REP), e a cosa il ruolo vi impegna",
+  dek: "Ogni dispositivo che entra in Svizzera dall'esterno richiede un rappresentante autorizzato stabilito in Svizzera. Il ruolo è più ristretto di quello di un distributore e più ampio di un indirizzo postale.",
+  tag: "Svizzera",
+  keyPoints: [
+    "Il rappresentante deve essere stabilito in Svizzera e registrato presso Swissmedic.",
+    "Nome e indirizzo figurano sull'etichetta: nominarlo è quindi una decisione di etichettatura.",
+    "Un importatore stabilito in Svizzera può assumere entrambi i ruoli, indicati separatamente.",
+    "Il rappresentante UE e quello svizzero sono due nomine distinte.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "Il rappresentante autorizzato svizzero — di norma indicato come CH-REP — è l'operatore economico stabilito in Svizzera che un fabbricante con sede all'esterno nomina per agire in suo nome. Senza di lui, un dispositivo non può essere messo sul mercato svizzero. Il rappresentante deve essere stabilito in Svizzera, registrato presso Swissmedic e indicato sull'etichetta o nelle istruzioni per l'uso.",
+    },
+    {
+      type: "p",
+      text: "Il ruolo esiste perché l'autorità ha bisogno di una controparte nel proprio spazio giuridico, che possa essere contattata, che possa produrre la documentazione tecnica e che risponda del dispositivo. Questo è l'intero scopo del ruolo, ed è il criterio da applicare quando si valuta un candidato.",
+    },
+    { type: "h2", text: "Ciò che il ruolo non è" },
+    {
+      type: "list",
+      items: [
+        "Non un indirizzo di postaresto. Ci si attende che il rappresentante risponda in sostanza alle domande sul dispositivo, non che smisti lettere.",
+        "Non l'importatore, anche se una stessa azienda può ricoprire entrambi i ruoli. In tal caso le due qualità vanno indicate separatamente sull'etichetta.",
+        "Non il rappresentante UE. Le nomine per l'UE e per la Svizzera sono distinte, disciplinate da regole distinte, e l'una non vale per l'altra.",
+      ],
+    },
+    { type: "h2", text: "L'importatore può essere il rappresentante di se stesso" },
+    {
+      type: "p",
+      text: "Sì — a condizione che l'importatore sia stabilito in Svizzera. In quel caso l'etichetta riporta la stessa azienda due volte, una per ciascuna qualità, con i ruoli indicati separatamente. È prassi comune tra i distributori svizzeri che importano, e elimina un livello di corrispondenza tra due aziende che altrimenti dovrebbero tenersi aggiornate a vicenda.",
+    },
+    { type: "h2", text: "Cinque punti da verificare prima della nomina" },
+    {
+      type: "list",
+      items: [
+        "Registrazione. Fatevi mostrare la registrazione presso Swissmedic e verificate che le famiglie di dispositivi che fornite rientrino nell'ambito coperto.",
+        "Portafoglio. Un rappresentante che già tratta dispositivi del vostro tipo può in genere risponderne; uno che non ne tratta alcuno, di regola, no.",
+        "Chi firma. Chiedete la persona designata dietro la nomina: in pratica è a lei che l'autorità del vostro cliente si rivolgerà.",
+        "Accesso ai documenti. Confermate che la documentazione tecnica completa — per i dispositivi sterili, compresa la documentazione di sterilizzazione — possa essere prodotta entro una settimana lavorativa.",
+        "Recesso. Chiedete cosa accade quando la nomina termina. Il nome figura sull'etichetta: la risoluzione significa quindi re-etichettatura, non una semplice lettera.",
+      ],
+    },
+    {
+      type: "note",
+      text: "Regola pratica: il nome e l'indirizzo sull'etichetta, il nome nella registrazione Swissmedic e il nome nella lettera di nomina devono appartenere alla stessa persona giuridica, scritti allo stesso modo. Una discrepanza è la prima cosa che un ispettore va a cercare.",
+    },
+    { type: "h2", text: "Dove ci collochiamo noi" },
+    {
+      type: "p",
+      text: "Siamo un partner della filiera, non un rappresentante autorizzato. Prepariamo le grafiche e i testi delle etichette, raccogliamo i documenti che il rappresentante dovrà avere e teniamo allineate le versioni quando cambia un dispositivo o uno stabilimento. La nomina stessa avviene tra voi e l'azienda svizzera: non agiamo come rappresentanti e non ne nominiamo alcuno in vostro nome.",
+    },
+  ],
+};
+
 const SWISSDAMED_DE: ArticleTranslation = {
   title: "Die Registrierung in swissdamed ist jetzt Pflicht — was sich für Hersteller im Ausland ändert",
   dek: "Seit dem 1. Juli 2026 registriert die Schweiz Geräte selbst, statt Meldungen entgegenzunehmen. Die Übergangsfrist endet am 31. Dezember 2026, und die Gebühr fällt pro UDI-DI an, nicht pro Lieferung.",
@@ -415,6 +472,76 @@ const SWISSDAMED_FR: ArticleTranslation = {
   ],
 };
 
+const SWISSDAMED_IT: ArticleTranslation = {
+  title: "La registrazione in swissdamed è ormai obbligatoria — cosa cambia per un fabbricante extra-Svizzera",
+  dek: "Dal 1° luglio 2026 la Svizzera registra essa stessa i dispositivi invece di ricevere notifiche. La transizione termina il 31 dicembre 2026 e l'émolumento si paga per UDI-DI, non per spedizione.",
+  tag: "Svizzera",
+  keyPoints: [
+    "Dal 1° luglio 2026 i dispositivi, i sistemi e le procedure pack devono essere registrati in swissdamed prima della messa sul mercato.",
+    "La registrazione è fatta dal fabbricante o dal suo rappresentante; un distributore non può farla in proprio nome.",
+    "Per i dispositivi già sul mercato la transizione corre fino al 31 dicembre 2026.",
+    "200 CHF per il primo UDI-DI, 20 CHF per ognuno degli altri, con un tetto per anno civile.",
+  ],
+  blocks: [
+    {
+      type: "p",
+      text: "La Svizzera funzionava a notifiche: un modulo per certi gruppi di dispositivi, presentato quando qualcosa cambiava. Dal 1° luglio 2026 funziona a registro. swissdamed — la controparte svizzera di EUDAMED — subentra: i dispositivi, i sistemi e le procedure pack si registrano nel modulo UDI Devices prima della messa sul mercato.",
+    },
+    {
+      type: "p",
+      text: "La differenza è più grande di quanto sembri. Una notifica era una lettera; una registrazione è una scheda che deve corrispondere all'etichetta, al certificato e all'UDI. E una discrepanza che prima restava invisibile è oggi una voce che chiunque può interrogare.",
+    },
+    { type: "h2", text: "Chi la effettua" },
+    {
+      type: "p",
+      text: "La registrazione è un atto del fabbricante, espletato attraverso il suo rappresentante svizzero. Un importatore non può registrare un dispositivo in proprio nome, né un distributore può farlo per conto di un fabbricante. Se un cliente svizzero dichiara che il dispositivo è «già registrato», la domanda giusta è: da chi.",
+    },
+    {
+      type: "table",
+      head: ["Operatore", "Cosa può fare in swissdamed"],
+      rows: [
+        ["Fabbricante estero, tramite il CH-REP", "Registra il dispositivo e tiene la scheda aggiornata"],
+        ["Rappresentante in Svizzera", "Registra per conto del fabbricante; cura anche i dati degli operatori economici"],
+        ["Importatore in Svizzera", "Collega se stesso a un dispositivo già registrato; non crea la scheda del dispositivo"],
+        ["Distributore", "Nessuna scheda di dispositivo in proprio nome"],
+      ],
+    },
+    { type: "h2", text: "Ciò che il calendario dice davvero" },
+    {
+      type: "list",
+      items: [
+        "1° luglio 2026 — la registrazione diventa obbligatoria per dispositivi, sistemi e procedure pack le cui unità di vendita sono messe sul mercato dopo tale data.",
+        "31 dicembre 2026 — fine della transizione per i dispositivi già sul mercato prima di luglio.",
+        "Nessuna transizione per i dispositivi oggetto di un evento grave, di un'azione correttiva di sicurezza o di un rapporto di tendenza: questi si registrano immediatamente.",
+        "Le notifiche sopravvivono in pochi casi — dispositivi su misura, dispositivi riprocessati o rietichettati e dispositivi fabbricati e utilizzati all'interno di una struttura sanitaria.",
+      ],
+    },
+    { type: "h2", text: "Quanto costa" },
+    {
+      type: "p",
+      text: "200 CHF per il primo UDI-DI e 20 CHF per ogni UDI-DI successivo con lo status «sul mercato», con un tetto di 10.000 CHF per anno civile. Le prime fatture partono da gennaio 2027. Per un fornitore con un catalogo ampio il numero che conta è il tetto; per un acquirente con una sola famiglia di dispositivi, i 200 franchi.",
+    },
+    { type: "h2", text: "La parte che nessuno ha messo a preventivo: il 2028" },
+    {
+      type: "p",
+      text: "Il 2 marzo 2026 l'UE e la Svizzera hanno firmato un pacchetto che comprende un protocollo che modifica l'accordo di mutuo riconoscimento. Se ratificato, la certificazione CE tornerebbe riconosciuta su entrambi i lati — e, questo è il punto, l'obbligo del CH-REP dovrebbe cadere con la modifica corrispondente dell'ODim. L'entrata in vigore non è attesa prima del 2028, e fino ad allora nulla cambia.",
+    },
+    {
+      type: "p",
+      text: "Di qui una situazione commerciale singolare: il ruolo oggi è obbligatorio e probabilmente temporaneo. Nominare un rappresentante adesso è anche una decisione sulla durata del contratto. Una nomina esclusiva di cinque anni firmata nel 2026 può sopravvivere all'obbligo che l'ha giustificata.",
+    },
+    {
+      type: "note",
+      text: "Fino alla ratifica, l'art. 51 ODim si applica senza riserve: ogni dispositivo proveniente dall'esterno richiede un rappresentante in Svizzera, qualunque sia la sua classe — compresi i dispositivi ancora commercializzati sulla base di certificati più datati.",
+    },
+    { type: "h2", text: "Dove ci collochiamo noi" },
+    {
+      type: "p",
+      text: "Prepariamo i dati per la registrazione — l'UDI-DI, il Basic UDI-DI e la grafica dell'etichetta che deve corrispondervi — e teniamo aggiornati certificato e dichiarazione di conformità dello stabilimento nel fascicolo che consegniamo. La registrazione la effettua il fabbricante o il suo rappresentante: noi non deteniamo alcun conto e non registriamo dispositivi in nome di altri.",
+    },
+  ],
+};
+
 export const articles: Article[] = [
   {
     slug: "ch-rep-switzerland",
@@ -474,7 +601,7 @@ export const articles: Article[] = [
         text: "We are a supply chain partner, not a regulatory representative. We prepare the artwork and the label wording, assemble the documents the representative will need, and keep the versions aligned when a device or a factory changes. The appointment itself is between you and the Swiss entity: we do not act as a representative and we do not appoint one on your behalf.",
       },
     ],
-    translations: { de: CH_REP_DE, fr: CH_REP_FR },
+    translations: { de: CH_REP_DE, fr: CH_REP_FR, it: CH_REP_IT },
   },
   {
     slug: "class-i-sterile-notified-body",
@@ -863,7 +990,7 @@ export const articles: Article[] = [
         text: "We prepare the registration data — the UDI-DI, the basic UDI-DI, and the label artwork that has to match them — and we keep the factory's certificate and DoC current in the pack we hand over. The registration itself is made by the manufacturer or its representative: we hold no account, and we do not register devices in anyone's name.",
       },
     ],
-    translations: { de: SWISSDAMED_DE, fr: SWISSDAMED_FR },
+    translations: { de: SWISSDAMED_DE, fr: SWISSDAMED_FR, it: SWISSDAMED_IT },
   },
   {
     slug: "ce-is-not-a-global-passport",
