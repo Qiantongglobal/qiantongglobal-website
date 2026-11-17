@@ -1184,7 +1184,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "The same table is issued as a one-page A4 landscape briefing that attaches cleanly to emails and quotations:",
+        text: "The same table is also available as a single-page A4 landscape PDF, ready to attach to an email or enclose with a quotation:",
       },
       {
         type: "links",
@@ -1313,7 +1313,7 @@ export const articles: Article[] = [
           },
           {
             type: "p",
-            text: "Dieselbe Tabelle erscheint als einseitige A4-Kurzinfo im Querformat, die sich sauber an E-Mails und Angebote anhängen lässt:",
+            text: "Dieselbe Tabelle gibt es auch als einseitige A4-Übersicht im Querformat — zum Anhängen an eine E-Mail oder als Beilage zu einem Angebot:",
           },
           {
             type: "links",
@@ -1442,7 +1442,7 @@ export const articles: Article[] = [
           },
           {
             type: "p",
-            text: "Le même tableau existe en briefing A4 paysage d'une page, qui s'annexe proprement aux e-mails et aux offres :",
+            text: "Le même tableau existe aussi en A4 paysage d'une page — à joindre à un e-mail ou à un devis :",
           },
           {
             type: "links",
