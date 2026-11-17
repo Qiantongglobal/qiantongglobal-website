@@ -94,7 +94,7 @@ export function articleText(article: Article, lang: string): ArticleText {
 /** Languages this note exists in, English included. */
 export function availableLangs(article: Article): ResolvedLang[] {
   const out: ResolvedLang[] = ["en"];
-  (["de", "fr"] as ArticleLang[]).forEach((l) => {
+  (["de", "fr", "it"] as ArticleLang[]).forEach((l) => {
     if (article.translations?.[l]) out.push(l);
   });
   return out;
