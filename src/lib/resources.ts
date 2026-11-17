@@ -1081,7 +1081,7 @@ export const articles: Article[] = [
     blocks: [
       {
         type: "p",
-        text: "A certificate is only ever an answer to one market's question. Buyers who ship into several markets at once end up maintaining several versions of the same file, and the differences between them are where consignments get stuck. This page lays the five situations side by side. It mirrors the one-page briefing we send with quotations; the printed versions are linked at the end.",
+        text: "A certificate is only ever an answer to one market's question. Buyers who ship into several markets at once end up maintaining several versions of the same file, and the differences between them are where consignments get stuck. This page lays the five situations side by side so you can work out which one applies to your shipment; the printable versions are linked at the end.",
       },
       {
         type: "table",
@@ -1184,7 +1184,7 @@ export const articles: Article[] = [
       },
       {
         type: "p",
-        text: "The same table is also available as a single-page A4 landscape PDF, ready to attach to an email or enclose with a quotation:",
+        text: "The same table is also available as a single-page A4 landscape PDF — keep it as a reference when you plan a shipment:",
       },
       {
         type: "links",
@@ -1210,7 +1210,7 @@ export const articles: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "Ein Zertifikat ist immer nur die Antwort auf die Frage eines Marktes. Wer in mehrere Märkte gleichzeitig liefert, pflegt mehrere Versionen derselben Akte — und in den Unterschieden zwischen ihnen bleiben Sendungen hängen. Diese Seite stellt die fünf Situationen nebeneinander. Sie entspricht der einseitigen Kurzinfo, die wir mit Angeboten senden; die gedruckten Fassungen sind am Ende verlinkt.",
+            text: "Ein Zertifikat ist immer nur die Antwort auf die Frage eines Marktes. Wer in mehrere Märkte gleichzeitig liefert, pflegt mehrere Versionen derselben Akte — und in den Unterschieden zwischen ihnen bleiben Sendungen hängen. Diese Seite stellt die fünf Situationen nebeneinander, damit Sie herausfinden, welche Situation auf Ihre Lieferung zutrifft; die druckbaren Fassungen sind am Ende verlinkt.",
           },
           {
             type: "table",
@@ -1313,7 +1313,7 @@ export const articles: Article[] = [
           },
           {
             type: "p",
-            text: "Dieselbe Tabelle gibt es auch als einseitige A4-Übersicht im Querformat — zum Anhängen an eine E-Mail oder als Beilage zu einem Angebot:",
+            text: "Dieselbe Tabelle gibt es auch als einseitige A4-Übersicht im Querformat — als Nachschlagewerk für Ihre Lieferplanung:",
           },
           {
             type: "links",
@@ -1339,7 +1339,7 @@ export const articles: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "Un certificat n'est jamais que la réponse à la question d'un marché. Un acheteur qui expédie vers plusieurs marchés finit par entretenir plusieurs versions du même dossier — et c'est dans leurs différences que les expéditions se bloquent. Cette page met les cinq situations côte à côte. Elle reprend le briefing d'une page que nous joignons aux offres ; les versions imprimées sont en lien à la fin.",
+            text: "Un certificat n'est jamais que la réponse à la question d'un marché. Un acheteur qui expédie vers plusieurs marchés finit par entretenir plusieurs versions du même dossier — et c'est dans leurs différences que les expéditions se bloquent. Cette page met les cinq situations côte à côte pour que vous puissiez voir laquelle s'applique à votre envoi ; les versions imprimables sont en lien à la fin.",
           },
           {
             type: "table",
@@ -1442,7 +1442,7 @@ export const articles: Article[] = [
           },
           {
             type: "p",
-            text: "Le même tableau existe aussi en A4 paysage d'une page — à joindre à un e-mail ou à un devis :",
+            text: "Le même tableau existe aussi en A4 paysage d'une page — un repère à garder quand vous préparez un envoi :",
           },
           {
             type: "links",
