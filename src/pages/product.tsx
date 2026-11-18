@@ -37,6 +37,7 @@ export default function ProductPage() {
       category: category.name,
       brand: { "@type": "Brand", name: "Qiantong Global" },
       url: `${SITE_URL}${path}`,
+      ...(sku.image ? { image: `${SITE_URL}${sku.image}` } : {}),
     },
   ];
 
@@ -146,27 +147,33 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Code plate: the catalogue has one image per category, so the
-                product page leads with the code instead of borrowing a photo
-                that would misrepresent a single SKU. */}
+            {/* Product plate: real single-SKU photos from the 2026 catalogue
+                wherever they exist. SKUs without one keep the code plate, so
+                the page never borrows a category photo that would misrepresent
+                a specific product. The plate layout stays identical either way. */}
             <div className="lg:order-1 lg:sticky lg:top-24">
-              <div className="relative bg-[#0B2F2A] rounded-sm overflow-hidden aspect-[4/3] flex flex-col justify-between p-6 md:p-7">
-                <div className="flex items-start justify-between">
-                  <span className="font-mono text-[11px] tracking-[0.16em] text-white/[0.5] uppercase">
-                    {t("product_catalogue")}
-                  </span>
-                  <span className="font-mono text-[11px] tracking-[0.16em] text-white/[0.5]">
-                    {category.no}
-                  </span>
-                </div>
-                <div>
-                  <div className="font-mono text-[1.5rem] md:text-[1.75rem] text-white tracking-[0.04em] tabular-nums">
+              <div className="relative bg-[#F7F9F8] rounded-t-sm overflow-hidden aspect-[4/3] flex items-center justify-center ring-1 ring-inset ring-[#E9E7DF]">
+                {sku.image ? (
+                  <img
+                    src={sku.image}
+                    alt={skuName(sku, lang)}
+                    width={sku.imageW}
+                    height={sku.imageH}
+                    className="w-[86%] h-[86%] object-contain object-center drop-shadow-[0_10px_20px_rgba(11,47,42,0.14)]"
+                  />
+                ) : (
+                  <span className="font-mono text-[1.5rem] md:text-[1.75rem] text-[#0B2F2A]/85 tracking-[0.04em] tabular-nums">
                     {sku.code}
-                  </div>
-                  <div className="mt-2 text-[12.5px] text-white/[0.6] uppercase tracking-[0.12em]">
-                    {t(category.titleKey)}
-                  </div>
-                </div>
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center justify-between gap-4 bg-[#0B2F2A] rounded-b-sm px-5 py-3.5">
+                <span className="font-mono text-[11px] tracking-[0.16em] text-white/[0.5] uppercase">
+                  {t("product_catalogue")}
+                </span>
+                <span className="font-mono text-[11px] tracking-[0.12em] text-white/[0.75] tabular-nums">
+                  {sku.code} · {category.no}
+                </span>
               </div>
               <p className="mt-3 text-[12px] text-muted-foreground leading-[1.6]">
                 {t("product_spec_note")}

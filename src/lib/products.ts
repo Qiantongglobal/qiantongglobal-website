@@ -22,6 +22,17 @@ export interface Sku {
   nameZh: string;
   /** URL slug，由英文品名生成，一经发布不要改动（已索引的地址） */
   slug: string;
+  /**
+   * 单品产品图（public/products/sku/*.webp，透明底）。
+   * 取自《Qiantong Global - Product Catalogue 2026》第 4 页「Selected products」
+   * 的 12 张真实产品特写，按该页 3x4 网格下方印刷的 SKU 编号一一对应；
+   * 不用品类配图冒充单品，也不用生成式图片（医疗器械须展示真实产品）。
+   * 目录未收录单品图的 SKU 留空，详情页回落到编号展示。
+   */
+  image?: string;
+  /** 源图像素尺寸，写进 <img width/height>，避免加载时布局跳动 */
+  imageW?: number;
+  imageH?: number;
   /** 用途与场景，英文两句话以内 */
   application: string;
   /**
@@ -554,6 +565,9 @@ export const categories: Category[] = [
     skus: [
       {
         code: "QG-AN-001",
+        image: "/products/sku/qg-an-001.webp",
+        imageW: 260,
+        imageH: 96,
         name: "Reinforced Endotracheal Tube",
         nameZh: "加强型气管插管",
         slug: "reinforced-endotracheal-tube",
@@ -584,6 +598,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-004",
+        image: "/products/sku/qg-an-004.webp",
+        imageW: 258,
+        imageH: 183,
         name: "Laryngeal Mask Airway (LMA)",
         nameZh: "喉罩气道（LMA）",
         slug: "laryngeal-mask-airway",
@@ -664,6 +681,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-012",
+        image: "/products/sku/qg-an-012.webp",
+        imageW: 262,
+        imageH: 113,
         name: "Breathing Circuit",
         nameZh: "呼吸回路",
         slug: "breathing-circuit",
@@ -718,6 +738,9 @@ export const categories: Category[] = [
     skus: [
       {
         code: "QG-UR-001",
+        image: "/products/sku/qg-ur-001.webp",
+        imageW: 246,
+        imageH: 196,
         name: "Precision Urine Meter",
         nameZh: "精密尿袋计量器",
         slug: "precision-urine-meter",
@@ -728,6 +751,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-002",
+        image: "/products/sku/qg-ur-002.webp",
+        imageW: 259,
+        imageH: 157,
         name: "Foley Catheter Kit",
         nameZh: "导尿包",
         slug: "foley-catheter-kit",
@@ -738,6 +764,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-003",
+        image: "/products/sku/qg-ur-003.webp",
+        imageW: 204,
+        imageH: 234,
         name: "Disposable Urine Bag",
         nameZh: "一次性集尿袋",
         slug: "disposable-urine-bag",
@@ -758,6 +787,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-006",
+        image: "/products/sku/qg-ur-006.webp",
+        imageW: 259,
+        imageH: 183,
         name: "Disposable Underpads",
         nameZh: "一次性护理垫",
         slug: "disposable-underpads",
@@ -792,6 +824,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-002",
+        image: "/products/sku/qg-su-002.webp",
+        imageW: 259,
+        imageH: 167,
         name: "Disposable Surgical Kit",
         nameZh: "一次性手术包",
         slug: "disposable-surgical-kit",
@@ -822,6 +857,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-005",
+        image: "/products/sku/qg-su-005.webp",
+        imageW: 254,
+        imageH: 186,
         name: "Central Venous Catheter Kit",
         nameZh: "中心静脉导管套件",
         slug: "central-venous-catheter-kit",
@@ -832,6 +870,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-006",
+        image: "/products/sku/qg-su-006.webp",
+        imageW: 220,
+        imageH: 221,
         name: "Disposable Pressure Transducer (IBP)",
         nameZh: "一次性压力传感器（IBP）",
         slug: "disposable-pressure-transducer",
@@ -876,6 +917,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RP-003",
+        image: "/products/sku/qg-rp-003.webp",
+        imageW: 261,
+        imageH: 151,
         name: "Nasal Oxygen Tube",
         nameZh: "鼻氧管",
         slug: "nasal-oxygen-tube",
@@ -930,6 +974,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RT-002",
+        image: "/products/sku/qg-rt-002.webp",
+        imageW: 198,
+        imageH: 239,
         name: "Elastomeric Infusion Pump",
         nameZh: "弹性体输液泵",
         slug: "elastomeric-infusion-pump",
