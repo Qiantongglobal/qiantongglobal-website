@@ -24,15 +24,17 @@ export interface Sku {
   slug: string;
   /**
    * 单品产品图（public/products/sku/*.webp，透明底）。
-   * 来源两处，均为真实产品照片，不用品类配图冒充单品，也不用生成式图片
-   * （医疗器械须展示真实产品）：
-   *  1) 《Qiantong Global - Product Catalogue 2026》第 4 页「Selected products」
-   *     12 张，按该页 3x4 网格下方印刷的 SKU 编号一一对应；
+   * 只挂「真实产品实拍照片」：不用 3D 渲染图 / 示意图 / 插画，不用品类配图
+   * 冒充单品，也不用生成式图片（医疗器械须展示真实产品）。
+   * 2026-11-18 自查：自家 2026 目录第 4 页「Selected products」的 12 张里，
+   * 有 7 张实为 3D 渲染示意图，已全部撤下，回落到编号卡，等工厂实拍图。
+   * 当前保留的 8 张来源：
+   *  1) 上述目录第 4 页的 5 张实拍（按该页印刷的 SKU 编号一一对应）；
    *  2) 《Product Catalogue (Updated Ver.)-260121》（驼人）P12 / P16 / P19 的
-   *     3 张，2026-11-18 由用户确认 SKU 对应关系后裁切。TUORen logo 位于
-   *     每页右上角，属页面级元素，产品照片框与之不重叠；再从边缘 flood-fill
-   *     抠成透明底，成品不含任何工厂品牌字样。
-   * 目录未收录单品图的 SKU 留空，详情页回落到编号展示。
+   *     3 张，由用户确认 SKU 对应关系后裁切。TUORen logo 位于每页右上角，
+   *     属页面级元素，产品照片框与之不重叠；再从边缘 flood-fill 抠成透明底，
+   *     成品不含任何工厂品牌字样。
+   * 没有合格实拍的 SKU 一律留空，详情页回落到编号展示。
    */
   image?: string;
   /** 源图像素尺寸，写进 <img width/height>，避免加载时布局跳动 */
@@ -606,9 +608,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-004",
-        image: "/products/sku/qg-an-004.webp",
-        imageW: 258,
-        imageH: 183,
         name: "Laryngeal Mask Airway (LMA)",
         nameZh: "喉罩气道（LMA）",
         slug: "laryngeal-mask-airway",
@@ -765,9 +764,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-002",
-        image: "/products/sku/qg-ur-002.webp",
-        imageW: 259,
-        imageH: 157,
         name: "Foley Catheter Kit",
         nameZh: "导尿包",
         slug: "foley-catheter-kit",
@@ -801,9 +797,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-006",
-        image: "/products/sku/qg-ur-006.webp",
-        imageW: 259,
-        imageH: 183,
         name: "Disposable Underpads",
         nameZh: "一次性护理垫",
         slug: "disposable-underpads",
@@ -838,9 +831,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-002",
-        image: "/products/sku/qg-su-002.webp",
-        imageW: 259,
-        imageH: 167,
         name: "Disposable Surgical Kit",
         nameZh: "一次性手术包",
         slug: "disposable-surgical-kit",
@@ -871,9 +861,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-005",
-        image: "/products/sku/qg-su-005.webp",
-        imageW: 254,
-        imageH: 186,
         name: "Central Venous Catheter Kit",
         nameZh: "中心静脉导管套件",
         slug: "central-venous-catheter-kit",
@@ -931,9 +918,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RP-003",
-        image: "/products/sku/qg-rp-003.webp",
-        imageW: 261,
-        imageH: 151,
         name: "Nasal Oxygen Tube",
         nameZh: "鼻氧管",
         slug: "nasal-oxygen-tube",
@@ -988,9 +972,6 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RT-002",
-        image: "/products/sku/qg-rt-002.webp",
-        imageW: 198,
-        imageH: 239,
         name: "Elastomeric Infusion Pump",
         nameZh: "弹性体输液泵",
         slug: "elastomeric-infusion-pump",
