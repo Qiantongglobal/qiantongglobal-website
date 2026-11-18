@@ -25,7 +25,13 @@ export default function ProductPage() {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
         { "@type": "ListItem", position: 2, name: "Products", item: `${SITE_URL}/products` },
-        { "@type": "ListItem", position: 3, name: skuName(sku, lang), item: `${SITE_URL}${path}` },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: t(category.titleKey),
+          item: `${SITE_URL}/products#${category.id}`,
+        },
+        { "@type": "ListItem", position: 4, name: skuName(sku, lang), item: `${SITE_URL}${path}` },
       ],
     },
     {
@@ -68,8 +74,15 @@ export default function ProductPage() {
               {t("nav_products")}
             </Link>
             <ChevronRight size={12} className="text-[#B4C2BE] hidden sm:block" />
-            <span className="hidden sm:inline">{t(category.titleKey)}</span>
-            <ChevronRight size={12} className="text-[#B4C2BE]" />
+            {/* The category crumb must lead back to its section on /products,
+                not sit there as dead text. ScrollManager honours the hash. */}
+            <Link
+              to={`/products#${category.id}`}
+              className="hidden sm:inline hover:text-foreground transition-colors"
+            >
+              {t(category.titleKey)}
+            </Link>
+            <ChevronRight size={12} className="text-[#B4C2BE] hidden sm:block" />
             <span className="text-foreground">{skuName(sku, lang)}</span>
           </nav>
         </div>

@@ -24,9 +24,14 @@ export interface Sku {
   slug: string;
   /**
    * 单品产品图（public/products/sku/*.webp，透明底）。
-   * 取自《Qiantong Global - Product Catalogue 2026》第 4 页「Selected products」
-   * 的 12 张真实产品特写，按该页 3x4 网格下方印刷的 SKU 编号一一对应；
-   * 不用品类配图冒充单品，也不用生成式图片（医疗器械须展示真实产品）。
+   * 来源两处，均为真实产品照片，不用品类配图冒充单品，也不用生成式图片
+   * （医疗器械须展示真实产品）：
+   *  1) 《Qiantong Global - Product Catalogue 2026》第 4 页「Selected products」
+   *     12 张，按该页 3x4 网格下方印刷的 SKU 编号一一对应；
+   *  2) 《Product Catalogue (Updated Ver.)-260121》（驼人）P12 / P16 / P19 的
+   *     3 张，2026-11-18 由用户确认 SKU 对应关系后裁切。TUORen logo 位于
+   *     每页右上角，属页面级元素，产品照片框与之不重叠；再从边缘 flood-fill
+   *     抠成透明底，成品不含任何工厂品牌字样。
    * 目录未收录单品图的 SKU 留空，详情页回落到编号展示。
    */
   image?: string;
@@ -588,6 +593,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-003",
+        image: "/products/sku/qg-an-003.webp",
+        imageW: 500,
+        imageH: 477,
         name: "Tracheostomy Tube",
         nameZh: "气管切开插管",
         slug: "tracheostomy-tube",
@@ -631,6 +639,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-007",
+        image: "/products/sku/qg-an-007.webp",
+        imageW: 430,
+        imageH: 334,
         name: "Anesthesia Mask",
         nameZh: "麻醉面罩",
         slug: "anesthesia-mask",
@@ -694,6 +705,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-013",
+        image: "/products/sku/qg-an-013.webp",
+        imageW: 309,
+        imageH: 387,
         name: "Heat and Moisture Exchanger (HME)",
         nameZh: "热湿交换器（HME）",
         slug: "heat-and-moisture-exchanger",

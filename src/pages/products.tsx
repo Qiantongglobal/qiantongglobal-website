@@ -67,7 +67,10 @@ export default function ProductsPage() {
           <div className="border-t border-[#E2E8E6]">
             {categories.map((cat, i) => (
               <Reveal key={cat.id} delay={i * 50}>
-                <article className="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-10 py-10 md:py-12 border-b border-[#E2E8E6]">
+                <article
+                  id={cat.id}
+                  className="scroll-mt-28 md:scroll-mt-32 grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[290px_minmax(0,1fr)] gap-6 md:gap-10 py-10 md:py-12 border-b border-[#E2E8E6]"
+                >
                   <div className="relative flex items-center justify-center bg-white rounded-sm overflow-hidden aspect-[16/10] md:aspect-[5/4] ring-1 ring-inset ring-[#E9E7DF]">
                     <img
                       src={cat.image}
