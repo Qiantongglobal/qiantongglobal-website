@@ -650,8 +650,8 @@ export const categories: Category[] = [
       {
         code: "QG-AN-007",
         image: "/products/sku/qg-an-007.webp",
-        imageW: 430,
-        imageH: 334,
+        imageW: 800,
+        imageH: 378,
         name: "Anesthesia Mask",
         nameZh: "麻醉面罩",
         slug: "anesthesia-mask",
