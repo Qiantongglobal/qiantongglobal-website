@@ -740,6 +740,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-014",
+        image: "/products/sku/qg-an-014.webp",
+        imageW: 800,
+        imageH: 551,
         name: "Manual Resuscitator",
         nameZh: "手动复苏器",
         slug: "manual-resuscitator",
