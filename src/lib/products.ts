@@ -728,8 +728,8 @@ export const categories: Category[] = [
       {
         code: "QG-AN-013",
         image: "/products/sku/qg-an-013.webp",
-        imageW: 309,
-        imageH: 387,
+        imageW: 640,
+        imageH: 800,
         name: "Heat and Moisture Exchanger (HME)",
         nameZh: "热湿交换器（HME）",
         slug: "heat-and-moisture-exchanger",
