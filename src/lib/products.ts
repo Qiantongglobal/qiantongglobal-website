@@ -701,6 +701,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-011",
+        image: "/products/sku/qg-an-011.webp",
+        imageW: 333,
+        imageH: 800,
         name: "LOR Syringe",
         nameZh: "LOR 注射器",
         slug: "lor-syringe",
