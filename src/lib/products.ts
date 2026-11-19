@@ -856,6 +856,9 @@ export const categories: Category[] = [
     skus: [
       {
         code: "QG-SU-001",
+        image: "/products/sku/qg-su-001.webp",
+        imageW: 440,
+        imageH: 800,
         name: "Disposable Surgical Gown",
         nameZh: "一次性手术衣",
         slug: "disposable-surgical-gown",
