@@ -781,8 +781,8 @@ export const categories: Category[] = [
       {
         code: "QG-UR-001",
         image: "/products/sku/qg-ur-001.webp",
-        imageW: 246,
-        imageH: 196,
+        imageW: 800,
+        imageH: 635,
         name: "Precision Urine Meter",
         nameZh: "精密尿袋计量器",
         slug: "precision-urine-meter",
