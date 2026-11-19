@@ -688,6 +688,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-010",
+        image: "/products/sku/qg-an-010.webp",
+        imageW: 800,
+        imageH: 799,
         name: "Epidural Catheter",
         nameZh: "硬膜外导管",
         slug: "epidural-catheter",
