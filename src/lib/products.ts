@@ -675,6 +675,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-009",
+        image: "/products/sku/qg-an-009.webp",
+        imageW: 800,
+        imageH: 667,
         name: "Anesthesia Needle",
         nameZh: "麻醉针",
         slug: "anesthesia-needle",
