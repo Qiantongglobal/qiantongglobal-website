@@ -623,6 +623,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-005",
+        image: "/products/sku/qg-an-005.webp",
+        imageW: 482,
+        imageH: 800,
         name: "Endotracheal Tube",
         nameZh: "气管插管",
         slug: "endotracheal-tube",
@@ -633,6 +636,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-006",
+        image: "/products/sku/qg-an-006.webp",
+        imageW: 800,
+        imageH: 217,
         name: "Guedel Airway",
         nameZh: "口咽通气道",
         slug: "guedel-airway",
