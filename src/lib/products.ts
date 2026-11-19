@@ -794,8 +794,8 @@ export const categories: Category[] = [
       {
         code: "QG-UR-002",
         image: "/products/sku/qg-ur-002.webp",
-        imageW: 800,
-        imageH: 479,
+        imageW: 782,
+        imageH: 523,
         name: "Foley Catheter Kit",
         nameZh: "导尿包",
         slug: "foley-catheter-kit",
