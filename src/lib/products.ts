@@ -662,6 +662,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-008",
+        image: "/products/sku/qg-an-008.webp",
+        imageW: 800,
+        imageH: 410,
         name: "Anesthesia Kit",
         nameZh: "麻醉套件",
         slug: "anesthesia-kit",
