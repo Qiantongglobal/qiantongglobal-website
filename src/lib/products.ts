@@ -610,6 +610,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-004",
+        image: "/products/sku/qg-an-004.webp",
+        imageW: 800,
+        imageH: 565,
         name: "Laryngeal Mask Airway (LMA)",
         nameZh: "喉罩气道（LMA）",
         slug: "laryngeal-mask-airway",
