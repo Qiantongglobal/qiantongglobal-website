@@ -753,6 +753,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-015",
+        image: "/products/sku/qg-an-015.webp",
+        imageW: 800,
+        imageH: 769,
         name: "Closed Suction Catheter",
         nameZh: "密闭式吸痰管",
         slug: "closed-suction-catheter",
