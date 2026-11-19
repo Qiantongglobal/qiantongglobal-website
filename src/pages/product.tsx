@@ -163,16 +163,18 @@ export default function ProductPage() {
             {/* Product plate: real single-SKU photos from the 2026 catalogue
                 wherever they exist. SKUs without one keep the code plate, so
                 the page never borrows a category photo that would misrepresent
-                a specific product. The plate layout stays identical either way. */}
+                a specific product. The plate layout stays identical either way.
+                Owner-supplied cut-outs are on pure white, so the plate is white
+                too; transparent catalogue shots blend into it just as well. */}
             <div className="lg:order-1 lg:sticky lg:top-24">
-              <div className="relative bg-[#F7F9F8] rounded-t-sm overflow-hidden aspect-[4/3] flex items-center justify-center ring-1 ring-inset ring-[#E9E7DF]">
+              <div className="relative bg-white rounded-t-sm overflow-hidden aspect-[4/3] flex items-center justify-center ring-1 ring-inset ring-[#E9E7DF]">
                 {sku.image ? (
                   <img
                     src={sku.image}
                     alt={skuName(sku, lang)}
                     width={sku.imageW}
                     height={sku.imageH}
-                    className="w-[86%] h-[86%] object-contain object-center drop-shadow-[0_10px_20px_rgba(11,47,42,0.14)]"
+                    className="w-[86%] h-[86%] object-contain object-center"
                   />
                 ) : (
                   <span className="font-mono text-[1.5rem] md:text-[1.75rem] text-[#0B2F2A]/85 tracking-[0.04em] tabular-nums">

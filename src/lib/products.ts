@@ -23,17 +23,19 @@ export interface Sku {
   /** URL slug，由英文品名生成，一经发布不要改动（已索引的地址） */
   slug: string;
   /**
-   * 单品产品图（public/products/sku/*.webp，透明底）。
-   * 只挂「真实产品实拍照片」：不用 3D 渲染图 / 示意图 / 插画，不用品类配图
-   * 冒充单品，也不用生成式图片（医疗器械须展示真实产品）。
-   * 2026-11-18 自查：自家 2026 目录第 4 页「Selected products」的 12 张里，
-   * 有 7 张实为 3D 渲染示意图，已全部撤下，回落到编号卡，等工厂实拍图。
-   * 当前保留的 8 张来源：
-   *  1) 上述目录第 4 页的 5 张实拍（按该页印刷的 SKU 编号一一对应）；
+   * 单品产品图（public/products/sku/*.webp）。
+   * 只挂经老板逐张确认可用的真实产品图：不用 AI 生成图、不用品类配图冒充
+   * 单品，医疗器械不能图不对货。
+   * 2026-11-19 老板提供 6 张 1920x1920 抠好的白底实拍（AN-001 / RP-004 /
+   * SU-002 / UR-002 / UR-003 / UR-006）：其中 AN-001、UR-003 替换目录里的
+   * 低分辨率旧图，其余 4 张补齐此前回落到编号卡的 SKU。这批保留白底，
+   * 图卡底色同步改纯白；不转透明底，避免白色/透明器械被抠穿或留下白方块。
+   * 其余 6 张透明底实拍来源：
+   *  1) 《Qiantong Global - Product Catalogue 2026》第 4 页的 3 张（按该页
+   *     印刷的 SKU 编号一一对应）；
    *  2) 《Product Catalogue (Updated Ver.)-260121》（驼人）P12 / P16 / P19 的
-   *     3 张，由用户确认 SKU 对应关系后裁切。TUORen logo 位于每页右上角，
-   *     属页面级元素，产品照片框与之不重叠；再从边缘 flood-fill 抠成透明底，
-   *     成品不含任何工厂品牌字样。
+   *     3 张，用户确认 SKU 对应关系后裁切。TUORen logo 位于每页右上角，属
+   *     页面级元素，产品照片框与之不重叠，边缘 flood-fill 抠成透明底。
    * 没有合格实拍的 SKU 一律留空，详情页回落到编号展示。
    */
   image?: string;
@@ -573,8 +575,8 @@ export const categories: Category[] = [
       {
         code: "QG-AN-001",
         image: "/products/sku/qg-an-001.webp",
-        imageW: 260,
-        imageH: 96,
+        imageW: 800,
+        imageH: 303,
         name: "Reinforced Endotracheal Tube",
         nameZh: "加强型气管插管",
         slug: "reinforced-endotracheal-tube",
@@ -764,6 +766,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-002",
+        image: "/products/sku/qg-ur-002.webp",
+        imageW: 800,
+        imageH: 479,
         name: "Foley Catheter Kit",
         nameZh: "导尿包",
         slug: "foley-catheter-kit",
@@ -775,8 +780,8 @@ export const categories: Category[] = [
       {
         code: "QG-UR-003",
         image: "/products/sku/qg-ur-003.webp",
-        imageW: 204,
-        imageH: 234,
+        imageW: 696,
+        imageH: 800,
         name: "Disposable Urine Bag",
         nameZh: "一次性集尿袋",
         slug: "disposable-urine-bag",
@@ -797,6 +802,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-006",
+        image: "/products/sku/qg-ur-006.webp",
+        imageW: 800,
+        imageH: 562,
         name: "Disposable Underpads",
         nameZh: "一次性护理垫",
         slug: "disposable-underpads",
@@ -831,6 +839,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-002",
+        image: "/products/sku/qg-su-002.webp",
+        imageW: 800,
+        imageH: 507,
         name: "Disposable Surgical Kit",
         nameZh: "一次性手术包",
         slug: "disposable-surgical-kit",
@@ -928,6 +939,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RP-004",
+        image: "/products/sku/qg-rp-004.webp",
+        imageW: 800,
+        imageH: 460,
         name: "Oxygen Mask",
         nameZh: "氧气面罩",
         slug: "oxygen-mask",
