@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const SITE_URL = "https://qiantongglobal.com";
+export const SITE_URL = "https://www.qiantongglobal.com";
 
 /** Site-wide fallback, matching the tags in index.html */
 const DEFAULT_TITLE = "Qiantong Global — Medical Consumables Supply Chain Partner";
@@ -14,6 +14,36 @@ interface SeoProps {
   /** Path starting with a slash, used for the canonical URL */
   path?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Ask crawlers not to index the page (e.g. the 404 route) */
+  noindex?: boolean;
+}
+
+export interface SeoSnapshot {
+  fullTitle: string;
+  description: string;
+  url: string;
+  jsonLd: string;
+  noindex: boolean;
+}
+
+/**
+ * Head data is computed synchronously during render and stored here, so the
+ * build-time prerenderer can read the correct title/canonical/JSON-LD for each
+ * route from renderToString. In the browser the same values are applied to
+ * document.head by the effect below (no head-management dependency needed).
+ */
+let lastSnapshot: SeoSnapshot | null = null;
+
+/** Server-only: called before rendering a route during prerender. */
+export function resetSeoSnapshot() {
+  lastSnapshot = null;
+}
+
+/** Server-only: read the head data captured by the Seo component. */
+export function takeSeoSnapshot(): SeoSnapshot | null {
+  const snapshot = lastSnapshot;
+  lastSnapshot = null;
+  return snapshot;
 }
 
 function upsertMeta(key: string, content: string, attr: "name" | "property" = "name") {
@@ -26,16 +56,14 @@ function upsertMeta(key: string, content: string, attr: "name" | "property" = "n
   el.setAttribute("content", content);
 }
 
-/**
- * A single-page app renders one shell for every route, so the head tags have to
- * be written at runtime. Crawlers that execute JavaScript pick these up; the
- * sitemap and canonical keep each URL distinct in the meantime.
- */
-export function Seo({ title, description, path, jsonLd }: SeoProps) {
+export function Seo({ title, description, path, jsonLd, noindex }: SeoProps) {
   const fullTitle = title ? `${title} | Qiantong Global` : DEFAULT_TITLE;
   const desc = description ?? DEFAULT_DESCRIPTION;
   const url = `${SITE_URL}${path ?? "/"}`;
   const jsonLdString = jsonLd ? JSON.stringify(jsonLd) : "";
+
+  // Render phase — runs during SSR too, so the prerenderer can pick it up.
+  lastSnapshot = { fullTitle, description: desc, url, jsonLd: jsonLdString, noindex: !!noindex };
 
   useEffect(() => {
     document.title = fullTitle;
@@ -52,15 +80,17 @@ export function Seo({ title, description, path, jsonLd }: SeoProps) {
     }
     canonical.href = url;
 
-    if (!jsonLdString) return;
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.dataset.pageSeo = "true";
-    script.textContent = jsonLdString;
-    document.head.appendChild(script);
-    return () => {
-      script.remove();
-    };
+    document.head
+      .querySelectorAll<HTMLScriptElement>('script[data-page-seo="true"]')
+      .forEach((el) => el.remove());
+
+    if (jsonLdString) {
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.dataset.pageSeo = "true";
+      script.textContent = jsonLdString;
+      document.head.appendChild(script);
+    }
   }, [fullTitle, desc, url, jsonLdString]);
 
   return null;

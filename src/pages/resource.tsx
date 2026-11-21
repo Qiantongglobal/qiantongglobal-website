@@ -262,9 +262,9 @@ export default function ResourcePage() {
           publisher: {
             "@type": "Organization",
             name: "Qiantong Global",
-            url: "https://qiantongglobal.com",
+            url: "https://www.qiantongglobal.com",
           },
-          mainEntityOfPage: `https://qiantongglobal.com/resources/${article.slug}`,
+          mainEntityOfPage: `https://www.qiantongglobal.com/resources/${article.slug}`,
         }}
       />
 

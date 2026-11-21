@@ -1,9 +1,11 @@
 import { ArrowLeft, Shield, Mail, Cookie, Database, Eye, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Seo } from "@/components/Seo";
 
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <Seo title="Privacy Policy" description="How Qiantong Global handles the information you submit through this website." path="/privacy" />
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="container-custom py-6">

@@ -26,12 +26,13 @@ export default function Footer() {
           <div>
             <h3 className="text-white/[0.92] font-semibold mb-4 text-[11.5px] uppercase tracking-[0.16em]">{t("footer_quick")}</h3>
             <ul className="space-y-2.5 text-[14px]">
-              <li><a href="#home" className="hover:text-white transition-colors">{t("nav_home")}</a></li>
-              <li><a href="#about" className="hover:text-white transition-colors">{t("nav_about")}</a></li>
-              <li><a href="#products" className="hover:text-white transition-colors">{t("footer_products")}</a></li>
+              <li><a href="/#home" className="hover:text-white transition-colors">{t("nav_home")}</a></li>
+              <li><a href="/#about" className="hover:text-white transition-colors">{t("nav_about")}</a></li>
+              <li><a href="/products" className="hover:text-white transition-colors">{t("footer_products")}</a></li>
               <li><a href="/resources" className="hover:text-white transition-colors">{t("nav_resources")}</a></li>
-              <li><a href="#solutions" className="hover:text-white transition-colors">{t("footer_solutions")}</a></li>
-              <li><a href="#certifications" className="hover:text-white transition-colors">{t("footer_certifications")}</a></li>
+              <li><a href="/#solutions" className="hover:text-white transition-colors">{t("footer_solutions")}</a></li>
+              <li><a href="/#certifications" className="hover:text-white transition-colors">{t("footer_certifications")}</a></li>
+              <li><a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
 

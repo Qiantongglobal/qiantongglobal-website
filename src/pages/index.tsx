@@ -30,7 +30,7 @@ import { Reveal } from "@/components/Reveal";
 import { LogoMark } from "@/components/LogoMark";
 import { categories, additionalSourcing, skuPath, skuName } from "@/lib/products";
 import { articles, articleText } from "@/lib/resources";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { submitInquiry } from "@/lib/inquiry";
 
 function ContactForm() {
@@ -41,9 +41,12 @@ function ContactForm() {
 
   /* Product pages link here with ?code=QG-XX-NNN so the buyer never retypes the
      code; the hidden field puts it in the notification as well. */
-  const [refCode] = useState(
-    () => new URLSearchParams(window.location.search).get("code") || ""
-  );
+  // Read the query string after mount so server and client render the same
+  // first frame (the build-time prerender has no window).
+  const [refCode, setRefCode] = useState("");
+  useEffect(() => {
+    setRefCode(new URLSearchParams(window.location.search).get("code") || "");
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

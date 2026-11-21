@@ -19,12 +19,14 @@ export function useLanguage() {
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('qiantong_lang') as Language) || 'en';
-    }
-    return 'en';
-  });
+  // Start from English on both server and client so the prerendered HTML
+  // hydrates cleanly. The saved choice is restored after mount below.
+  const [lang, setLangState] = useState<Language>('en');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('qiantong_lang') as Language | null;
+    if (stored && stored !== 'en') setLangState(stored);
+  }, []);
 
   const setLang = useCallback((newLang: Language) => {
     setLangState(newLang);

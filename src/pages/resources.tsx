@@ -85,11 +85,11 @@ export default function ResourcesPage() {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "Compliance notes",
-          url: "https://qiantongglobal.com/resources",
+          url: "https://www.qiantongglobal.com/resources",
           hasPart: articles.map((a) => ({
             "@type": "Article",
             headline: a.title,
-            url: `https://qiantongglobal.com/resources/${a.slug}`,
+            url: `https://www.qiantongglobal.com/resources/${a.slug}`,
             datePublished: a.date,
           })),
         }}
