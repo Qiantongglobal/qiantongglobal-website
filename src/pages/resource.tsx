@@ -115,6 +115,184 @@ function KeepTogether({ text }: { text: string }) {
   );
 }
 
+/**
+ * Decorative line glyph shown beside the article title. These are abstract
+ * marks for the note's theme (documents, clearance, schedules) — never product
+ * imagery, so there is no device claim to substantiate. Kept in one place so
+ * the 14 notes share one stroke weight and the same two-ink palette.
+ */
+function ArticleGlyph({ slug }: { slug: string }) {
+  const ink = "#0A5B51";
+  const gold = "#8F6519";
+  const common = {
+    fill: "none",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  let art: JSX.Element;
+
+  switch (slug) {
+    case "ch-rep-switzerland":
+      art = (
+        <>
+          <path d="M60 20 88 31v25c0 17-12 29-28 36-16-7-28-19-28-36V31z" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M60 40v30M50 50h20" stroke={gold} strokeWidth="2.6" {...common} />
+          <path d="M78 79l10 10M88 79L78 89" stroke={ink} strokeWidth="1.8" {...common} />
+        </>
+      );
+      break;
+    case "class-i-sterile-notified-body":
+      art = (
+        <>
+          <rect x="42" y="34" width="36" height="56" rx="4" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M42 50h36M42 66h36" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M52 26h16M56 20h8" stroke={gold} strokeWidth="2.2" {...common} />
+          <circle cx="60" cy="76" r="7" stroke={gold} strokeWidth="2.2" {...common} />
+          <path d="M57 76l2 2 4-4" stroke={gold} strokeWidth="2" {...common} />
+        </>
+      );
+      break;
+    case "reading-a-declaration-of-conformity":
+      art = (
+        <>
+          <path d="M38 22h30l16 16v56a4 4 0 0 1-4 4H38a4 4 0 0 1-4-4V26a4 4 0 0 1 4-4z" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M68 22v16h16" stroke={ink} strokeWidth="2" {...common} />
+          <path d="M46 50h28M46 60h28M46 70h18" stroke={ink} strokeWidth="1.6" {...common} />
+          <circle cx="79" cy="79" r="13" stroke={gold} strokeWidth="2.4" {...common} />
+          <path d="M88 88l9 9" stroke={gold} strokeWidth="2.8" {...common} />
+        </>
+      );
+      break;
+    case "importer-obligations-article-13":
+      art = (
+        <>
+          <path d="M60 20l30 12v27c0 18-12 31-30 39-18-8-30-21-30-39V32z" stroke={ink} strokeWidth="2.2" {...common} />
+          <rect x="44" y="45" width="32" height="26" rx="2" stroke={ink} strokeWidth="1.8" {...common} />
+          <path d="M50 53h20M50 60h20" stroke={gold} strokeWidth="1.8" {...common} />
+        </>
+      );
+      break;
+    case "three-documents":
+      art = (
+        <>
+          <rect x="30" y="34" width="38" height="50" rx="3" stroke={ink} strokeWidth="1.8" opacity="0.55" {...common} />
+          <rect x="42" y="28" width="38" height="50" rx="3" stroke={ink} strokeWidth="1.8" opacity="0.75" {...common} />
+          <rect x="54" y="22" width="38" height="50" rx="3" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M62 36h22M62 44h22M62 52h14" stroke={gold} strokeWidth="1.8" {...common} />
+        </>
+      );
+      break;
+    case "uk-ce-marking-indefinite-recognition":
+      art = (
+        <>
+          <path d="M34 30h34l14 14v42a4 4 0 0 1-4 4H34a4 4 0 0 1-4-4V34a4 4 0 0 1 4-4z" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M68 30v14h14" stroke={ink} strokeWidth="1.8" {...common} />
+          <path d="M42 58h20M42 68h16" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M76 76a12 12 0 1 0 12 12" stroke={gold} strokeWidth="2.4" {...common} />
+          <path d="M76 96v-8h8" stroke={gold} strokeWidth="2.4" {...common} />
+        </>
+      );
+      break;
+    case "swissdamed-registration-2026":
+      art = (
+        <>
+          <ellipse cx="60" cy="34" rx="24" ry="9" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M36 34v48c0 5 10.7 9 24 9s24-4 24-9V34" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M36 58c0 5 10.7 9 24 9s24-4 24-9" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M48 76v8M56 76v10M64 76v8M72 76v10" stroke={gold} strokeWidth="2.2" {...common} />
+        </>
+      );
+      break;
+    case "ce-is-not-a-global-passport":
+      art = (
+        <>
+          <circle cx="60" cy="60" r="34" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M26 60h68M60 26c10 10 10 58 0 68M60 26c-10 10-10 58 0 68" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M40 84L84 36" stroke={gold} strokeWidth="2.6" {...common} />
+        </>
+      );
+      break;
+    case "market-access-at-a-glance":
+      art = (
+        <>
+          <rect x="26" y="32" width="68" height="56" rx="3" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M26 48h68M26 64h68M48 32v56" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M56 76h10M56 84h26" stroke={gold} strokeWidth="2" {...common} />
+          <circle cx="60" cy="40" r="2.5" fill={gold} stroke="none" />
+        </>
+      );
+      break;
+    case "sourcing-from-china-checklist":
+      art = (
+        <>
+          <rect x="40" y="22" width="40" height="76" rx="3" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M50 42h20M50 56h20M50 70h20" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M48 38l2 2 4-4M48 52l2 2 4-4M48 66l2 2 4-4" stroke={gold} strokeWidth="2.2" {...common} />
+          <path d="M48 84h24" stroke={ink} strokeWidth="1.6" {...common} />
+        </>
+      );
+      break;
+    case "first-rfq-what-to-include":
+      art = (
+        <>
+          <rect x="24" y="40" width="72" height="46" rx="3" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M24 44l36 26 36-26" stroke={ink} strokeWidth="2" {...common} />
+          <path d="M44 28h32M44 34h20" stroke={gold} strokeWidth="2" {...common} />
+        </>
+      );
+      break;
+    case "samples-and-prototyping":
+      art = (
+        <>
+          <path d="M34 46l26-14 26 14-26 14z" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M34 46v30l26 14V60M86 46v30L60 90" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M60 60v30" stroke={ink} strokeWidth="1.6" {...common} />
+          <circle cx="60" cy="37" r="4" stroke={gold} strokeWidth="2.2" {...common} />
+        </>
+      );
+      break;
+    case "lead-time-ready-date":
+      art = (
+        <>
+          <rect x="32" y="30" width="56" height="56" rx="4" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M32 46h56M46 24v12M74 24v12" stroke={ink} strokeWidth="2" {...common} />
+          <path d="M48 68l8 8 16-18" stroke={gold} strokeWidth="2.8" {...common} />
+        </>
+      );
+      break;
+    case "sourcing-partner-vs-factory":
+      art = (
+        <>
+          <circle cx="32" cy="60" r="8" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M40 60h16c8 0 8-20 18-20h14" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M40 60h16c8 0 8 20 18 20h14" stroke={gold} strokeWidth="2.2" {...common} />
+          <rect x="84" y="30" width="16" height="18" rx="2" stroke={ink} strokeWidth="2" {...common} />
+          <rect x="84" y="72" width="16" height="18" rx="2" stroke={gold} strokeWidth="2" {...common} />
+        </>
+      );
+      break;
+    default:
+      art = (
+        <>
+          <path d="M40 26h28l14 14v54a4 4 0 0 1-4 4H40a4 4 0 0 1-4-4V30a4 4 0 0 1 4-4z" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M68 26v14h14M46 56h28M46 68h28" stroke={gold} strokeWidth="2" {...common} />
+        </>
+      );
+  }
+
+  return (
+    <svg
+      viewBox="0 0 120 120"
+      className="h-32 w-32 md:h-40 md:w-40"
+      role="img"
+      aria-label="Decorative illustration of the article theme"
+    >
+      {art}
+    </svg>
+  );
+}
+
 /** Body copy is set at 16.5px rather than the site's 15px: these pieces are
  *  read line by line, and the extra half step keeps a 70-character measure
  *  comfortable without widening the column. */
@@ -284,11 +462,18 @@ export default function ResourcePage() {
             <span className="eyebrow">{text.tag}</span>
           </div>
 
-          <h1 className="mt-5 max-w-[30ch] font-display text-[1.72rem] md:text-[2.7rem] leading-[1.16] tracking-[-0.02em] text-foreground [text-wrap:balance]">
-            <KeepTogether text={text.title} />
-          </h1>
+          <div className="mt-5 flex items-start justify-between gap-8">
+            <div className="min-w-0">
+              <h1 className="max-w-[30ch] font-display text-[1.72rem] md:text-[2.7rem] leading-[1.16] tracking-[-0.02em] text-foreground [text-wrap:balance]">
+                <KeepTogether text={text.title} />
+              </h1>
 
-          <p className="mt-5 max-w-[52ch] lead [text-wrap:pretty]">{text.dek}</p>
+              <p className="mt-5 max-w-[52ch] lead [text-wrap:pretty]">{text.dek}</p>
+            </div>
+            <div className="hidden shrink-0 lg:block pt-2" aria-hidden="true">
+              <ArticleGlyph slug={article.slug} />
+            </div>
+          </div>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12.5px] text-[#5F716D]">
             <span>{formatDate(article.date, text.lang)}</span>
