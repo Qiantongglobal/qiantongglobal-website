@@ -1030,6 +1030,9 @@ export const categories: Category[] = [
     skus: [
       {
         code: "QG-RT-001",
+        image: "/products/sku/qg-rt-001.webp",
+        imageW: 800,
+        imageH: 441,
         name: "Thermoplastic Radiotherapy Mask",
         nameZh: "热塑性放疗固定膜",
         slug: "thermoplastic-radiotherapy-mask",
