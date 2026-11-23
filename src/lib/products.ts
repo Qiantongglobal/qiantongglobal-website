@@ -1069,6 +1069,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RT-004",
+        image: "/products/sku/qg-rt-004.webp",
+        imageW: 580,
+        imageH: 365,
         name: "I.V. Cannula",
         nameZh: "静脉留置针",
         slug: "iv-cannula",
