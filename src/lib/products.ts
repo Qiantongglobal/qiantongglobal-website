@@ -899,8 +899,8 @@ export const categories: Category[] = [
       {
         code: "QG-SU-004",
         image: "/products/sku/qg-su-004.webp",
-        imageW: 800,
-        imageH: 472,
+        imageW: 783,
+        imageH: 690,
         name: "Connecting Tube",
         nameZh: "连接管",
         slug: "connecting-tube",
