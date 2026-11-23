@@ -974,6 +974,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RP-003",
+        image: "/products/sku/qg-rp-003.webp",
+        imageW: 800,
+        imageH: 402,
         name: "Nasal Oxygen Tube",
         nameZh: "鼻氧管",
         slug: "nasal-oxygen-tube",
