@@ -1043,6 +1043,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RT-002",
+        image: "/products/sku/qg-rt-002.webp",
+        imageW: 783,
+        imageH: 690,
         name: "Elastomeric Infusion Pump",
         nameZh: "弹性体输液泵",
         slug: "elastomeric-infusion-pump",
