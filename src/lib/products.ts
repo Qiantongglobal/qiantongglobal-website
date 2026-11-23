@@ -587,6 +587,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-AN-002",
+        image: "/products/sku/qg-an-002.webp",
+        imageW: 214,
+        imageH: 800,
         name: "Double Lumen Endobronchial Tube",
         nameZh: "双腔支气管插管",
         slug: "double-lumen-endobronchial-tube",
