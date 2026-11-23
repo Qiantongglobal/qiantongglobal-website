@@ -911,6 +911,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-005",
+        image: "/products/sku/qg-su-005.webp",
+        imageW: 800,
+        imageH: 579,
         name: "Central Venous Catheter Kit",
         nameZh: "中心静脉导管套件",
         slug: "central-venous-catheter-kit",
