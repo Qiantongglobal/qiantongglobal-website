@@ -284,7 +284,7 @@ function ArticleGlyph({ slug }: { slug: string }) {
   return (
     <svg
       viewBox="0 0 120 120"
-      className="h-32 w-32 md:h-40 md:w-40"
+      className="h-40 w-40 md:h-56 md:w-56"
       role="img"
       aria-label="Decorative illustration of the article theme"
     >
