@@ -29,7 +29,7 @@ export default function ProductPage() {
           "@type": "ListItem",
           position: 3,
           name: t(category.titleKey),
-          item: `${SITE_URL}/products#${category.id}`,
+          item: `${SITE_URL}/products/${category.id}`,
         },
         { "@type": "ListItem", position: 4, name: skuName(sku, lang), item: `${SITE_URL}${path}` },
       ],
@@ -74,10 +74,11 @@ export default function ProductPage() {
               {t("nav_products")}
             </Link>
             <ChevronRight size={12} className="text-[#B4C2BE] hidden sm:block" />
-            {/* The category crumb must lead back to its section on /products,
-                not sit there as dead text. ScrollManager honours the hash. */}
+            {/* The category crumb leads to the category landing page
+                (/products/<category>/). The old /products#<id> anchors keep
+                working for existing links; ScrollManager still honours hashes. */}
             <Link
-              to={`/products#${category.id}`}
+              to={`/products/${category.id}`}
               className="hidden sm:inline hover:text-foreground transition-colors"
             >
               {t(category.titleKey)}

@@ -72,6 +72,8 @@ async function main() {
     const entries = [
       { path: '/', priority: '1.0', freq: 'weekly' },
       { path: '/products', priority: '0.9', freq: 'weekly' },
+      // Category landing pages (owner-approved copy, 2026-11-23)
+      ...categories.map((c) => ({ path: `/products/${c.id}`, priority: '0.8', freq: 'weekly' })),
       ...categories.flatMap((c) =>
         c.skus.map((sku) => ({ path: skuPath(c, sku), priority: '0.8', freq: 'monthly' }))
       ),

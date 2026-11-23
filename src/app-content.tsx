@@ -6,6 +6,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CookieConsent from "./components/CookieConsent";
 import IndexPage from "./pages/index";
 import ProductsPage from "./pages/products";
+import CategoryPage from "./pages/category";
 import ProductPage from "./pages/product";
 import ResourcesPage from "./pages/resources";
 import ResourcePage from "./pages/resource";
@@ -53,6 +54,9 @@ export default function AppContent() {
           <Routes>
             <Route path="/" element={<IndexPage />} />
             <Route path="/products" element={<ProductsPage />} />
+            {/* Category landing pages: two segments. React Router distinguishes
+                them from the three-segment product detail route by depth. */}
+            <Route path="/products/:categoryId" element={<CategoryPage />} />
             <Route path="/products/:categoryId/:slug" element={<ProductPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/resources/:slug" element={<ResourcePage />} />
