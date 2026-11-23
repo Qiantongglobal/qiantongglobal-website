@@ -951,6 +951,9 @@ export const categories: Category[] = [
     skus: [
       {
         code: "QG-RP-001",
+        image: "/products/sku/qg-rp-001.webp",
+        imageW: 800,
+        imageH: 574,
         name: "Medical Face Mask",
         nameZh: "医用口罩",
         slug: "medical-face-mask",
