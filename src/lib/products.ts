@@ -1056,6 +1056,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RT-003",
+        image: "/products/sku/qg-rt-003.webp",
+        imageW: 800,
+        imageH: 751,
         name: "Enteral Feeding Set",
         nameZh: "肠内营养输注器",
         slug: "enteral-feeding-set",
