@@ -964,6 +964,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-RP-002",
+        image: "/products/sku/qg-rp-002.webp",
+        imageW: 613,
+        imageH: 800,
         name: "Nitrile Examination Gloves",
         nameZh: "一次性丁腈检查手套",
         slug: "nitrile-examination-gloves",
