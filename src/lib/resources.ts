@@ -1456,6 +1456,273 @@ export const articles: Article[] = [
       },
     },
   },
+
+  {
+    slug: "sourcing-from-china-checklist",
+    no: "10",
+    title: "Sourcing disposable medical devices from China: a practical checklist for importers",
+    dek: "Finding a supplier is the easy part. Turning one enquiry into a line you can reorder from, and that still holds up when your authority asks questions, is the real work.",
+    date: "2026-11-23",
+    minutes: 5,
+    tag: "Sourcing",
+    keyPoints: [
+      "Separate manufacturing compliance from the buyer's registration and import duties before discussing products.",
+      "Ask at the enquiry stage which documents can be supplied, in what form, and how versions are kept aligned.",
+      "Use a small first order to verify that goods and documents match what was confirmed.",
+      "The company name on the label, the declaration and any authorisation must be the same legal entity.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "Most buyers sourcing medical disposables from overseas do not struggle to find a factory. They struggle to turn a single enquiry into a line they can reorder from, and that still makes sense when a regulator or a customer asks to see the paperwork. The steps below follow the order in which those decisions actually arise.",
+      },
+      { type: "h2", text: "Settle the roles before the product" },
+      {
+        type: "p",
+        text: "Before comparing devices, agree on who is responsible for what. Conformity documentation is held by the manufacturer. Registration in the destination market, importation, and where required the authorised representative, sit on the buyer's side. This is not a supplier declining responsibility — it is how the regulatory roles are divided. Settling it in the first exchange prevents the expectation that a supplier can register a product on your behalf, which no supplier can do. The buyer's part is to confirm that the supplier can produce the corresponding conformity documents, and to feed those documents into its own registration process.",
+      },
+      { type: "h2", text: "Ask for documents at the enquiry stage" },
+      {
+        type: "p",
+        text: "Many procurement disputes do not start with the goods. They start at clearance or registration, when the file turns out not to be what was assumed. Ask early which documents are available — the Declaration of Conformity, technical documentation, relevant test reports — and in what form they can be released. Ask whether sensitive fields can be redacted, and how versions are updated when a device or a specification changes. A supplier who can answer these questions plainly is usually one who can also support a registration review.",
+      },
+      { type: "h2", text: "Keep the first order small" },
+      {
+        type: "p",
+        text: "A first order does not need to be large. A trial quantity is enough to check three things: whether the goods match the specification that was confirmed, whether the documents that arrive match what was promised at enquiry, and whether questions get stable, specific answers. These checks cost little at small volume and expose most of the coordination problems that would otherwise surface on a full container.",
+      },
+      { type: "h2", text: "Names must match across documents" },
+      {
+        type: "p",
+        text: "Almost every market review checks the same detail: the company name on the label, the manufacturer named in the Declaration of Conformity, and the entity on any authorisation must be the same legal person, spelled the same way. A mismatch is the first thing a reviewer notices. Aligning those names once, before the order, avoids a great deal of rework afterwards.",
+      },
+      {
+        type: "note",
+        text: "Practical rule: if the name on the label, the declaration and the authorisation are not the same legal entity in the same spelling, expect the file to be queried.",
+      },
+      { type: "h2", text: "Where we sit in this chain" },
+      {
+        type: "p",
+        text: "We are a supply chain partner. We organise supply against the specification you confirm, prepare and assemble the supporting documents, and keep versions aligned when a device or a specification changes. Registration, import and the authorised-representative role remain with the buyer. Drawing that boundary at the outset keeps the cooperation grounded in what each side can actually deliver.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "CE certificate, ISO 13485 and the DoC are three different documents", href: "/resources/three-documents" },
+          { label: "How to read a supplier's Declaration of Conformity", href: "/resources/reading-a-declaration-of-conformity" },
+          { label: "Contact us with a sourcing requirement", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "first-rfq-what-to-include",
+    no: "11",
+    title: "What to include in your first RFQ if you want a quotation you can actually use",
+    dek: "An incomplete enquiry gets you a round of questions and a price marked indicative. A complete one gets you an answer you can take into a decision.",
+    date: "2026-11-23",
+    minutes: 4,
+    tag: "Sourcing",
+    keyPoints: [
+      "Describe the real use case, not just a product name.",
+      "Give a quantity range and say whether a trial order is in scope.",
+      "State the destination market and your current registration position.",
+      "Discuss packing preferences separately from any private-label request.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "The detail that most changes a quotation is rarely the product name. The same device can be supplied in different configurations, with different documentation and different packing, and no supplier can tell which one you need from a name alone. A short, complete first enquiry saves both sides the round trips that otherwise follow.",
+      },
+      { type: "h2", text: "A product name is not a specification" },
+      {
+        type: "p",
+        text: "Under any one category there are usually several configurations. Add one sentence about the real use: the setting it is used in, the users involved, and any condition it has to meet. That is enough for the supplier to propose the right item rather than laying the whole catalogue in front of you. The more concrete the context, the more accurate the reply.",
+      },
+      { type: "h2", text: "Quantity shapes the structure of the answer" },
+      {
+        type: "p",
+        text: "Quantity is one of the main variables in any quotation. Give a range in the first message — a trial quantity, a routine replenishment quantity, and an annual estimate if you have one. If nothing is fixed yet, say that you are evaluating and will confirm volumes later. A supplier who knows the volumes are indicative will answer differently from one who assumes a firm order.",
+      },
+      { type: "h2", text: "State the market and the registration position" },
+      {
+        type: "p",
+        text: "Whether a device can enter a market depends on that market's rules, which is a separate matter from what a supplier can provide. Naming the destination market and where you are in registration lets the supplier tell you how far the available documentation can support you. Leaving it out often means discovering a file mismatch only after the commercial terms are otherwise settled.",
+      },
+      { type: "h2", text: "Keep packing and private label apart" },
+      {
+        type: "p",
+        text: "A packing preference — neutral cartons, or packing to a scheme you provide — can be stated in the same message. Private label is a separate question. Not every model supports OEM or ODM, and certain patented or flagship models are not available for that arrangement. Asking the two questions separately avoids the assumption that a quotation implies private label is available.",
+      },
+      { type: "h2", text: "A format you can reuse" },
+      {
+        type: "p",
+        text: "Put those points into a short paragraph: the product name plus one line of use; a quantity range or trial intent; the destination market and registration status; and any packing preference. Sent to any supplier, that paragraph earns a more targeted reply, and it lets you compare answers from several suppliers on the same basis.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Contact us with an enquiry", href: "/contact" },
+          { label: "Browse the five product categories", href: "/products" },
+          { label: "Market access at a glance", href: "/resources/market-access-at-a-glance" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "samples-and-prototyping",
+    no: "12",
+    title: "Samples and prototyping: what you can and cannot verify before a bulk order",
+    dek: "A sample is not a small version of the bulk order. It proves some things well and others not at all. Knowing which is which makes the sample stage worth the effort.",
+    date: "2026-11-23",
+    minutes: 4,
+    tag: "Sourcing",
+    keyPoints: [
+      "A sample shows appearance, feel, packing and markings — not compliance.",
+      "Confirm whether the sample and the bulk goods come from the same specification and source.",
+      "Clarify whether samples are charged and how they are sent.",
+      "Record the sample sign-off in writing as the reference for later acceptance.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "Buyers often treat a sample as a miniature of the bulk order and assume it sets the standard for every later batch. It does not. A sample is useful, but the line between what it proves and what it cannot prove is worth drawing clearly.",
+      },
+      { type: "h2", text: "What a sample shows you" },
+      {
+        type: "p",
+        text: "A sample lets you see appearance, handling, packing and printed markings directly. These are the things that photographs and written descriptions cannot fully convey. If something is wrong at this stage, changing it costs far less than changing it after a shipment has arrived.",
+      },
+      { type: "h2", text: "What a sample cannot prove" },
+      {
+        type: "p",
+        text: "A sample by itself is not evidence of compliance. A Declaration of Conformity, a technical file or a registration belongs to the product and the manufacturer, not to the single item in your hand. Whether complete documents exist, and whether they correspond to the product, has to be requested and checked separately. Seeing a sample does not replace that step.",
+      },
+      { type: "h2", text: "Ask what the sample relates to" },
+      {
+        type: "p",
+        text: "Before the sample arrives, ask whether it comes from the same specification and source as the future bulk goods. If it is a purpose-made prototype while production will run elsewhere, consistency has to be established separately. Asking this up front prevents you from inspecting a batch against a sample that was never meant to match it.",
+      },
+      { type: "h2", text: "Clarify cost and delivery" },
+      {
+        type: "p",
+        text: "Whether samples are charged, how they are shipped and how long they take vary too much to assume. Ask in the first exchange. It is respectful of both sides' time, and it tells you something about how the supplier communicates.",
+      },
+      { type: "h2", text: "Put the sign-off in writing" },
+      {
+        type: "p",
+        text: "Once a sample is accepted, record what was accepted — the specification, the appearance and packing details, and anything that needs to change. That record becomes the reference for bulk acceptance and prevents most of the arguments about what was agreed.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Browse the product catalogue", href: "/products" },
+          { label: "How to read a supplier's Declaration of Conformity", href: "/resources/reading-a-declaration-of-conformity" },
+          { label: "Contact us about a sample", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "lead-time-ready-date",
+    no: "13",
+    title: "Lead time decoded: why your PI should say goods ready at factory, not vessel departure",
+    dek: "Lead time is the most misread term in device procurement. Buyers hear arrival at port. Suppliers usually mean something else. When the two readings differ, disputes follow.",
+    date: "2026-11-23",
+    minutes: 4,
+    tag: "Sourcing",
+    keyPoints: [
+      "Lead time is the date the goods are ready at the factory, not the sailing date.",
+      "Transport and clearance sit outside the supplier's lead time.",
+      "A delay should be notified in writing in advance, not on the day.",
+      "The proforma invoice should state the basis explicitly.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "Two dates are being conflated when people argue about lead time. In a supply contract, lead time is the date by which the goods are finished and ready to leave the factory. It is not an arrival date and not a sailing date. Booking, transport, clearance and delivery at the destination port involve too many variables to sit inside a supplier's promise. Separating the two dates is the first step.",
+      },
+      { type: "h2", text: "Why the PI has to say it plainly" },
+      {
+        type: "p",
+        text: "A proforma invoice that only says lead time in days invites the reading that the goods will arrive at the port by then. The safer wording states the date by which the goods will be ready at the factory, and says that this is the ready date, not the vessel departure date. One line removes most of the argument about whether a delay occurred. This is why we write the basis into every PI.",
+      },
+      {
+        type: "note",
+        text: "Delivery: goods ready at factory on or before YYYY-MM-DD (ready date, not vessel departure).",
+      },
+      { type: "h2", text: "A delay is reported early" },
+      {
+        type: "p",
+        text: "Production plans depend on material availability and scheduling, and occasional movement is normal. What matters is not whether a date can shift but how it is handled. Our practice is to notify the buyer in writing as soon as a ready date looks likely to move, with the reason and a revised estimate — not to explain it after the date has passed. Knowing early lets a buyer adjust plans, which is worth more than a result that is technically on time but arrives without warning.",
+      },
+      { type: "h2", text: "A suggestion for buyers" },
+      {
+        type: "p",
+        text: "When comparing lead times from different suppliers, first establish which date each one means. An answer that promises fast arrival but cannot name a ready date is often less reliable than one that states the ready date clearly and describes the shipping stage honestly. Clarifying the basis gets you closer to the truth than comparing the numbers.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Contact us about lead times", href: "/contact" },
+          { label: "Market access at a glance", href: "/resources/market-access-at-a-glance" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "sourcing-partner-vs-factory",
+    no: "14",
+    title: "When a sourcing partner beats going straight to one factory",
+    dek: "Not every purchase needs a sourcing partner, and not every case is better handled direct. Each route has its conditions. Knowing which one you are in matters more than arguing which is better.",
+    date: "2026-11-23",
+    minutes: 4,
+    tag: "Sourcing",
+    keyPoints: [
+      "A partner earns its place when you need several categories, small volumes and one set of documents.",
+      "Direct buying is efficient for one category, stable volume and an established factory relationship.",
+      "Ask whether certified capacity can be arranged when a market or tender requires it — not whether every factory holds the certificate.",
+      "Set out the responsibility boundary and document ownership either way.",
+    ],
+    blocks: [
+      {
+        type: "p",
+        text: "A sourcing partner's value is not mainly price. It is the number of counterparts you have to manage. When your list spans several categories and the volumes in each are modest, dealing with factories one by one means several sets of conversations, several document packs and several audits.",
+      },
+      { type: "h2", text: "Where a partner saves effort" },
+      {
+        type: "p",
+        text: "A partner folds that into one interface: matching each product to a suitable source, assembling the supporting documents, and keeping versions aligned when a device or a specification changes. What is saved is coordination time, not simply a lower unit price.",
+      },
+      { type: "h2", text: "When direct buying is better" },
+      {
+        type: "p",
+        text: "If your purchasing is concentrated in one category, the volume is stable and you already have a factory relationship you trust, going direct is usually more efficient. The chain is shorter, information is less likely to be distorted, and decisions are faster. A partner in that situation adds a layer you do not need.",
+      },
+      { type: "h2", text: "Ask the right question about certification" },
+      {
+        type: "p",
+        text: "Certification is where the question is often framed badly. The useful question is not whether every factory a partner works with holds ISO 13485. It is whether, when a market or a tender requires it, production can be arranged with a factory holding the relevant certification. Requirements follow the product category and the destination market, and arranging capacity accordingly is the realistic approach. A partner who can answer that directly is usually one who can also support your compliance work.",
+      },
+      { type: "h2", text: "Put the boundary in writing" },
+      {
+        type: "p",
+        text: "Whichever route you choose, state at the outset: conformity documents are held by the manufacturer, and registration, import and the authorised-representative role remain with the buyer. A sourcing partner organises supply, assembles documents and keeps versions aligned. Making that boundary explicit is what prevents the finger-pointing when something goes wrong.",
+      },
+      {
+        type: "note",
+        text: "A practical test: do you need one interface to coordinate several sources and hold the documents together, or a short line to one known factory? The first favours a partner, the second direct buying.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Browse the five product categories", href: "/products" },
+          { label: "CE certificate, ISO 13485 and the DoC are three different documents", href: "/resources/three-documents" },
+          { label: "Contact us", href: "/contact" },
+        ],
+      },
+    ],
+  },
 ];
 
 export function articleBySlug(slug: string): Article | undefined {
