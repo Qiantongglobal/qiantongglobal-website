@@ -819,6 +819,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-UR-004",
+        image: "/products/sku/qg-ur-004.webp",
+        imageW: 800,
+        imageH: 645,
         name: "Colostomy Bag",
         nameZh: "结肠造口袋",
         slug: "colostomy-bag",
@@ -882,6 +885,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-003",
+        image: "/products/sku/qg-su-003.webp",
+        imageW: 800,
+        imageH: 746,
         name: "Suction Handle",
         nameZh: "吸引手柄",
         slug: "suction-handle",
@@ -892,6 +898,9 @@ export const categories: Category[] = [
       },
       {
         code: "QG-SU-004",
+        image: "/products/sku/qg-su-004.webp",
+        imageW: 800,
+        imageH: 472,
         name: "Connecting Tube",
         nameZh: "连接管",
         slug: "connecting-tube",
