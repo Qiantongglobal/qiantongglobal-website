@@ -464,7 +464,7 @@ export const translations: Record<Language, Translations> = {
     footer_contact_info: "联系信息",
     footer_rights: "© 2026 倩桐全球 版权所有。",
     factory_title: "生产车间实拍",
-    factory_desc: "我们合作的均为持有 ISO 13485 与 EU MDR 认证的工厂。首单在生产开始前到场核验，每批货在装柜前完成检验。",
+    factory_desc: "与我们合作的工厂按文件化质量管理体系运行，亦可按需安排持有 ISO 13485 认证的工厂生产；首单在生产开始前到场核验，每批货在装柜前完成检验。",
     factory_cap1_title: "净化车间",
     factory_cap1_desc: "净化车间生产线，标准化流程配现代化自动化设备。",
     factory_cap2_title: "质量检测",

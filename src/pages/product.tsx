@@ -4,6 +4,7 @@ import { useLanguage } from "@/components/LanguageSwitcher";
 import { Reveal } from "@/components/Reveal";
 import { Seo, SITE_URL } from "@/components/Seo";
 import { findSku, relatedSkus, skuApplication, skuName, skuPath } from "@/lib/products";
+import { productContentFor } from "@/lib/product-content";
 
 export default function ProductPage() {
   const { t, lang } = useLanguage();
@@ -13,6 +14,11 @@ export default function ProductPage() {
   if (!match) return <Navigate to="/products" replace />;
   const { sku, category } = match;
   const related = relatedSkus(category, sku.code);
+  // Expanded long-form copy (35 bodies + 32 cert-based spec overviews), reviewed
+  // and approved by the owner 2026-11-23. zh shows the approved Chinese text;
+  // the other 7 languages use the approved English text (no review for other
+  // translations exists, so we do not invent them).
+  const content = productContentFor(sku.code, lang);
 
   const path = skuPath(category, sku);
   // SEO 文案随界面语言走：本地语言搜索（如西语 "mascarilla laríngea"）才能命中本页。
@@ -198,6 +204,36 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Long-form product copy — approved 2026-11-23. Each SKU gets a 3-paragraph
+          body; the 32 SKUs with cert-based evidence also get a short range-only
+          spec overview. Specs are ranges, never model numbers / cert IDs. */}
+      {content && (
+        <section className="bg-white py-12 md:py-16">
+          <div className="container-custom">
+            <div className="max-w-[62ch]">
+              {content.bodyEn.map((para, i) => (
+                <p
+                  key={i}
+                  className="mt-5 first:mt-0 text-[15px] md:text-[15.5px] text-muted-foreground leading-[1.8]"
+                >
+                  {lang === "zh" ? content.bodyZh[i] : para}
+                </p>
+              ))}
+              {content.specEn.length > 0 && (
+                <div className="mt-8 border-t border-[#E2E8E6] pt-6">
+                  <h2 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-primary">
+                    {lang === "zh" ? "规格概述" : "Range overview"}
+                  </h2>
+                  <p className="mt-3 text-[14.5px] text-muted-foreground leading-[1.75]">
+                    {lang === "zh" ? content.specZh[0] : content.specEn[0]}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Ordering notes */}
       <section className="bg-[#F7F9F8] py-14 md:py-16">
