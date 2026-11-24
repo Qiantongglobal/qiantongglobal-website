@@ -1723,6 +1723,106 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    slug: "matching-airway-devices-to-the-case",
+    no: "15",
+    title: "Matching airway devices to the case: tubes, LMAs and masks",
+    dek: "Airway products are not interchangeable. Routine surgery, a difficult airway and emergency ventilation call for different devices, even though all of them sit under the label of anaesthesia consumables. Buy for the scenario, not the name.",
+    date: "2026-11-24",
+    minutes: 4,
+    tag: "Selection",
+    keyPoints: [
+      "Decide the scenario and the expected ventilation time before the device type, not the other way round.",
+      "An endotracheal tube and a laryngeal mask are different tools for different cases, not a better-and-worse pair.",
+      "Masks, oral airways and breathing circuits are the accessories most often left off an order.",
+      "Sizes and specifications are confirmed at the quotation stage; this note covers use and selection only.",
+    ],
+    blocks: [
+      { type: "h2", text: "Sort by scenario, not by name" },
+      {
+        type: "p",
+        text: "The most common way to buy airway consumables is to work down a product name list: a tube here, a mask there. But what actually decides the right product is the scenario — planned or emergency surgery, short ventilation or long-term placement, a routine airway or one expected to be difficult. Products grouped under the same heading take on very different roles in those settings. Once the conditions of use are written down, selection has a basis.",
+      },
+      { type: "h2", text: "Endotracheal tubes: when a definitive airway is needed" },
+      {
+        type: "p",
+        text: "An endotracheal tube is suited to cases that need a definitive airway, prolonged ventilation, or a higher aspiration risk. Its clinical role is well defined, and it asks more of technique and coordination. The procurement question is whether the case genuinely needs a tube, rather than choosing one because it looks more thorough. Once the use is settled, specifications are checked against the need at the quotation stage.",
+      },
+      { type: "h2", text: "Laryngeal masks: the other route for routine, short cases" },
+      {
+        type: "p",
+        text: "A laryngeal mask is another airway tool, suited to many planned, routine procedures of short duration, with a different pathway from a tube. It is not a higher or lower tier than a tube — the two fit different cases and anaesthetic plans. One point to settle early: some patented or flagship models do not support private label. Where own-brand supply is required, confirm it product by product rather than assuming every model qualifies.",
+      },
+      { type: "h2", text: "Masks, oral airways and circuits: do not omit the accessories" },
+      {
+        type: "p",
+        text: "A complete airway setup is rarely a single device. An anaesthesia mask is used during preparation and induction, an oral airway helps keep the passage open, and a breathing circuit links the device to the ventilator — with HME filters and closed suction catheters among the supporting items. If the list follows only the main device, a missing accessory surfaces in the middle of a case, when there is no time to fetch it. Planning the items a scenario needs as a group is safer than ordering one by one.",
+      },
+      { type: "h2", text: "One sentence about the scenario beats a list of model numbers" },
+      {
+        type: "p",
+        text: "In an enquiry, a clear description of the scenario is more useful than a string of model numbers: which kind of surgery, expected ventilation time, routine or difficult airway, and which accessories are needed. That lets a supplier judge what to quote and what not to include. If sizes are not yet settled, saying so is better than guessing — the answer you receive will be conditional rather than a number that could mislead you.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Anaesthesia and airway products", href: "/products/anesthesia" },
+          { label: "Laryngeal masks and other airway devices", href: "/products/anesthesia/laryngeal-mask-airway" },
+          { label: "Ask us about a specific airway requirement", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "urine-bags-urine-meters-and-ostomy-bags",
+    no: "16",
+    title: "Urine bags, urine meters and ostomy bags: telling three different jobs apart",
+    dek: "These products all have a bag in the name, but they solve different problems. Collecting urine, measuring output and caring for a stoma are not the same task, and mixing them into one order is an easy way to buy the wrong thing.",
+    date: "2026-11-24",
+    minutes: 4,
+    tag: "Selection",
+    keyPoints: [
+      "A collection bag collects, a precision urine meter measures, and an ostomy bag supports stoma care — three different product types.",
+      "Whether output must be observed decides between a plain collection bag and a precision meter.",
+      "Ostomy bags are chosen by stoma type and stage of care, not by appearance.",
+      "Capacities and specifications are confirmed at the quotation stage; this note covers use and selection only.",
+    ],
+    blocks: [
+      { type: "h2", text: "The same word in the name hides different purposes" },
+      {
+        type: "p",
+        text: "In urology and continence care, a collection bag, a precision urine meter and an ostomy bag are three distinct product types. The first collects urine, the second adds observable and recordable output, and the third is a care product for a patient with a stoma, with its own logic of use. Ordering them as one category usually leaves part of the purchase unused.",
+      },
+      { type: "h2", text: "Collection bags and precision meters: do you need to see the volume?" },
+      {
+        type: "p",
+        text: "A plain collection bag is about reliable collection and comfort in wear. A precision urine meter also makes the volume visible and recordable, for settings where staff need to follow changes in output. The dividing line is direct: if the care goal includes monitoring urine output, choose a product with measurement; if the need is routine collection, a plain bag is enough. These items come in different configurations and capacities, which are confirmed at the quotation stage rather than listed at the enquiry stage.",
+      },
+      { type: "h2", text: "Ostomy bags: match the stoma and the stage of care" },
+      {
+        type: "p",
+        text: "An ostomy bag is chosen on a different axis. The decision relates to stoma type, stage of care, skin condition and how the product is used. It is not picked by capacity or by how it looks. The more useful questions describe the situation: early after surgery or long-term care, whether the wearer manages it independently, and whether accessories are needed. Explaining that to a supplier gets a better recommendation than naming a product.",
+      },
+      { type: "h2", text: "Catheter kits and underpads: the items that get missed" },
+      {
+        type: "p",
+        text: "Two more items are often left off the list. A catheter kit brings together what a catheterisation procedure needs, saving piece-by-piece preparation; a disposable underpad protects bedding in incontinence care. Neither replaces the products above — they are different steps in the same care pathway. Walk through the pathway and note what each step requires.",
+      },
+      { type: "h2", text: "Settle the use first; leave sizes to the quotation" },
+      {
+        type: "p",
+        text: "These products differ in many details, and configuration and sizing need to be checked against the real requirement. The most useful thing to do early is to say who uses it, in what setting, and what problem it solves. Once the use is clear, the specification has a direction, and there is no need to work through a wall of parameters before the need is defined.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Urology and continence products", href: "/products/urology" },
+          { label: "Precision urine meters and urine bags", href: "/products/urology/precision-urine-meter" },
+          { label: "Ask us about a specific product requirement", href: "/contact" },
+        ],
+      },
+    ],
+  },
 ];
 
 export function articleBySlug(slug: string): Article | undefined {

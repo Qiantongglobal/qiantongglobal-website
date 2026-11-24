@@ -272,6 +272,28 @@ function ArticleGlyph({ slug }: { slug: string }) {
         </>
       );
       break;
+    case "matching-airway-devices-to-the-case":
+      art = (
+        <>
+          <circle cx="26" cy="60" r="8" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M34 60h18M52 60V34h16M52 60v26h16M52 60h34" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M74 34h16M74 60h16M74 86h16" stroke={gold} strokeWidth="2.4" {...common} />
+          <path d="M80 30l3 3 6-6" stroke={gold} strokeWidth="2" {...common} />
+        </>
+      );
+      break;
+    case "urine-bags-urine-meters-and-ostomy-bags":
+      art = (
+        <>
+          <rect x="22" y="40" width="22" height="46" rx="4" stroke={ink} strokeWidth="2.2" {...common} />
+          <rect x="49" y="34" width="22" height="52" rx="4" stroke={ink} strokeWidth="2.2" {...common} />
+          <rect x="76" y="46" width="22" height="40" rx="4" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M28 52h10M28 62h10M28 72h10" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M55 48h10M55 58h10M55 68h10" stroke={gold} strokeWidth="1.8" {...common} />
+          <circle cx="87" cy="66" r="6" stroke={gold} strokeWidth="2.2" {...common} />
+        </>
+      );
+      break;
     default:
       art = (
         <>
