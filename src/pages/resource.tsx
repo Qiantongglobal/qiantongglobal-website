@@ -294,6 +294,29 @@ function ArticleGlyph({ slug }: { slug: string }) {
         </>
       );
       break;
+    case "six-questions-before-private-label":
+      art = (
+        <>
+          <rect x="26" y="26" width="60" height="48" rx="6" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M38 42h36M38 54h28" stroke={ink} strokeWidth="1.8" {...common} />
+          <path d="M44 74v14l12-10" stroke={ink} strokeWidth="2.2" {...common} />
+          <circle cx="84" cy="76" r="14" stroke={gold} strokeWidth="2.2" {...common} />
+          <path d="M79 71a5 5 0 1 1 7 5c-2 1-2 3-2 4M84 85v1" stroke={gold} strokeWidth="2.2" {...common} />
+        </>
+      );
+      break;
+    case "managing-quality-risk-on-a-trial-batch":
+      art = (
+        <>
+          <rect x="24" y="38" width="28" height="34" rx="3" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M30 50h16M30 60h16" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M56 55h12M63 50l5 5-5 5" stroke={ink} strokeWidth="2.2" {...common} />
+          <rect x="72" y="30" width="28" height="42" rx="3" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M78 44h16M78 54h16" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M72 86l7 7 14-16" stroke={gold} strokeWidth="2.6" {...common} />
+        </>
+      );
+      break;
     default:
       art = (
         <>

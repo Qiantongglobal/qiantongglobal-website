@@ -1823,6 +1823,106 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    slug: "six-questions-before-private-label",
+    no: "17",
+    title: "Six questions to ask before committing to private label",
+    dek: "For a buyer who wants its own brand, the biggest trap is not a poor product — it is choosing the wrong form of cooperation. Only after weeks of discussion you may learn that whether a product can carry your brand has to be checked with the factory, or that the factory that can label it cannot support your destination market. Six questions asked up front matter more than negotiating the price.",
+    date: "2026-11-25",
+    minutes: 5,
+    tag: "Trust",
+    keyPoints: [
+      "Private label is not available for every product; for patented products, ask the factory and confirm case by case rather than assume.",
+      "Find out who holds the conformity documents — it decides who handles registration and what you can actually obtain.",
+      "Settle the boundaries of packaging, labelling and the registration entity in the first exchange, not after samples exist.",
+      "Only general questions are listed here; which products can be labelled is confirmed product by product, with no promise made in this note.",
+    ],
+    blocks: [
+      { type: "h2", text: "Confirm whether this product can be labelled, before anything else" },
+      {
+        type: "p",
+        text: "The most common sequencing mistake in a private-label negotiation is to discuss packaging, quantities and lead time first, and only at the end ask whether the product can carry your brand. The right order is the reverse: confirm, product by product, whether labelling is possible. Products differ a great deal. For a patented product in particular, do not take it for granted — some can be labelled and some are restricted; you have to ask the factory about each one, rather than assuming every product qualifies. This is decided by the conditions attached to the product, not by how willing a factory is to cooperate. Making 'does this product support private label, and if it is patented what limits apply' the first question saves a great deal of wasted discussion. This note lists general questions only and makes no labelling promise on behalf of any specific product.",
+      },
+      { type: "h2", text: "Find out who holds the conformity documents" },
+      {
+        type: "p",
+        text: "Question two: who holds this product's conformity documents, which of them can be supplied, and in what form will they reach the buyer? That bears on an important point later — who handles registration. If the documents sit with the factory, what the buyer needs to confirm is whether the matching version can be obtained and fed into its own registration process, not to assume the supplier can register the product on your behalf. The documents are also a direct test of whether a supplier is reliable: being able to produce them, with the right version and a clear explanation, is worth far more than a verbal promise.",
+      },
+      { type: "h2", text: "Check whether the factory knows your destination market" },
+      {
+        type: "p",
+        text: "Question three: which market is the product going to, and how familiar is the factory with that market's access requirements? The same product needs a different set of documents and a different process in different markets. The buyer's question is not the broad 'do you hold a certificate', but the specific 'have you supported the documents this market asks for, and what can you provide'. If the other side cannot answer, the cooperation needs to be re-evaluated even if the product itself is suitable.",
+      },
+      { type: "h2", text: "Fix the boundaries of packaging and labelling" },
+      {
+        type: "p",
+        text: "Question four: where exactly does the private-label boundary sit — who designs the outer packaging, the label and the instructions for use, who approves them, and who is responsible for the compliance wording? Many disputes arise not over the product but over assumptions: 'I thought you would do that' against 'I thought you would'. Writing these boundaries down item by item in the first exchange prevents repeated rework later, at the sampling, approval and repeat-order stages. This step does not touch any specific product either; it is a general sorting-out of where responsibilities fall.",
+      },
+      { type: "h2", text: "Agree how minimums, stocking and repeat orders connect" },
+      {
+        type: "p",
+        text: "Questions five and six belong together: how minimum quantities and stocking are arranged, how the delivery date is defined, and how repeat orders are paced. Pay particular attention to the delivery date. In international trade, what a 'delivery date' means depends on the trade term the parties agree: under EXW (Ex Works) it is the day the goods are made ready at the factory and placed at the buyer's disposal; under shipment terms such as FOB and CIF it is the day the goods are loaded on board at the port of shipment. The same date points to entirely different milestones under different terms. So instead of asking vaguely 'when will you deliver', agree the trade term first and then write the corresponding date into the order — that is standard international practice, not a special rule of any one company. Aligning this avoids the most common gap between expectation and reality. Drop the idea that private label is a one-off project as well: it is closer to an ongoing cooperation. After the first order, version updates, label revisions and repeat orders all need an agreed answer to who does what.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Three documents, three different roles", href: "/resources/three-documents" },
+          { label: "How to read a Declaration of Conformity", href: "/resources/reading-a-declaration-of-conformity" },
+          { label: "Talk to us about your project", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "managing-quality-risk-on-a-trial-batch",
+    no: "18",
+    title: "First order to repeat order: managing quality risk on a small trial batch",
+    dek: "Not daring to place a large first order is only common sense. But if a small trial batch means no more than 'buy a little and see', you will still not know where the problem lies when it is over. The value of a trial is not the small quantity; it is whether you have a clear plan for what to verify, on what basis, and what to do when something is found.",
+    date: "2026-11-25",
+    minutes: 5,
+    tag: "Trust",
+    keyPoints: [
+      "List the risks you want to verify before the order, rather than looking for problems after the goods arrive.",
+      "Verification is based on the product's own conformity documents, not on impressions or another product's parameters.",
+      "Agree in advance how an issue is recorded, judged and corrected.",
+      "No inspection figures or day counts are given here; those are confirmed at the quotation stage against the product and market.",
+    ],
+    blocks: [
+      { type: "h2", text: "A trial is a defined check, not just a smaller order" },
+      {
+        type: "p",
+        text: "Many trials fail not because the product is necessarily at fault, but because the purpose was never stated before the order was placed. Do you want to check that the product matches its description? That the packaging and labels are usable? Or that the whole process — enquiry, documents, stocking, dispatch — runs smoothly? Different goals mean different things to look at. Write down the risks you want to verify before ordering, and a trial has a result to measure against, instead of deciding whether to reorder after the goods arrive on the strength of 'it looks fine'.",
+      },
+      { type: "h2", text: "Base verification on documents, not on impressions" },
+      {
+        type: "p",
+        text: "What to verify, and against what standard, should be answered in the product's own conformity documents — not in a standard the buyer imagines, still less in another product's parameters passed over. This is why it pays to understand, at the enquiry stage, what the three documents are and how to read the Declaration of Conformity: the documents tell you what the product claims to meet and which points can be checked. If a document cannot be obtained, cannot be read, or does not match the version, that is itself one of the risks a trial is meant to surface — and it is a risk you can spot before placing the order.",
+      },
+      { type: "h2", text: "Agree in advance how issues will be handled" },
+      {
+        type: "p",
+        text: "What makes a trial genuinely useful is that it shows you what happens when something goes wrong. So before the first order, buyer and supplier should settle a few points: how an issue is recorded, against what basis it is judged, how it is corrected after a judgement, and who confirms the result. These are general process agreements and do not involve product-specific inspection figures. With the path agreed, a small problem found in a trial becomes something that can be solved rather than the start of an argument. If all of it is left until the goods arrive, the two sides end up on opposite footing at once.",
+      },
+      { type: "h2", text: "Agree which trade term defines the delivery date" },
+      {
+        type: "p",
+        text: "The most common expectation gap at the trial stage is over the delivery date — and it is usually not that someone has broken the contract, but that the two sides understood 'delivery' differently to begin with. In international trade, the delivery date is determined by the trade term the parties agree (Incoterms): under EXW (Ex Works) it is the day the goods are made ready at the factory and placed at the buyer's disposal; under shipment terms such as FOB and CIF it is the day the goods are loaded on board at the port of shipment; under destination terms such as DAP and DDP it is the day the goods reach the named place. The same date means completely different things under different terms — ready at the factory, shipped and arrived are not the same day. So before ordering, buyer and supplier should state which trade term applies and which milestone the date refers to, and write it into the order or the supporting documents. This is standard international practice, not a special requirement of any one company. With the basis aligned, you avoid the misjudgement of assuming a breach simply because the goods have not arrived by the stated date. For a trial, whether the process is transparent and the terms are consistent is itself part of assessing the supplier — sometimes more telling than the product.",
+      },
+      { type: "h2", text: "Let the trial's conclusion lead into the repeat order" },
+      {
+        type: "p",
+        text: "A trial should end with a clear conclusion: which verification items passed, which did not, and what still has to be resolved before a repeat order. Put that conclusion in writing and let it be the starting point for the next order, rather than closing the file and starting the conversation from scratch when you reorder. The purpose of a small trial was never the trial itself; it was to answer, at the smallest possible cost, whether this supplier can be a long-term partner. Only a trial that answers that question clearly earns the right to move on to a repeat order.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Three documents, three different roles", href: "/resources/three-documents" },
+          { label: "How to read a Declaration of Conformity", href: "/resources/reading-a-declaration-of-conformity" },
+          { label: "Talk to us about a trial order", href: "/contact" },
+        ],
+      },
+    ],
+  },
 ];
 
 export function articleBySlug(slug: string): Article | undefined {
