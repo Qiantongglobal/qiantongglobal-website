@@ -317,6 +317,34 @@ function ArticleGlyph({ slug }: { slug: string }) {
         </>
       );
       break;
+    case "or-consumables-checklist-by-workflow":
+      art = (
+        <>
+          <rect x="28" y="24" width="64" height="72" rx="4" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M40 42h40M40 56h40M40 70h28" stroke={ink} strokeWidth="1.8" {...common} />
+          <path d="M36 40l2 2 4-4M36 54l2 2 4-4M36 68l2 2 4-4" stroke={gold} strokeWidth="2.2" {...common} />
+        </>
+      );
+      break;
+    case "masks-gloves-and-oxygen-by-task":
+      art = (
+        <>
+          <circle cx="60" cy="60" r="8" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M60 52V28M68 60h24M60 68v24M52 60H28" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M76 24h16M76 88h16M20 52v16M84 52v16" stroke={gold} strokeWidth="2.4" {...common} />
+        </>
+      );
+      break;
+    case "radiotherapy-and-infusion-primer":
+      art = (
+        <>
+          <path d="M38 34a26 26 0 0 0 0 52" stroke={ink} strokeWidth="2.2" {...common} />
+          <path d="M38 34v52" stroke={ink} strokeWidth="1.8" {...common} />
+          <path d="M50 44h18M50 56h18M50 68h14" stroke={ink} strokeWidth="1.6" {...common} />
+          <path d="M84 30c0 0-9 11-9 17a9 9 0 0 0 18 0c0-6-9-17-9-17z" stroke={gold} strokeWidth="2.2" {...common} />
+        </>
+      );
+      break;
     default:
       art = (
         <>

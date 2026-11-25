@@ -1923,6 +1923,161 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    slug: "or-consumables-checklist-by-workflow",
+    no: "19",
+    title: "A procurement checklist for disposable OR consumables",
+    dek: "The difficulty in buying operating-room consumables is rarely finding a single item. It is thinking through everything a case will actually use. Most procedure packs are not a fixed catalogue product but a combination built around the operation, so walk the list by workflow and by procedure.",
+    date: "2026-11-28",
+    minutes: 5,
+    tag: "Selection",
+    keyPoints: [
+      "List by the flow of a case, not by a product catalogue — fewer items get missed.",
+      "Most procedure packs are configured around the operation; name the procedure before discussing the contents.",
+      "Gowns follow people and case type; monitoring consumables such as pressure transducers are counted separately.",
+      "Pack contents, sterilisation and material details are confirmed at the quotation stage, not in this note.",
+    ],
+    blocks: [
+      { type: "h2", text: "List by workflow, not by catalogue" },
+      {
+        type: "p",
+        text: "Many purchase lists are ticked off a supplier catalogue. They look complete until the operation starts and something is missing. The reason is simple: a catalogue is arranged by category, an operation by sequence. A sounder approach follows one case from preparation to the end — draping, gowning, access, monitoring, connections, suction — recording what each step consumes. A list made this way matches how the items are actually used.",
+      },
+      { type: "h2", text: "Base layer: gowns by person, packs by procedure" },
+      {
+        type: "p",
+        text: "Gowns and procedure packs are the base layer of OR consumables, but they are configured differently. Gowns follow the role of the person in the case and the type of operation; the point is to cover everyone involved. Procedure packs follow the operation. Here is the part that is easy to overlook: most packs are not a single fixed standard item, because different operations need different things. Obstetrics, orthopaedics, general surgery and ophthalmology take different paths and use different drapes, instruments and consumables; even the same operation is configured differently in different hospitals and by different surgeons.",
+      },
+      {
+        type: "p",
+        text: "The usual practice is to define the operation first, then combine what that case needs into a pack — what is often called a non-standard procedure pack. The useful question to a supplier is not which ready-made packs exist, but how a pack should be composed for the procedures you run. With the procedure stated, the configuration has a basis; asking only for a surgical pack rarely produces a combination that fits. What sits inside each pack, and in what quantity, is configuration detail — like sizes, it is settled at the quotation stage, procedure by procedure, rather than set out here.",
+      },
+      { type: "h2", text: "Monitoring layer: count pressure transducers on their own" },
+      {
+        type: "p",
+        text: "A disposable pressure transducer is a monitoring consumable, a different matter from a procedure pack. It has its own use and its own interface requirements, is not normally included in a general pack, and needs a separate quantity and matching items. Folding it into the base count leads to shortages when it is needed or waste when it is not. Keeping it on its own line makes both purchasing and stock easier to follow.",
+      },
+      { type: "h2", text: "Accessory layer: handles, tubing and access lines" },
+      {
+        type: "p",
+        text: "The operating room also uses a set of unremarkable but essential items: suction handles, connecting tubing, and products for venous access. Individually they look low in value, yet they are what lets the workflow continue. Accessories are the easiest line to omit. Keep them on the same sheet as the main consumables and check them item by item, rather than fetching them once the case is under way.",
+      },
+      { type: "h2", text: "A checklist framework you can reuse" },
+      {
+        type: "p",
+        text: "Put the layers together and there is a reusable framework: a base layer of gowns and packs configured by procedure, a monitoring layer for pressure transducers and similar items, and an accessory layer of handles, tubing and access lines. When a new procedure is added, describe the case and add its pack to the right layer. Nothing is missed, and the list stays consistent instead of being rebuilt each time. Sizes and the contents of each pack are confirmed at the quotation stage against the operation.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Surgical consumables", href: "/products/surgical" },
+          { label: "Disposable surgical gowns and kits", href: "/products/surgical/disposable-surgical-kit" },
+          { label: "Ask us about the procedures you run", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "masks-gloves-and-oxygen-by-task",
+    no: "20",
+    title: "Masks, gloves and oxygen delivery: matching respiratory consumables to the task",
+    dek: "Masks, gloves and oxygen products are often bought together as general supplies, but each has a clear boundary. Sorting them by use keeps you from putting a product in the wrong setting, or paying for a function you will not need.",
+    date: "2026-11-28",
+    minutes: 4,
+    tag: "Selection",
+    keyPoints: [
+      "A medical mask and respiratory protective equipment are not the same thing; distinguish them by the environment.",
+      "Examination gloves are chosen by task and wearing time, not by the material name alone.",
+      "A nasal oxygen cannula and an oxygen mask are two delivery methods, chosen by patient state and oxygen need.",
+      "Requirements differ by destination market and device class, so check them case by case.",
+    ],
+    blocks: [
+      { type: "h2", text: "Respiratory consumables is a broad basket — split it up" },
+      {
+        type: "p",
+        text: "In respiratory and protective products, the differences are larger than the names suggest. A mask is a barrier for the mouth and nose, gloves protect the hands, and oxygen products deliver oxygen — three uses with different criteria. Buying them as one broad category invites mistakes in the detail. Split them into separate lines and the list becomes accurate.",
+      },
+      { type: "h2", text: "Masks: choose by environment, not by thickness" },
+      {
+        type: "p",
+        text: "People often judge a mask by how thick it is or how many layers it has, but what decides the type is the environment: a general medical setting as a mouth-and-nose barrier, or a setting with a specific exposure risk. Different environments call for different product types and different requirements. State the environment first, then confirm the corresponding product class. One caution: requirements vary by destination market and device class, so check them individually rather than relying on a blanket statement about approval.",
+      },
+      { type: "h2", text: "Gloves: where nitrile examination gloves fit" },
+      {
+        type: "p",
+        text: "Disposable nitrile examination gloves are a common category, but nitrile is a material, not a guarantee that the glove suits every task. Choose by use: routine examination, contact with certain chemicals, or extended wear. Wearing time, what the hand touches, and allergy considerations all affect the choice. Telling the supplier that is more useful than naming the material alone.",
+      },
+      { type: "h2", text: "Oxygen delivery: cannulas and masks divided by task" },
+      {
+        type: "p",
+        text: "A nasal oxygen cannula and an oxygen mask are both oxygen consumables, but the method and the patient state differ. A cannula suits low-flow oxygen with more freedom of movement; a mask suits cases needing a higher concentration or a particular delivery method. The choice follows the patient's need and the oxygen plan, not which item seems more advanced. These are often bought with suction catheters, so planning them as a group saves effort.",
+      },
+      { type: "h2", text: "Check destination requirements separately, not with one blanket story" },
+      {
+        type: "p",
+        text: "Requirements for respiratory and protective products differ markedly between markets. What a customer in one market needs in the file is not what a customer in another needs, so one account cannot cover every destination. Settle the destination market during procurement and check how far the documents can support it. Doing that early is quicker than discovering a mismatch once the plan is fixed.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Respiratory and protective products", href: "/products/respiratory" },
+          { label: "Oxygen delivery products", href: "/products/respiratory/nasal-oxygen-tube" },
+          { label: "Market access at a glance", href: "/resources/market-access-at-a-glance" },
+          { label: "Ask us about a specific product", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "radiotherapy-and-infusion-primer",
+    no: "21",
+    title: "Thermoplastic masks, infusion pumps and feeding sets: a buyer's primer",
+    dek: "Radiotherapy and infusion consumables are specialist items. A buyer first needs to understand what each one is and where it is used before talking about sizes or quantities. This note sorts three product types by purpose to make the first pass of sourcing less of a guess.",
+    date: "2026-11-28",
+    minutes: 4,
+    tag: "Selection",
+    keyPoints: [
+      "A thermoplastic radiotherapy mask fixes patient position and belongs to a different line from infusion products.",
+      "An elastomeric infusion pump delivers continuous, controlled dosing, chosen by the infusion need.",
+      "An enteral feeding set is matched to the feeding route and the equipment it works with.",
+      "Capacities and specifications are confirmed at the quotation stage; this note covers use and selection only.",
+    ],
+    blocks: [
+      { type: "h2", text: "Why these three are discussed together" },
+      {
+        type: "p",
+        text: "Thermoplastic radiotherapy masks, elastomeric infusion pumps and enteral feeding sets look as if they belong to different departments. For a first-time buyer they share one thing: you have to understand what problem a product solves before discussing how to select it. They are not substitutes and do not share a single set of criteria. Grouping them here is about one sequence — understand the use first, then the specification — which matters most for specialist consumables.",
+      },
+      { type: "h2", text: "Thermoplastic masks: get the positioning step right" },
+      {
+        type: "p",
+        text: "A thermoplastic radiotherapy mask is used to fix the patient's position during treatment, helping keep the set-up consistent across sessions. Its value lies in repeatable positioning rather than in the item on its own. In procurement the useful questions describe the use: which body site, which equipment it works with, and how the workflow runs. Sizes and fitting requirements are confirmed at the quotation stage against the actual plan, not listed at the enquiry stage.",
+      },
+      { type: "h2", text: "Elastomeric infusion pumps: choosing for continuous infusion" },
+      {
+        type: "p",
+        text: "An elastomeric infusion pump is used where dosing must be continuous and controlled, drawing its power from the device's own elasticity rather than from an electronic pump. Selection follows the infusion need: how long it must run, how the drug is given, and any constraints of the setting. These products come in different configurations; capacity and similar parameters are confirmed at the quotation stage. State the infusion plan and the specification has a direction.",
+      },
+      { type: "h2", text: "Enteral feeding sets: match the feeding route" },
+      {
+        type: "p",
+        text: "An enteral feeding set delivers nutrition into the gastrointestinal tract, and selection relates to the feeding method, the equipment used and the setting. It is not the same as an infusion pump — one is the pathway for nutrition, the other the driver for dosing — and the two may appear together without being interchangeable. Confirm each item against the actual feeding flow and the equipment it must work with, rather than naming a single product.",
+      },
+      { type: "h2", text: "Do not omit accessories such as cannulas" },
+      {
+        type: "p",
+        text: "The infusion line also has accessories, for example an intravenous cannula. They sit outside the main consumable yet are part of what makes the infusion possible. Walk a treatment from establishing access to completing the infusion and note what each step uses. Once the uses are clear, sizes, capacities and models are all checked at the quotation stage — both more accurate and faster.",
+      },
+      {
+        type: "links",
+        items: [
+          { label: "Radiotherapy and infusion products", href: "/products/radiotherapy" },
+          { label: "Thermoplastic radiotherapy masks", href: "/products/radiotherapy/thermoplastic-radiotherapy-mask" },
+          { label: "Ask us about a specific product", href: "/contact" },
+        ],
+      },
+    ],
+  },
 ];
 
 export function articleBySlug(slug: string): Article | undefined {
